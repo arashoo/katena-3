@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import './EmailOrder.css'
 
 function EmailOrder({ onCancel, glasses }) {
@@ -63,12 +63,56 @@ function EmailOrder({ onCancel, glasses }) {
     return combined
   }
 
-  const companies = getAllCompanies()
+  const companies = useMemo(() => getAllCompanies(), [customCompanies])
+
+  // Effect to handle invalid company selection
+  useEffect(() => {
+    const availableCompanyIds = Object.keys(companies)
+    
+    if (availableCompanyIds.length === 0) {
+      return
+    }
+    
+    const currentCompany = companies[orderData.company]
+    if (!currentCompany) {
+      // If current company doesn't exist, switch to chronoglass or first available
+      const fallbackId = companies['chronoglass'] ? 'chronoglass' : 
+                         companies['venus'] ? 'venus' : 
+                         availableCompanyIds[0]
+      
+      if (fallbackId && fallbackId !== orderData.company) {
+        setOrderData(prev => ({ ...prev, company: fallbackId }))
+      }
+    }
+  }, [orderData.company, companies])
+
+  // Get current company safely with fallback
+  const getCurrentCompany = () => {
+    const company = companies[orderData.company]
+    if (!company) {
+      // Try chronoglass first
+      if (companies['chronoglass']) {
+        return companies['chronoglass']
+      }
+      // Try venus next
+      if (companies['venus']) {
+        return companies['venus']
+      }
+      // Try any available company
+      const availableCompanies = Object.values(companies)
+      if (availableCompanies.length > 0) {
+        return availableCompanies[0]
+      }
+      // Return a safe default
+      return { id: 'none', name: 'No Company', contact: 'Unknown', email: '', ccList: [] }
+    }
+    return company
+  }
 
   // Get CC recipients for selected company
   const getCurrentCCRecipients = () => {
-    const company = companies[orderData.company]
-    return company ? company.ccList : ['arash.mvp@gmail.com', 'arash@katena.ca']
+    const company = getCurrentCompany()
+    return company.ccList && company.ccList.length > 0 ? company.ccList : ['arash.mvp@gmail.com', 'arash@katena.ca']
   }
 
   // Get unique colors from existing glasses
@@ -127,7 +171,7 @@ function EmailOrder({ onCancel, glasses }) {
   const handleEditCompany = (companyId) => {
     const company = companies[companyId]
     if (company) {
-      setEditingCompany({ ...company })
+      setEditingCompany({ ...company, id: companyId })
       setShowManageCompanies(true)
       setShowAddCompany(false)
     }
@@ -135,32 +179,21 @@ function EmailOrder({ onCancel, glasses }) {
 
   const handleUpdateCompany = () => {
     if (editingCompany && editingCompany.name && editingCompany.contact && editingCompany.email) {
-      if (editingCompany.isDefault) {
-        // For default companies, add them to custom companies as modified defaults
-        const modifiedDefault = {
-          ...editingCompany,
-          isModifiedDefault: true
-        }
-        setCustomCompanies(prev => {
-          // Remove any existing modified version of this default company
-          const filtered = prev.filter(c => c.id !== editingCompany.id)
-          return [...filtered, modifiedDefault]
-        })
-      } else {
-        // For custom companies, just update them normally
-        setCustomCompanies(prev => prev.map(company => 
-          company.id === editingCompany.id ? editingCompany : company
-        ))
+      // For all companies (default or custom), just update them in the custom companies array
+      // This will override the default ones or update existing custom ones
+      const updatedCompany = {
+        ...editingCompany,
+        // Don't add isModifiedDefault flag - just keep the original company structure
       }
+      
+      setCustomCompanies(prev => {
+        // Remove any existing version of this company (whether it was modified before or not)
+        const filtered = prev.filter(c => c.id !== editingCompany.id)
+        return [...filtered, updatedCompany]
+      })
+      
       setEditingCompany(null)
       // Keep showing manage companies view
-    }
-  }
-
-  const handleRestoreDefault = (companyId) => {
-    if (confirm(`Are you sure you want to restore ${companies[companyId].name} to default settings?`)) {
-      // Remove the modified version from custom companies
-      setCustomCompanies(prev => prev.filter(c => c.id !== companyId))
     }
   }
 
@@ -169,7 +202,7 @@ function EmailOrder({ onCancel, glasses }) {
     if (company) {
       const companyName = company.name
       if (confirm(`Are you sure you want to delete ${companyName}?`)) {
-        if (company.isDefault) {
+        if (company.isDefault || company.isModifiedDefault) {
           // For default companies, add a "deleted" marker to custom companies
           const deletedMarker = {
             id: companyId,
@@ -178,17 +211,20 @@ function EmailOrder({ onCancel, glasses }) {
           }
           setCustomCompanies(prev => {
             const filtered = prev.filter(c => c.id !== companyId)
-            return [...filtered, deletedMarker]
+            const newList = [...filtered, deletedMarker]
+            return newList
           })
         } else {
           // For custom companies, just remove them
           setCustomCompanies(prev => prev.filter(c => c.id !== companyId))
         }
         
-        // If this was the selected company, switch to chronoglass
-        if (orderData.company === companyId) {
-          setOrderData(prev => ({ ...prev, company: 'chronoglass' }))
-        }
+        // If this was the selected company, the useEffect will handle switching to fallback
+        
+        // Ensure we stay in manage companies mode
+        setShowManageCompanies(true)
+        setShowAddCompany(false)
+        setEditingCompany(null)
       }
     }
   }
@@ -205,15 +241,23 @@ function EmailOrder({ onCancel, glasses }) {
     const value = e.target.value
     if (value === 'add_new') {
       setShowAddCompany(true)
+      setShowManageCompanies(false)
+      setEditingCompany(null)
     } else if (value === 'manage') {
       setShowManageCompanies(true)
+      setShowAddCompany(false)
+      setEditingCompany(null)
     } else {
       setOrderData(prev => ({ ...prev, company: value }))
+      setShowManageCompanies(false)
+      setShowAddCompany(false)
+      setEditingCompany(null)
     }
   }
 
   const generateEmailBody = () => {
-    const selectedCompany = companies[orderData.company]
+    const selectedCompany = getCurrentCompany()
+    
     const subject = orderData.isForProject 
       ? `Glass Order Request - ${orderData.project} - ${selectedCompany.name}`
       : `Glass Order Request - Inventory Stock - ${selectedCompany.name}`
@@ -311,14 +355,12 @@ ${body}`
             <label>Select Company</label>
             <select
               name="company"
-              value={showAddCompany ? 'add_new' : (showManageCompanies && !editingCompany ? 'manage' : orderData.company)}
+              value={showAddCompany ? 'add_new' : (showManageCompanies ? 'manage' : orderData.company)}
               onChange={handleCompanySelectChange}
               required
             >
-              <option value="chronoglass">Chronoglass - Contact: Alex</option>
-              <option value="venus">Venus Glass - Contact: {defaultCompanies.venus.contact}</option>
-              {customCompanies.map(company => (
-                <option key={company.id} value={company.id}>
+              {Object.entries(companies).map(([id, company]) => (
+                <option key={id} value={id}>
                   {company.name} - Contact: {company.contact}
                 </option>
               ))}
@@ -357,20 +399,8 @@ ${body}`
                       >
                         🗑️ Delete
                       </button>
-                      {company.isModifiedDefault && (
-                        <button 
-                          onClick={() => handleRestoreDefault(id)}
-                          className="restore-default-btn"
-                          type="button"
-                        >
-                          🔄 Restore Default
-                        </button>
-                      )}
-                      {company.isDefault && !company.isModifiedDefault && (
+                      {company.isDefault && (
                         <span className="default-label">Default</span>
-                      )}
-                      {company.isModifiedDefault && (
-                        <span className="modified-label">Modified Default</span>
                       )}
                     </div>
                   </div>
@@ -509,7 +539,7 @@ ${body}`
           {!showAddCompany && !showManageCompanies && (
             <div className="recipient-info">
               <div className="recipient-section">
-                <strong>📧 TO:</strong> {companies[orderData.company].email} ({companies[orderData.company].contact})
+                <strong>📧 TO:</strong> {getCurrentCompany().email} ({getCurrentCompany().contact})
               </div>
               <div className="recipient-section">
                 <strong>📋 CC:</strong> {getCurrentCCRecipients().join(', ')}
@@ -656,7 +686,7 @@ ${body}`
           <h3>📧 Email Preview</h3>
           <div className="preview-content">
             <div className="email-headers">
-              <div><strong>TO:</strong> {companies[orderData.company].email} ({companies[orderData.company].contact})</div>
+              <div><strong>TO:</strong> {getCurrentCompany().email} ({getCurrentCompany().contact})</div>
               <div><strong>CC:</strong> {getCurrentCCRecipients().join(', ')}</div>
               <div><strong>SUBJECT:</strong> {generateEmailBody().subject}</div>
             </div>

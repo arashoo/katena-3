@@ -23,16 +23,29 @@ function ExportControls({ glasses = [], filteredGlasses = [] }) {
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false)
+      // Check if click is on the button or inside the dropdown content
+      if (buttonRef.current && buttonRef.current.contains(event.target)) {
+        return // Don't close if clicking the button
       }
+      
+      // Check if click is inside the dropdown content (which is portaled)
+      const dropdownContent = document.querySelector('.export-dropdown-content')
+      if (dropdownContent && dropdownContent.contains(event.target)) {
+        return // Don't close if clicking inside dropdown
+      }
+      
+      // Close dropdown if clicking outside
+      setIsOpen(false)
     }
 
-    document.addEventListener('mousedown', handleClickOutside)
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+    
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [])
+  }, [isOpen])
   const exportToCSV = (data, filename) => {
     // Convert grouped glass data to flat structure for export
     const flatData = []

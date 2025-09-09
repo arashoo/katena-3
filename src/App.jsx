@@ -14,6 +14,7 @@ function App() {
   const [filteredGlasses, setFilteredGlasses] = useState([])
   const [showAddForm, setShowAddForm] = useState(false)
   const [showEmailOrder, setShowEmailOrder] = useState(false)
+  const [activeTab, setActiveTab] = useState('dashboard') // New state for tab management
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' })
   const [searchTerm, setSearchTerm] = useState('')
   const [filters, setFilters] = useState({
@@ -375,26 +376,51 @@ function App() {
       )}
 
       <main className="app-main">
-        <Dashboard glasses={glasses} />
-        
-        <div className="controls-section">
-          <SearchBar onSearch={handleSearch} />
-          <AdvancedFilters 
-            filters={filters} 
-            onFilterChange={setFilters}
-            glasses={glasses}
-          />
+        {/* Tab Navigation */}
+        <div className="tab-navigation">
+          <button 
+            className={`tab-btn ${activeTab === 'dashboard' ? 'active' : ''}`}
+            onClick={() => setActiveTab('dashboard')}
+          >
+            📊 Dashboard
+          </button>
+          <button 
+            className={`tab-btn ${activeTab === 'inventory' ? 'active' : ''}`}
+            onClick={() => setActiveTab('inventory')}
+          >
+            📋 Inventory
+          </button>
         </div>
-        
-        <GlassTable 
-          glasses={filteredGlasses}
-          onUpdateGlass={updateGlass}
-          onDeleteGlass={handleDeleteConfirm}
-          onSort={handleSort}
-          sortConfig={sortConfig}
-          onReserveGlass={reserveGlass}
-          onUpdateReservation={updateReservation}
-        />
+
+        {/* Tab Content */}
+        {activeTab === 'dashboard' && (
+          <div className="tab-content">
+            <Dashboard glasses={glasses} />
+          </div>
+        )}
+
+        {activeTab === 'inventory' && (
+          <div className="tab-content">
+            <div className="controls-section">
+              <SearchBar onSearch={handleSearch} />
+              <AdvancedFilters 
+                filters={filters} 
+                onFilterChange={setFilters}
+                glasses={glasses}
+              />
+            </div>
+            
+            <GlassTable 
+              glasses={filteredGlasses}
+              onUpdateGlass={updateGlass}
+              onDeleteGlass={handleDeleteConfirm}
+              onSort={handleSort}
+              sortConfig={sortConfig}
+              onReserveGlass={reserveGlass}
+              onUpdateReservation={updateReservation}
+            />
+          </div>
+        )}
       </main>
 
       {showConfirmation && (

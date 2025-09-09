@@ -147,6 +147,63 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Tab Navigation Styles */
+.tab-navigation {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+  background: #f7fafc;
+  border-radius: 12px;
+  padding: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 12px 24px;
+  border: none;
+  background: transparent;
+  color: #718096;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tab-btn:hover {
+  color: #4a5568;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+  transform: translateY(-1px);
+}
+
+.tab-content {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 768px) {
   .app {
     padding: 12px;
@@ -176,5 +233,14 @@ body {
 
   .app-main {
     padding: 20px;
+  }
+
+  .tab-navigation {
+    margin-bottom: 20px;
+  }
+
+  .tab-btn {
+    font-size: 12px;
+    padding: 10px 16px;
   }
 }
