@@ -1,0 +1,410 @@
+.glass-table-container {
+  overflow-x: auto;
+  margin: 24px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.glass-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 14px;
+  table-layout: fixed;
+}
+
+.glass-table th,
+.glass-table td {
+  padding: 16px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  color: #2d3748;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.glass-table th {
+  background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+  font-weight: 700;
+  color: #2d3748;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #cbd5e0;
+  position: relative;
+}
+
+.glass-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.glass-table th.sortable:hover {
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%);
+}
+
+.glass-table th.sortable:active {
+  background: linear-gradient(135deg, #cbd5e0 0%, #a0aec0 100%);
+}
+
+.glass-table tr {
+  transition: all 0.3s ease;
+}
+
+.glass-table tr:hover {
+  background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 50%);
+  transition: all 0.2s ease;
+}
+
+/* Glass Group Container Styling */
+.glass-group-main {
+  position: relative;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.glass-group-main.has-reservations {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-left: 3px solid #3b82f6;
+}
+
+.glass-group-main.has-reservations:hover {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+.glass-table tr.reserved {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border-left: 4px solid #f59e0b;
+  transition: all 0.3s ease;
+}
+
+.glass-table tr.reserved:hover {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+}
+
+.glass-table tr.editing {
+  background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);
+  transform: scale(1.01);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.glass-table tr.editing:hover {
+  background: linear-gradient(135deg, #b3e5fc 0%, #81d4fa 100%);
+}
+
+.glass-table tr.editing.exiting {
+  background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+  transform: scale(1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.glass-table tr.editing td:last-child {
+  background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+  transition: all 0.3s ease;
+}
+
+.glass-table tr.editing.exiting td:last-child {
+  background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+  transition: all 0.2s ease;
+}
+
+.reservation-row {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-left: 4px solid #f59e0b;
+  font-style: italic;
+  font-size: 12px;
+  transform: scale(0.95);
+  transform-origin: left;
+}
+
+.reservation-row td {
+  padding: 10px 12px !important;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.reservation-row:hover {
+  background: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%);
+  transform: scale(0.96);
+}
+
+.reservation-cell {
+  position: relative;
+  padding-left: 32px !important;
+}
+
+.reservation-cell::before {
+  content: '↳';
+  position: absolute;
+  left: 16px;
+  color: #f59e0b;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.lock-icon {
+  font-size: 14px;
+  color: #92400e;
+}
+
+.reserved-count {
+  font-weight: 700;
+  color: #92400e;
+}
+
+.reserved-project {
+  color: #92400e;
+  font-weight: 600;
+}
+
+.reserve-btn {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.reserve-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+.heat-soaked {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.heat-soaked.yes {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  color: #065f46;
+  border: 1px solid #10b981;
+}
+
+.heat-soaked.no {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  color: #991b1b;
+  border: 1px solid #ef4444;
+}
+
+.reserved-project {
+  color: #92400e;
+  font-weight: 600;
+  padding: 4px 8px;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.available {
+  color: #059669;
+  font-weight: 600;
+  font-style: italic;
+  padding: 4px 8px;
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.available-count {
+  font-weight: 700;
+  color: #059669;
+  font-size: 14px;
+}
+
+.total-count-info {
+  font-size: 11px;
+  color: #6b7280;
+  font-style: italic;
+  margin-left: 4px;
+}
+
+.edit-btn, .delete-btn, .save-btn, .cancel-btn, .reserve-btn {
+  padding: 6px 8px;
+  margin: 0 1px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  width: 32px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: buttonFadeIn 0.3s ease forwards;
+}
+
+.glass-table tr.exiting .save-btn,
+.glass-table tr.exiting .cancel-btn,
+.glass-table tr.exiting .edit-btn,
+.glass-table tr.exiting .delete-btn {
+  animation: buttonFadeOut 0.2s ease forwards;
+}
+
+.glass-table tr.exiting input,
+.glass-table tr.exiting select {
+  animation: inputFadeOut 0.2s ease forwards;
+}
+
+@keyframes inputFadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes buttonFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes buttonFadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+.glass-table td:last-child {
+  width: 110px;
+  min-width: 110px;
+  max-width: 110px;
+  text-align: center;
+  padding: 16px 4px;
+  transition: all 0.3s ease;
+}
+
+.edit-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.edit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.delete-btn {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+.delete-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.save-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.save-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+.cancel-btn {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(107, 114, 128, 0.3);
+}
+
+.cancel-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.4);
+}
+
+.glass-table input,
+.glass-table select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #2d3748;
+  background: white;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: scale(0.95);
+  animation: inputFadeIn 0.3s ease forwards;
+}
+
+.reservation-edit-input {
+  width: 100% !important;
+  padding: 6px 8px !important;
+  border: 2px solid #f59e0b !important;
+  border-radius: 6px !important;
+  font-size: 12px !important;
+  color: #92400e !important;
+  background: #fef3c7 !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+.reservation-edit-input:focus {
+  outline: none !important;
+  border-color: #d97706 !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2) !important;
+  background: white !important;
+}
+
+@keyframes inputFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.glass-table input:focus,
+.glass-table select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  transform: scale(1.02);
+}
+
+.no-data {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6b7280;
+  font-style: italic;
+  font-size: 16px;
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  border-radius: 12px;
+  margin: 20px 0;
+}
