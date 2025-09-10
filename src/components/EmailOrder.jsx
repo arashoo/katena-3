@@ -1,19 +1,45 @@
 import { useState, useEffect, useMemo } from 'react'
 import './EmailOrder.css'
 
-function EmailOrder({ onCancel, glasses }) {
-  const [orderData, setOrderData] = useState({
+function EmailOrder({ onCancel, glasses, initialData = null }) {
+  const [orderItems, setOrderItems] = useState([])
+  const [currentItem, setCurrentItem] = useState({
     width: '',
     height: '',
     color: 'Clear',
     quantity: 1,
     heatSoaked: false,
+    notes: ''
+  })
+  const [orderData, setOrderData] = useState({
     project: '',
     isForProject: false,
     urgency: 'normal',
     notes: '',
     company: 'chronoglass'
   })
+
+  // Pre-fill form with initial data when provided
+  useEffect(() => {
+    if (initialData) {
+      const newItem = {
+        width: initialData.width || '',
+        height: initialData.height || '',
+        color: initialData.color || 'Clear',
+        quantity: initialData.quantity || 1,
+        heatSoaked: initialData.heatSoaked || false,
+        notes: initialData.notes || `For project "${initialData.project}"`
+      }
+      setOrderItems([newItem])
+      setOrderData(prev => ({
+        ...prev,
+        project: initialData.project || '',
+        isForProject: initialData.project ? true : false,
+        urgency: 'urgent', // Set as urgent for backlog orders
+        notes: initialData.orderNotes || `Order for backlog item(s)`
+      }))
+    }
+  }, [initialData])
 
   const [showAddCompany, setShowAddCompany] = useState(false)
   const [showManageCompanies, setShowManageCompanies] = useState(false)
@@ -130,6 +156,44 @@ function EmailOrder({ onCancel, glasses }) {
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }))
+  }
+
+  const handleCurrentItemChange = (e) => {
+    const { name, value, type, checked } = e.target
+    setCurrentItem(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }))
+  }
+
+  const addItemToOrder = () => {
+    if (currentItem.width && currentItem.height && currentItem.quantity > 0) {
+      const newItem = {
+        ...currentItem,
+        id: Date.now() + Math.random()
+      }
+      setOrderItems(prev => [...prev, newItem])
+      
+      // Reset current item form
+      setCurrentItem({
+        width: '',
+        height: '',
+        color: 'Clear',
+        quantity: 1,
+        heatSoaked: false,
+        notes: ''
+      })
+    }
+  }
+
+  const removeItemFromOrder = (itemId) => {
+    setOrderItems(prev => prev.filter(item => item.id !== itemId))
+  }
+
+  const updateOrderItem = (itemId, updatedData) => {
+    setOrderItems(prev => prev.map(item => 
+      item.id === itemId ? { ...item, ...updatedData } : item
+    ))
   }
 
   const handleNewCompanyChange = (e) => {
@@ -262,17 +326,28 @@ function EmailOrder({ onCancel, glasses }) {
       ? `Glass Order Request - ${orderData.project} - ${selectedCompany.name}`
       : `Glass Order Request - Inventory Stock - ${selectedCompany.name}`
 
+    const totalQuantity = orderItems.reduce((sum, item) => sum + parseInt(item.quantity), 0)
+    
+    let orderItemsText = ''
+    if (orderItems.length > 0) {
+      orderItemsText = orderItems.map((item, index) => {
+        return `${index + 1}. ${item.width}" × ${item.height}" ${item.color}
+   Quantity: ${item.quantity} pieces
+   Heat Soaked: ${item.heatSoaked ? 'Yes - Required' : 'No'}${item.notes ? `
+   Notes: ${item.notes}` : ''}`
+      }).join('\n\n')
+    }
+
     const body = `
 Dear ${selectedCompany.contact},
 
 I hope this email finds you well. We would like to place a glass order with ${selectedCompany.name}.
 
 ORDER DETAILS:
-- Dimensions: ${orderData.width}" × ${orderData.height}"
-- Color: ${orderData.color}
-- Quantity: ${orderData.quantity} pieces
-- Heat Soaked: ${orderData.heatSoaked ? 'Yes - Required' : 'No'}
-- Priority: ${orderData.urgency.charAt(0).toUpperCase() + orderData.urgency.slice(1)}
+${orderItems.length > 0 ? orderItemsText : 'No items added to order yet'}
+
+TOTAL QUANTITY: ${totalQuantity} pieces
+PRIORITY: ${orderData.urgency.charAt(0).toUpperCase() + orderData.urgency.slice(1)}
 
 PURPOSE:
 ${orderData.isForProject 
@@ -282,9 +357,9 @@ ${orderData.isForProject
 ${orderData.notes ? `ADDITIONAL REQUIREMENTS:\n${orderData.notes}` : ''}
 
 Please confirm:
-1. Availability of the requested glass
+1. Availability of the requested glass items
 2. Lead time for delivery
-3. Pricing information
+3. Pricing information for each item
 4. Delivery schedule
 
 We would appreciate a prompt response to coordinate our project timeline.
@@ -549,18 +624,50 @@ ${body}`
         </div>
 
         <div className="form-section">
-          <h3>Glass Specifications</h3>
+          <h3>📦 Order Items ({orderItems.length})</h3>
+          
+          {/* Display current order items */}
+          {orderItems.length > 0 && (
+            <div className="order-items-list">
+              <h4>Items in Order:</h4>
+              {orderItems.map((item, index) => (
+                <div key={item.id} className="order-item">
+                  <div className="item-details">
+                    <strong>#{index + 1}</strong>
+                    <span>{item.width}" × {item.height}" {item.color}</span>
+                    <span>Qty: {item.quantity}</span>
+                    <span>{item.heatSoaked ? 'Heat Soaked' : 'Standard'}</span>
+                    {item.notes && <span className="item-notes">Note: {item.notes}</span>}
+                  </div>
+                  <button 
+                    type="button" 
+                    onClick={() => removeItemFromOrder(item.id)}
+                    className="remove-item-btn"
+                    title="Remove item"
+                  >
+                    🗑️
+                  </button>
+                </div>
+              ))}
+              <div className="order-summary">
+                <strong>Total Items: {orderItems.length} | Total Quantity: {orderItems.reduce((sum, item) => sum + parseInt(item.quantity), 0)} pieces</strong>
+              </div>
+              <hr style={{margin: '16px 0'}} />
+            </div>
+          )}
+
+          {/* Add new item form */}
+          <h4>➕ Add Glass Item</h4>
           <div className="form-row">
             <div className="form-group">
               <label>Width (inches)</label>
               <input
                 type="number"
                 name="width"
-                value={orderData.width}
-                onChange={handleInputChange}
+                value={currentItem.width}
+                onChange={handleCurrentItemChange}
                 step="0.125"
                 min="0"
-                required
                 placeholder="e.g., 84"
               />
             </div>
@@ -569,11 +676,10 @@ ${body}`
               <input
                 type="number"
                 name="height"
-                value={orderData.height}
-                onChange={handleInputChange}
+                value={currentItem.height}
+                onChange={handleCurrentItemChange}
                 step="0.125"
                 min="0"
-                required
                 placeholder="e.g., 60"
               />
             </div>
@@ -584,9 +690,8 @@ ${body}`
               <label>Color</label>
               <select
                 name="color"
-                value={orderData.color}
-                onChange={handleInputChange}
-                required
+                value={currentItem.color}
+                onChange={handleCurrentItemChange}
               >
                 {uniqueColors.map(color => (
                   <option key={color} value={color}>{color}</option>
@@ -599,25 +704,45 @@ ${body}`
               <input
                 type="number"
                 name="quantity"
-                value={orderData.quantity}
-                onChange={handleInputChange}
+                value={currentItem.quantity}
+                onChange={handleCurrentItemChange}
                 min="1"
-                required
               />
             </div>
           </div>
 
-          <div className="form-group">
-            <label className="checkbox-label">
+          <div className="form-row">
+            <div className="form-group">
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  name="heatSoaked"
+                  checked={currentItem.heatSoaked}
+                  onChange={handleCurrentItemChange}
+                />
+                Heat Soaked Required
+              </label>
+            </div>
+            <div className="form-group">
+              <label>Item Notes (optional)</label>
               <input
-                type="checkbox"
-                name="heatSoaked"
-                checked={orderData.heatSoaked}
-                onChange={handleInputChange}
+                type="text"
+                name="notes"
+                value={currentItem.notes}
+                onChange={handleCurrentItemChange}
+                placeholder="Special requirements for this item..."
               />
-              Heat Soaked Required
-            </label>
+            </div>
           </div>
+
+          <button 
+            type="button" 
+            onClick={addItemToOrder}
+            className="add-item-btn"
+            disabled={!currentItem.width || !currentItem.height || currentItem.quantity < 1}
+          >
+            ➕ Add to Order
+          </button>
         </div>
 
         <div className="form-section">
@@ -696,10 +821,22 @@ ${body}`
         </div>
 
         <div className="form-actions">
-          <button type="button" onClick={handleSendEmail} className="send-email-btn">
-            📧 Open Email Client
+          <button 
+            type="button" 
+            onClick={handleSendEmail} 
+            className="send-email-btn"
+            disabled={orderItems.length === 0}
+            title={orderItems.length === 0 ? "Add at least one item to the order" : ""}
+          >
+            📧 Open Email Client {orderItems.length > 0 && `(${orderItems.length} items)`}
           </button>
-          <button type="button" onClick={handleCopyToClipboard} className="copy-btn">
+          <button 
+            type="button" 
+            onClick={handleCopyToClipboard} 
+            className="copy-btn"
+            disabled={orderItems.length === 0}
+            title={orderItems.length === 0 ? "Add at least one item to the order" : ""}
+          >
             📋 Copy to Clipboard
           </button>
           <button type="button" onClick={onCancel} className="cancel-btn">

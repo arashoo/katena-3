@@ -32,9 +32,10 @@ function ReservationEditModal({ isOpen, onClose, reservation, glasses, groupedGl
     }
     
     // Find the group for this reservation to check available inventory
-    const key = `${reservation.width}-${reservation.height}-${reservation.color}-${reservation.heatSoaked}-${reservation.rackNumber}`
+    // Note: Using same grouping key as GlassTable (without rackNumber)
+    const key = `${reservation.width}-${reservation.height}-${reservation.color}-${reservation.heatSoaked}`
     const group = Object.values(groupedGlasses).find(g => 
-      g.main && `${g.main.width}-${g.main.height}-${g.main.color}-${g.main.heatSoaked}-${g.main.rackNumber}` === key
+      g.main && `${g.main.width}-${g.main.height}-${g.main.color}-${g.main.heatSoaked}` === key
     )
     
     if (group) {
@@ -66,9 +67,10 @@ function ReservationEditModal({ isOpen, onClose, reservation, glasses, groupedGl
   if (!isOpen || !reservation) return null
 
   // Find the group to get inventory information
-  const key = `${reservation.width}-${reservation.height}-${reservation.color}-${reservation.heatSoaked}-${reservation.rackNumber}`
+  // Note: Using same grouping key as GlassTable (without rackNumber)
+  const key = `${reservation.width}-${reservation.height}-${reservation.color}-${reservation.heatSoaked}`
   const group = Object.values(groupedGlasses).find(g => 
-    g.main && `${g.main.width}-${g.main.height}-${g.main.color}-${g.main.heatSoaked}-${g.main.rackNumber}` === key
+    g.main && `${g.main.width}-${g.main.height}-${g.main.color}-${g.main.heatSoaked}` === key
   )
 
   const currentAvailable = group ? group.main.availableCount : 0

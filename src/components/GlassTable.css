@@ -66,13 +66,45 @@
   background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
 }
 
+/* Row hover effects with bold animation */
+.glass-table tbody tr {
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.glass-table tbody tr.clickable-row {
+  cursor: pointer;
+}
+
+.glass-table tbody tr.clickable-row:hover {
+  font-weight: bold;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  position: relative;
+}
+
+.glass-table tbody tr.clickable-row:hover td {
+  font-weight: bold;
+}
+
+/* Ensure action buttons are still clickable */
+.glass-table tbody tr td button {
+  pointer-events: auto;
+  position: relative;
+  z-index: 20;
+}
+
 .glass-group-main.has-reservations {
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-  border-left: 3px solid #3b82f6;
+  background: #F7EAA6;
 }
 
 .glass-group-main.has-reservations:hover {
-  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  background: #F5E68C;
+}
+
+.glass-group-header.fully-reserved:hover {
+  background: #FFCC00;
 }
 
 .glass-table tr.reserved {
@@ -114,23 +146,20 @@
 }
 
 .reservation-row {
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-  border-left: 4px solid #f59e0b;
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border-left: 4px solid #3b82f6;
   font-style: italic;
-  font-size: 12px;
-  transform: scale(0.95);
-  transform-origin: left;
+  font-size: 14px;
 }
 
 .reservation-row td {
   padding: 10px 12px !important;
-  font-size: 12px;
+  font-size: 14px;
   opacity: 0.9;
 }
 
 .reservation-row:hover {
-  background: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%);
-  transform: scale(0.96);
+  background: linear-gradient(135deg, #bfdbfe 0%, #93c5fd 100%);
 }
 
 .reservation-cell {
@@ -142,7 +171,7 @@
   content: '↳';
   position: absolute;
   left: 16px;
-  color: #f59e0b;
+  color: #3b82f6;
   font-weight: bold;
   font-size: 14px;
 }
@@ -154,11 +183,11 @@
 
 .reserved-count {
   font-weight: 700;
-  color: #92400e;
+  color: #1e40af;
 }
 
 .reserved-project {
-  color: #92400e;
+  color: #1e40af;
   font-weight: 600;
 }
 
@@ -171,6 +200,17 @@
 .reserve-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+.backlog-btn {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+}
+
+.backlog-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
 }
 
 .heat-soaked {
@@ -195,10 +235,10 @@
 }
 
 .reserved-project {
-  color: #92400e;
+  color: #1e40af;
   font-weight: 600;
   padding: 4px 8px;
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
   border-radius: 6px;
   font-size: 12px;
 }
@@ -226,7 +266,7 @@
   margin-left: 4px;
 }
 
-.edit-btn, .delete-btn, .save-btn, .cancel-btn, .reserve-btn {
+.edit-btn, .delete-btn, .save-btn, .cancel-btn, .reserve-btn, .backlog-btn {
   padding: 6px 8px;
   margin: 0 1px;
   border: none;
@@ -293,9 +333,9 @@
 }
 
 .glass-table td:last-child {
-  width: 110px;
-  min-width: 110px;
-  max-width: 110px;
+  width: 140px;
+  min-width: 140px;
+  max-width: 140px;
   text-align: center;
   padding: 16px 4px;
   transition: all 0.3s ease;
@@ -363,19 +403,19 @@
 .reservation-edit-input {
   width: 100% !important;
   padding: 6px 8px !important;
-  border: 2px solid #f59e0b !important;
+  border: 2px solid #3b82f6 !important;
   border-radius: 6px !important;
   font-size: 12px !important;
-  color: #92400e !important;
-  background: #fef3c7 !important;
+  color: #1e40af !important;
+  background: #dbeafe !important;
   font-weight: 600 !important;
   transition: all 0.3s ease !important;
 }
 
 .reservation-edit-input:focus {
   outline: none !important;
-  border-color: #d97706 !important;
-  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2) !important;
+  border-color: #1d4ed8 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
   background: white !important;
 }
 
@@ -407,4 +447,141 @@
   background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
   border-radius: 12px;
   margin: 20px 0;
+}
+
+/* Fully reserved glass styles - now matches partially reserved look */
+.glass-group-header.fully-reserved {
+  background: #FFD70D;
+}
+
+.glass-group-header.fully-reserved:hover {
+  background: #FFCC00;
+}
+
+.glass-group-header.fully-reserved td {
+  color: #2d3748;
+  font-weight: 500;
+}
+
+.fully-reserved-status {
+  color: #1e40af;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.glass-group-header.fully-reserved .available-count {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.glass-group-header.fully-reserved .total-count-info {
+  color: #64748b;
+  font-style: italic;
+}
+
+/* Expand/Collapse functionality */
+.expand-btn {
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 4px 8px;
+  margin-right: 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  transition: all 0.2s ease;
+  vertical-align: middle;
+  pointer-events: none; /* Prevent button from intercepting row clicks */
+}
+
+.expand-btn:hover {
+  background-color: #f3f4f6;
+  color: #374151;
+  transform: scale(1.1);
+}
+
+.expand-btn:active {
+  transform: scale(0.95);
+}
+
+.expand-indicator {
+  color: #6b7280;
+  font-size: 12px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.glass-dimension {
+  vertical-align: middle;
+}
+
+.has-reservations {
+  position: relative;
+}
+
+.reservation-indicator {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 6px;
+  background: #dbeafe;
+  color: #1e40af;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: help;
+}
+
+.fully-reserved .reservation-indicator {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+/* Smooth animations for expand/collapse */
+.reservation-row {
+  transition: all 0.3s ease;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.expand-btn {
+  transition: transform 0.2s ease;
+}
+
+.expand-btn:hover {
+  transform: scale(1.1);
+}
+
+.rack-numbers {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  color: #4b5563;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+  display: inline-block;
+}
+
+.rack-numbers:hover {
+  white-space: normal;
+  overflow: visible;
+  position: relative;
+  z-index: 10;
+  background: white;
+  padding: 2px 4px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
