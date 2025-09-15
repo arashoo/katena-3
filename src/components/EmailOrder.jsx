@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import './EmailOrder.css'
+import apiService from '../services/apiService'
 
 function EmailOrder({ onCancel, glasses, initialData = null }) {
   const [orderItems, setOrderItems] = useState([])
@@ -373,7 +374,7 @@ Glass Inventory Management Team
     return { subject, body, selectedCompany }
   }
 
-  const handleSendEmail = () => {
+  const handleSendEmail = async () => {
     const { subject, body, selectedCompany } = generateEmailBody()
     
     // Create mailto link with TO, CC, subject, and body
@@ -385,7 +386,42 @@ Glass Inventory Management Team
     // Open email client
     window.location.href = mailtoLink
     
-    // Close the modal after opening email
+    // Add ordered items to pending orders
+    try {
+      for (const item of orderItems) {
+        const pendingOrder = {
+          width: parseInt(item.width),
+          height: parseInt(item.height),
+          color: item.color,
+          count: parseInt(item.quantity),
+          heatSoaked: item.heatSoaked,
+          supplierInfo: selectedCompany.name,
+          supplierEmail: selectedCompany.email,
+          emailSubject: subject,
+          orderNotes: item.notes || '',
+          status: 'Ordered',
+          dateOrdered: new Date().toLocaleDateString(),
+          estimatedArrival: '', // Can be updated later
+          orderReference: `ORDER-${Date.now()}-${Math.random().toString(36).substring(2, 8).toUpperCase()}`
+        }
+        
+        await apiService.addPendingOrder(pendingOrder)
+      }
+      
+      // Show success message
+      alert(`Email sent successfully! ${orderItems.length} item(s) have been added to pending orders for tracking.`)
+    } catch (error) {
+      console.error('Error adding to pending orders:', error)
+      
+      // Check if it's a connection error
+      if (error.message.includes('Failed to fetch') || error.message.includes('fetch')) {
+        alert('Email sent, but could not connect to server to add items to pending orders. Please ensure the backend server is running and add the orders manually if needed.')
+      } else {
+        alert(`Email sent, but there was an issue adding items to pending orders: ${error.message}. Please add them manually if needed.`)
+      }
+    }
+    
+    // Close the modal after processing
     setTimeout(() => {
       onCancel()
     }, 1000)

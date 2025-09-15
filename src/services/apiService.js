@@ -82,9 +82,55 @@ class ApiService {
     });
   }
 
+  // Pending Orders API methods
+  async getPendingOrders() {
+    return await this.fetch('/pending-orders');
+  }
+
+  async addPendingOrder(orderData) {
+    return await this.fetch('/pending-orders', {
+      method: 'POST',
+      body: JSON.stringify(orderData),
+    });
+  }
+
+  async updatePendingOrder(id, orderData) {
+    return await this.fetch(`/pending-orders/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(orderData),
+    });
+  }
+
+  async deletePendingOrder(id) {
+    return await this.fetch(`/pending-orders/${id}`, {
+      method: 'DELETE',
+    });
+  }
+
+  async receiveOrder(id, receiptData = {}) {
+    return await this.fetch(`/pending-orders/${id}/receive`, {
+      method: 'POST',
+      body: JSON.stringify(receiptData),
+    });
+  }
+
   // Health check
   async healthCheck() {
     return await this.fetch('/health');
+  }
+
+  // Test connection
+  async testConnection() {
+    try {
+      await this.healthCheck();
+      return { success: true, message: 'Server connection successful' };
+    } catch (error) {
+      return { 
+        success: false, 
+        message: `Server connection failed: ${error.message}`,
+        suggestion: 'Make sure the backend server is running on port 3001'
+      };
+    }
   }
 }
 

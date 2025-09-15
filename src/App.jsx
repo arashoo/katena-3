@@ -7,6 +7,7 @@ import AdvancedFilters from './components/AdvancedFilters'
 import ExportControls from './components/ExportControls'
 import Dashboard from './components/Dashboard'
 import BacklogManager from './components/BacklogManager'
+import PendingOrders from './components/PendingOrders'
 import Projects from './components/Projects'
 import ConfirmationModal from './components/ConfirmationModal'
 import apiService from './services/apiService'
@@ -844,6 +845,12 @@ function App() {
             📝 Backlog ({backlogReservations.length})
           </button>
           <button 
+            className={`tab-btn ${activeTab === 'pending' ? 'active' : ''}`}
+            onClick={() => setActiveTab('pending')}
+          >
+            🚚 Pending Orders
+          </button>
+          <button 
             className={`tab-btn ${activeTab === 'projects' ? 'active' : ''}`}
             onClick={() => setActiveTab('projects')}
           >
@@ -892,6 +899,12 @@ function App() {
               availableGlasses={glasses.filter(glass => !glass.reservedProject)}
               onOpenOrderGlass={handleOpenOrderFromBacklog}
             />
+          </div>
+        )}
+
+        {activeTab === 'pending' && (
+          <div className="tab-content">
+            <PendingOrders />
           </div>
         )}
 

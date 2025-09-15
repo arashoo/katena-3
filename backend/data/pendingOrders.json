@@ -1,0 +1,50 @@
+[
+  {
+    "id": "pending-001",
+    "width": 60,
+    "height": 84,
+    "color": "Bronze",
+    "count": 12,
+    "heatSoaked": true,
+    "supplierInfo": "Guardian Glass",
+    "supplierEmail": "orders@guardian.com",
+    "emailSubject": "Glass Order Request - Bronze Heat Soaked",
+    "orderNotes": "Special order for high-end project",
+    "status": "Shipped",
+    "dateOrdered": "9/10/2025",
+    "estimatedArrival": "9/20/2025",
+    "orderReference": "ORDER-1726402800-ABC123"
+  },
+  {
+    "id": "pending-002",
+    "width": 36,
+    "height": 48,
+    "color": "Clear",
+    "count": 8,
+    "heatSoaked": false,
+    "supplierInfo": "Pilkington Glass",
+    "supplierEmail": "sales@pilkington.com",
+    "emailSubject": "Urgent Glass Order - Clear Standard",
+    "orderNotes": "",
+    "status": "Ordered",
+    "dateOrdered": "9/12/2025",
+    "estimatedArrival": "",
+    "orderReference": "ORDER-1726574400-XYZ789"
+  },
+  {
+    "width": 48,
+    "height": 72,
+    "color": "Clear",
+    "count": 2,
+    "heatSoaked": true,
+    "supplierInfo": "Chronoglass",
+    "supplierEmail": "arash@katena.ca",
+    "emailSubject": "Glass Order Request - Office Building Lobby - Chronoglass",
+    "orderNotes": "Backlog order for Office Building Lobby\nRequired: 8 pieces\nAvailable: 6 pieces\nOrdering: 2 pieces\nOriginal backlog date: 9/15/2025",
+    "status": "Ordered",
+    "dateOrdered": "9/15/2025",
+    "estimatedArrival": "",
+    "orderReference": "ORDER-1757965100259-T69J3H",
+    "id": "ea73a5a9-11af-4981-a4ef-f7319ed320ac"
+  }
+]

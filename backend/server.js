@@ -15,6 +15,7 @@ app.use(express.json());
 const DATA_DIR = path.join(__dirname, 'data');
 const GLASSES_FILE = path.join(DATA_DIR, 'glasses.json');
 const BACKLOG_FILE = path.join(DATA_DIR, 'backlog.json');
+const PENDING_ORDERS_FILE = path.join(DATA_DIR, 'pendingOrders.json');
 
 // Ensure data directory and files exist
 async function initializeData() {
@@ -29,6 +30,11 @@ async function initializeData() {
     // Initialize backlog.json if it doesn't exist
     if (!(await fs.pathExists(BACKLOG_FILE))) {
       await fs.writeJson(BACKLOG_FILE, [], { spaces: 2 });
+    }
+    
+    // Initialize pendingOrders.json if it doesn't exist
+    if (!(await fs.pathExists(PENDING_ORDERS_FILE))) {
+      await fs.writeJson(PENDING_ORDERS_FILE, [], { spaces: 2 });
     }
     
     console.log('Data files initialized successfully');
@@ -72,6 +78,25 @@ async function writeBacklog(backlog) {
     return true;
   } catch (error) {
     console.error('Error writing backlog data:', error);
+    return false;
+  }
+}
+
+async function readPendingOrders() {
+  try {
+    return await fs.readJson(PENDING_ORDERS_FILE);
+  } catch (error) {
+    console.error('Error reading pending orders data:', error);
+    return [];
+  }
+}
+
+async function writePendingOrders(pendingOrders) {
+  try {
+    await fs.writeJson(PENDING_ORDERS_FILE, pendingOrders, { spaces: 2 });
+    return true;
+  } catch (error) {
+    console.error('Error writing pending orders data:', error);
     return false;
   }
 }
@@ -256,6 +281,134 @@ app.post('/api/glasses/bulk', async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ error: 'Failed to process bulk operation' });
+  }
+});
+
+// ============= PENDING ORDERS ROUTES =============
+
+// GET /api/pending-orders - Get all pending orders
+app.get('/api/pending-orders', async (req, res) => {
+  try {
+    const pendingOrders = await readPendingOrders();
+    res.json(pendingOrders);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch pending orders' });
+  }
+});
+
+// POST /api/pending-orders - Add new pending order
+app.post('/api/pending-orders', async (req, res) => {
+  try {
+    const pendingOrders = await readPendingOrders();
+    const newOrder = {
+      ...req.body,
+      id: req.body.id || uuidv4(),
+      dateOrdered: req.body.dateOrdered || new Date().toLocaleDateString(),
+      status: req.body.status || 'Ordered'
+    };
+    
+    pendingOrders.push(newOrder);
+    
+    if (await writePendingOrders(pendingOrders)) {
+      res.status(201).json(newOrder);
+    } else {
+      res.status(500).json({ error: 'Failed to save pending order' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to create pending order' });
+  }
+});
+
+// PUT /api/pending-orders/:id - Update pending order
+app.put('/api/pending-orders/:id', async (req, res) => {
+  try {
+    const pendingOrders = await readPendingOrders();
+    const orderIndex = pendingOrders.findIndex(order => order.id === req.params.id);
+    
+    if (orderIndex === -1) {
+      return res.status(404).json({ error: 'Pending order not found' });
+    }
+    
+    pendingOrders[orderIndex] = { ...pendingOrders[orderIndex], ...req.body };
+    
+    if (await writePendingOrders(pendingOrders)) {
+      res.json(pendingOrders[orderIndex]);
+    } else {
+      res.status(500).json({ error: 'Failed to update pending order' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update pending order' });
+  }
+});
+
+// DELETE /api/pending-orders/:id - Delete pending order
+app.delete('/api/pending-orders/:id', async (req, res) => {
+  try {
+    const pendingOrders = await readPendingOrders();
+    const filteredOrders = pendingOrders.filter(order => order.id !== req.params.id);
+    
+    if (filteredOrders.length === pendingOrders.length) {
+      return res.status(404).json({ error: 'Pending order not found' });
+    }
+    
+    if (await writePendingOrders(filteredOrders)) {
+      res.json({ message: 'Pending order deleted successfully' });
+    } else {
+      res.status(500).json({ error: 'Failed to delete pending order' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to delete pending order' });
+  }
+});
+
+// POST /api/pending-orders/:id/receive - Move pending order to inventory
+app.post('/api/pending-orders/:id/receive', async (req, res) => {
+  try {
+    const pendingOrders = await readPendingOrders();
+    const glasses = await readGlasses();
+    
+    const orderIndex = pendingOrders.findIndex(order => order.id === req.params.id);
+    if (orderIndex === -1) {
+      return res.status(404).json({ error: 'Pending order not found' });
+    }
+    
+    const order = pendingOrders[orderIndex];
+    
+    // Create new glass entry from pending order
+    const newGlass = {
+      id: uuidv4(),
+      width: order.width,
+      height: order.height,
+      color: order.color,
+      count: order.count,
+      heatSoaked: order.heatSoaked,
+      reservedProject: '',
+      rackNumber: req.body.rackNumber || 'NEW-ARRIVAL',
+      dateAdded: new Date().toLocaleDateString(),
+      orderReference: order.id,
+      supplierInfo: order.supplierInfo || ''
+    };
+    
+    // Add to inventory
+    glasses.push(newGlass);
+    
+    // Remove from pending orders
+    pendingOrders.splice(orderIndex, 1);
+    
+    // Save both files
+    const glassesSuccess = await writeGlasses(glasses);
+    const ordersSuccess = await writePendingOrders(pendingOrders);
+    
+    if (glassesSuccess && ordersSuccess) {
+      res.json({ 
+        message: 'Order received and added to inventory',
+        glass: newGlass 
+      });
+    } else {
+      res.status(500).json({ error: 'Failed to process order receipt' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to receive order' });
   }
 });
 
