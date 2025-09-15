@@ -1,34 +1,39 @@
 import React, { useState } from 'react'
 import './BacklogManager.css'
 
-function BacklogManager({ backlogReservations, onSmartReallocate, onDelete, availableGlasses, onOpenOrderGlass }) {
-  const [showOrderConfirm, setShowOrderConfirm] = useState(false)
+function BacklogManager({ backlogReservations, onSmartReallocate, onAllocate, onDelete, availableGlasses, onOpenOrderGlass }) {
+  const [showAllocateConfirm, setShowAllocateConfirm] = useState(false)
   const [selectedItem, setSelectedItem] = useState(null)
 
-  const handleReallocate = (item) => {
-    const result = onSmartReallocate(item.id)
+  const handleDirectOrder = (item) => {
+    // Directly open the order glass modal with pre-filled data
+    onOpenOrderGlass(item)
+  }
+
+  const handleDirectAllocate = (item) => {
+    const availableCount = getAvailableCount(item)
     
-    if (result.success) {
-      // Successfully reallocated automatically
-      return
-    } else if (result.needsOrder) {
-      // Need to ask about ordering
-      setSelectedItem(result.backlogItem)
-      setShowOrderConfirm(true)
+    if (availableCount >= item.count) {
+      // Sufficient inventory - allocate directly
+      onAllocate(item.id)
+    } else {
+      // Insufficient inventory - show confirmation
+      setSelectedItem(item)
+      setShowAllocateConfirm(true)
     }
   }
 
-  const handleConfirmOrder = () => {
+  const handleConfirmAllocate = () => {
     if (selectedItem) {
-      // Close confirmation and open order glass window with pre-filled data
-      setShowOrderConfirm(false)
-      onOpenOrderGlass(selectedItem)
+      // User confirmed allocation despite insufficient inventory
+      onAllocate(selectedItem.id)
+      setShowAllocateConfirm(false)
       setSelectedItem(null)
     }
   }
 
-  const handleCancelOrder = () => {
-    setShowOrderConfirm(false)
+  const handleCancelAllocate = () => {
+    setShowAllocateConfirm(false)
     setSelectedItem(null)
   }
 
@@ -89,20 +94,29 @@ function BacklogManager({ backlogReservations, onSmartReallocate, onDelete, avai
                     <td className="project-cell">{item.originalProject}</td>
                     <td className="date-cell">{item.backlogDate}</td>
                     <td className="actions-cell">
-                      <button 
-                        onClick={() => handleReallocate(item)} 
-                        className={`reallocate-btn ${canReallocate ? 'available' : 'needs-order'}`}
-                        title={canReallocate ? "Reallocate to inventory" : "Order more glass and reallocate"}
-                      >
-                        {canReallocate ? '🔄 Reallocate' : '📦 Order & Allocate'}
-                      </button>
-                      <button 
-                        onClick={() => onDelete(item.id)} 
-                        className="delete-backlog-btn"
-                        title="Permanently delete"
-                      >
-                        🗑 Delete
-                      </button>
+                      <div className="action-buttons">
+                        <button 
+                          onClick={() => handleDirectOrder(item)} 
+                          className="order-btn"
+                          title="Order glass for this requirement"
+                        >
+                          📦 Order
+                        </button>
+                        <button 
+                          onClick={() => handleDirectAllocate(item)} 
+                          className={`allocate-btn ${canReallocate ? 'available' : 'insufficient'}`}
+                          title={canReallocate ? "Allocate from available inventory" : "Allocate anyway (may need more glass)"}
+                        >
+                          {canReallocate ? '✅ Allocate' : '⚠️ Allocate'}
+                        </button>
+                        <button 
+                          onClick={() => onDelete(item.id)} 
+                          className="delete-backlog-btn"
+                          title="Permanently delete"
+                        >
+                          🗑 Delete
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 )
@@ -112,29 +126,29 @@ function BacklogManager({ backlogReservations, onSmartReallocate, onDelete, avai
         </div>
       )}
 
-      {/* Order Confirmation Modal */}
-      {showOrderConfirm && selectedItem && (
+      {/* Allocate Confirmation Modal */}
+      {showAllocateConfirm && selectedItem && (
         <div className="modal-overlay">
-          <div className="order-confirm-modal">
-            <h3>Order Glass Required</h3>
+          <div className="allocate-confirm-modal">
+            <h3>Insufficient Inventory</h3>
             <div className="modal-content">
               <div className="glass-info">
                 <p><strong>Glass Needed:</strong> {selectedItem.width}" × {selectedItem.height}" {selectedItem.color}</p>
                 <p><strong>Required:</strong> {selectedItem.count} pieces</p>
                 <p><strong>Available:</strong> {getAvailableCount(selectedItem)} pieces</p>
-                <p><strong>Need to Order:</strong> {selectedItem.count - getAvailableCount(selectedItem)} pieces</p>
+                <p><strong>Shortage:</strong> {selectedItem.count - getAvailableCount(selectedItem)} pieces</p>
                 <p><strong>For Project:</strong> {selectedItem.originalProject}</p>
               </div>
               
               <div className="confirmation-message">
-                <p>There is insufficient glass in inventory. Would you like to order more glass?</p>
+                <p>There is insufficient glass in inventory. Allocating anyway will create a negative balance. Would you like to proceed?</p>
               </div>
               
               <div className="modal-actions">
-                <button onClick={handleConfirmOrder} className="confirm-btn order-btn">
-                  Yes, Order Glass
+                <button onClick={handleConfirmAllocate} className="confirm-btn allocate-btn-modal">
+                  Yes, Allocate Anyway
                 </button>
-                <button onClick={handleCancelOrder} className="cancel-btn">
+                <button onClick={handleCancelAllocate} className="cancel-btn">
                   No, Cancel
                 </button>
               </div>

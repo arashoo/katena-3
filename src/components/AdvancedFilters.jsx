@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './AdvancedFilters.css'
 
-function AdvancedFilters({ onFilterChange, onClearFilters }) {
-  const [filters, setFilters] = useState({
+function AdvancedFilters({ filters: externalFilters, onFilterChange, glasses }) {
+  const [filters, setFilters] = useState(externalFilters || {
     status: 'all', // all, available, reserved
     color: 'all',
     heatSoaked: 'all',
@@ -11,10 +11,19 @@ function AdvancedFilters({ onFilterChange, onClearFilters }) {
     dateRange: 'all' // all, today, week, month
   })
 
+  // Sync with external filters when they change
+  useEffect(() => {
+    if (externalFilters) {
+      setFilters(externalFilters)
+    }
+  }, [externalFilters])
+
   const [showAdvanced, setShowAdvanced] = useState(false)
 
-  const colors = ['Clear', 'Blue', 'Gray', 'DIV', 'Acid_DIV', 'Bronze', 'Brown']
-  const racks = ['R-001', 'R-002', 'R-003', 'R-004', 'R-005', 'R-006', 'R-007', 'R-008', 'R-009', 'R-010']
+  // Get unique values from glasses data
+  const colors = [...new Set(glasses?.map(glass => glass.color) || [])].sort()
+  const racks = [...new Set(glasses?.map(glass => glass.rackNumber) || [])].sort()
+  const projects = [...new Set(glasses?.filter(glass => glass.reservedProject).map(glass => glass.reservedProject) || [])].sort()
 
   const handleFilterChange = (key, value) => {
     const newFilters = { ...filters, [key]: value }
@@ -33,7 +42,6 @@ function AdvancedFilters({ onFilterChange, onClearFilters }) {
     }
     setFilters(clearedFilters)
     onFilterChange(clearedFilters)
-    onClearFilters()
   }
 
   const activeFilterCount = Object.values(filters).filter(value => value !== 'all').length
@@ -55,8 +63,8 @@ function AdvancedFilters({ onFilterChange, onClearFilters }) {
             🔒 Reserved Only
           </button>
           <button 
-            className={`filter-btn ${filters.heatSoaked === 'true' ? 'active' : ''}`}
-            onClick={() => handleFilterChange('heatSoaked', filters.heatSoaked === 'true' ? 'all' : 'true')}
+            className={`filter-btn ${filters.heatSoaked === 'yes' ? 'active' : ''}`}
+            onClick={() => handleFilterChange('heatSoaked', filters.heatSoaked === 'yes' ? 'all' : 'yes')}
           >
             🔥 Heat Soaked
           </button>
@@ -129,10 +137,25 @@ function AdvancedFilters({ onFilterChange, onClearFilters }) {
                 onChange={(e) => handleFilterChange('heatSoaked', e.target.value)}
               >
                 <option value="all">All</option>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
               </select>
             </div>
+
+            {projects.length > 0 && (
+              <div className="filter-group">
+                <label>Project</label>
+                <select 
+                  value={filters.project} 
+                  onChange={(e) => handleFilterChange('project', e.target.value)}
+                >
+                  <option value="all">All Projects</option>
+                  {projects.map(project => (
+                    <option key={project} value={project}>{project}</option>
+                  ))}
+                </select>
+              </div>
+            )}
           </div>
         </div>
       )}

@@ -1,9 +1,13 @@
 .email-order-form {
-  max-width: 800px;
+  max-width: 900px;
+  width: 90vw;
+  max-height: 85vh;
   background: white;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
 }
 
 .form-header {
@@ -13,12 +17,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .form-header h2 {
   margin: 0;
   font-size: 24px;
   font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .close-btn {
@@ -43,8 +49,11 @@
 
 .email-order-form form {
   padding: 24px;
-  max-height: 70vh;
+  max-height: calc(85vh - 140px);
   overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-section {
@@ -59,13 +68,17 @@
 }
 
 .form-section h3 {
-  margin: 0 0 16px 0;
-  font-size: 18px;
+  margin: 0 0 20px 0;
+  font-size: 19px;
   font-weight: 600;
   color: #1e293b;
   display: flex;
   align-items: center;
   gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 8px;
 }
 
 .form-row {
@@ -85,6 +98,8 @@
   font-weight: 600;
   color: #374151;
   font-size: 14px;
+  text-transform: capitalize;
+  letter-spacing: 0.25px;
 }
 
 .form-group input,
@@ -456,85 +471,96 @@
 
 .form-actions {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   padding-top: 24px;
   border-top: 1px solid #e2e8f0;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.send-email-btn {
+/* Standardized button styling for all main action buttons */
+.send-email-btn,
+.copy-btn,
+.cancel-btn {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
   border: none;
-  padding: 14px 24px;
+  padding: 16px 24px;
   border-radius: 8px;
   font-weight: 600;
+  font-size: 15px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.2s ease;
   flex: 1;
-  min-width: 200px;
+  min-width: 160px;
+  max-width: 200px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
 }
 
-.send-email-btn:hover {
+.send-email-btn:hover,
+.copy-btn:hover,
+.cancel-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
 }
 
+/* Specific color overrides while maintaining same size/structure */
 .copy-btn {
-  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-  color: white;
-  border: none;
-  padding: 14px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  flex: 1;
-  min-width: 180px;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
 .copy-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
 }
 
 .cancel-btn {
   background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
-  color: white;
-  border: none;
-  padding: 14px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.2);
 }
 
 .cancel-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(107, 114, 128, 0.3);
+  box-shadow: 0 8px 24px rgba(107, 114, 128, 0.3);
 }
 
 @media (max-width: 768px) {
+  .email-order-form {
+    width: 95vw;
+    max-height: 90vh;
+  }
+  
   .form-row {
     grid-template-columns: 1fr;
   }
   
   .form-actions {
     flex-direction: column;
+    gap: 12px;
   }
   
   .send-email-btn,
   .copy-btn,
   .cancel-btn {
     min-width: auto;
+    max-width: none;
+    width: 100%;
+    padding: 16px 20px;
   }
   
   .email-order-form form {
     padding: 16px;
+    max-height: calc(90vh - 120px);
   }
   
   .form-header {
     padding: 16px 20px;
+  }
+  
+  .form-header h2 {
+    font-size: 20px;
   }
   
   .preview-content {
@@ -638,15 +664,19 @@
   transform: none;
 }
 
+/* Disabled button states */
 .send-email-btn:disabled,
-.copy-btn:disabled {
-  background: #9ca3af;
+.copy-btn:disabled,
+.cancel-btn:disabled {
+  background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%) !important;
   cursor: not-allowed;
-  opacity: 0.6;
+  opacity: 0.7;
+  box-shadow: none !important;
 }
 
 .send-email-btn:disabled:hover,
-.copy-btn:disabled:hover {
-  background: #9ca3af;
-  transform: none;
+.copy-btn:disabled:hover,
+.cancel-btn:disabled:hover {
+  transform: none !important;
+  box-shadow: none !important;
 }

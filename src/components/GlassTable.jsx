@@ -219,11 +219,11 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
             
             return (
               <React.Fragment key={groupKey}>
-                {/* Main row - Available glass (only show if there's available inventory) */}
+                {/* Main row - Available glass or fully reserved glass */}
                 {mainGlass && (
                   <tr 
                     key={mainGlass.id} 
-                    className={`glass-group-main ${hasReservations ? 'has-reservations clickable-row' : ''} ${editingId === mainGlass.id ? 'editing' : ''} ${exitingEdit && editingId === mainGlass.id ? 'exiting' : ''}`}
+                    className={`${mainGlass.availableCount === 0 ? 'glass-group-header fully-reserved clickable-row' : `glass-group-main ${hasReservations ? 'has-reservations clickable-row' : ''}`} ${editingId === mainGlass.id ? 'editing' : ''} ${exitingEdit && editingId === mainGlass.id ? 'exiting' : ''}`}
                     onClick={(e) => handleRowClick(groupKey, hasReservations, e)}
                     title={hasReservations ? 'Click to expand/collapse reservations' : ''}
                   >

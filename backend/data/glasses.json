@@ -1,0 +1,74 @@
+[
+  {
+    "width": 24,
+    "height": 24,
+    "color": "Clear",
+    "count": 8,
+    "heatSoaked": true,
+    "reservedProject": "",
+    "rackNumber": "R-001",
+    "id": "a786ff02-8ef1-49d7-a6af-f8c4a23d1405",
+    "dateAdded": "9/15/2025",
+    "availableCount": 8
+  },
+  {
+    "width": 36,
+    "height": 48,
+    "color": "Bronze",
+    "count": 12,
+    "heatSoaked": false,
+    "reservedProject": "",
+    "rackNumber": "R-002",
+    "id": "b123ff02-8ef1-49d7-a6af-f8c4a23d1406",
+    "dateAdded": "9/14/2025",
+    "availableCount": 12
+  },
+  {
+    "width": 48,
+    "height": 72,
+    "color": "Clear",
+    "count": 6,
+    "heatSoaked": true,
+    "reservedProject": "",
+    "rackNumber": "R-003",
+    "id": "c234ff02-8ef1-49d7-a6af-f8c4a23d1407",
+    "dateAdded": "9/13/2025",
+    "availableCount": 6
+  },
+  {
+    "width": 30,
+    "height": 60,
+    "color": "Grey",
+    "count": 15,
+    "heatSoaked": false,
+    "reservedProject": "",
+    "rackNumber": "R-004",
+    "id": "d345ff02-8ef1-49d7-a6af-f8c4a23d1408",
+    "dateAdded": "9/12/2025",
+    "availableCount": 15
+  },
+  {
+    "width": 42,
+    "height": 54,
+    "color": "Bronze",
+    "count": 10,
+    "heatSoaked": true,
+    "reservedProject": "",
+    "rackNumber": "R-005",
+    "id": "e456ff02-8ef1-49d7-a6af-f8c4a23d1409",
+    "dateAdded": "9/11/2025",
+    "availableCount": 10
+  },
+  {
+    "width": 18,
+    "height": 24,
+    "color": "Clear",
+    "count": 20,
+    "heatSoaked": false,
+    "reservedProject": "",
+    "rackNumber": "R-006",
+    "id": "f567ff02-8ef1-49d7-a6af-f8c4a23d1410",
+    "dateAdded": "9/10/2025",
+    "availableCount": 20
+  }
+]

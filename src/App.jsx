@@ -7,7 +7,9 @@ import AdvancedFilters from './components/AdvancedFilters'
 import ExportControls from './components/ExportControls'
 import Dashboard from './components/Dashboard'
 import BacklogManager from './components/BacklogManager'
+import Projects from './components/Projects'
 import ConfirmationModal from './components/ConfirmationModal'
+import apiService from './services/apiService'
 import './App.css'
 
 function App() {
@@ -33,12 +35,38 @@ function App() {
   const [glassToBacklog, setGlassToBacklog] = useState(null)
   const [orderInitialData, setOrderInitialData] = useState(null)
 
-  // Load data from localStorage or use sample data
+  // Load data from backend on startup
   useEffect(() => {
-    // Clear any existing data and start fresh with sample data
-    localStorage.removeItem('glassInventory')
-    initializeSampleData()
+    loadDataFromBackend()
   }, [])
+
+  const loadDataFromBackend = async () => {
+    try {
+      // Load glasses from backend
+      const glassesData = await apiService.getGlasses()
+      setGlasses(glassesData)
+      applyFiltersAndSearch(glassesData, '', filters, sortConfig)
+
+      // Load backlog from backend
+      const backlogData = await apiService.getBacklog()
+      setBacklogReservations(backlogData)
+    } catch (error) {
+      console.error('Failed to load data from backend:', error)
+      // Fallback to localStorage if backend is not available
+      const savedGlasses = localStorage.getItem('glassInventory')
+      const savedBacklog = localStorage.getItem('backlogReservations')
+      
+      if (savedGlasses) {
+        const parsedGlasses = JSON.parse(savedGlasses)
+        setGlasses(parsedGlasses)
+        applyFiltersAndSearch(parsedGlasses, '', filters, sortConfig)
+      }
+      
+      if (savedBacklog) {
+        setBacklogReservations(JSON.parse(savedBacklog))
+      }
+    }
+  }
 
   // Function to validate and fix inventory data consistency
   const validateAndFixInventoryData = (data) => {
@@ -64,18 +92,6 @@ function App() {
     return data
   }
 
-  // Save to localStorage whenever glasses data changes
-  useEffect(() => {
-    if (glasses.length > 0) {
-      localStorage.setItem('glassInventory', JSON.stringify(glasses))
-    }
-  }, [glasses])
-
-  // Save backlog to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem('backlogReservations', JSON.stringify(backlogReservations))
-  }, [backlogReservations])
-
   // Load backlog from localStorage on startup
   useEffect(() => {
     const savedBacklog = localStorage.getItem('backlogReservations')
@@ -84,47 +100,49 @@ function App() {
     }
   }, [])
 
-  const initializeSampleData = () => {
-    const sampleGlasses = [
-      // Fully reserved samples
-      { id: 1, width: 84, height: 60, color: 'Clear', count: 25, heatSoaked: true, reservedProject: 'Office Building A', reservedCount: 25, rackNumber: 'R-001', dateAdded: '9/1/2025' },
-      { id: 2, width: 48, height: 36, color: 'Blue', count: 30, heatSoaked: false, reservedProject: 'Hospital Renovation', reservedCount: 30, rackNumber: 'R-002', dateAdded: '9/1/2025' },
-      
-      // Partially reserved samples
-      { id: 3, width: 72, height: 48, color: 'Gray', count: 20, heatSoaked: true, reservedProject: 'Mall Expansion', reservedCount: 12, rackNumber: 'R-003', dateAdded: '9/2/2025' },
-      { id: 4, width: 60, height: 42, color: 'Clear', count: 15, heatSoaked: false, reservedProject: 'School Project', reservedCount: 8, rackNumber: 'R-004', dateAdded: '9/2/2025' },
-      
-      // Available samples
-      { id: 5, width: 96, height: 72, color: 'Brown', count: 18, heatSoaked: true, reservedProject: '', rackNumber: 'R-005', dateAdded: '9/3/2025' },
-      { id: 6, width: 30, height: 18, color: 'DIV', count: 40, heatSoaked: false, reservedProject: '', rackNumber: 'R-006', dateAdded: '9/3/2025' },
-      { id: 7, width: 54, height: 36, color: 'Bronze', count: 22, heatSoaked: true, reservedProject: '', rackNumber: 'R-007', dateAdded: '9/4/2025' },
-      { id: 8, width: 42, height: 30, color: 'Acid_DIV', count: 12, heatSoaked: false, reservedProject: '', rackNumber: 'R-008', dateAdded: '9/4/2025' },
-      { id: 9, width: 78, height: 54, color: 'Gray', count: 28, heatSoaked: true, reservedProject: '', rackNumber: 'R-009', dateAdded: '9/5/2025' },
-      { id: 10, width: 66, height: 48, color: 'Blue', count: 16, heatSoaked: false, reservedProject: '', rackNumber: 'R-010', dateAdded: '9/5/2025' }
-    ];
-    
-    setGlasses(sampleGlasses);
-    applyFiltersAndSearch(sampleGlasses, '', filters, sortConfig);
-  }
-
-  const addGlass = (glassData) => {
-    const newGlass = {
-      ...glassData,
-      id: Date.now() + Math.random(), // Prevent ID collisions
-      dateAdded: new Date().toLocaleDateString()
+  const addGlass = async (glassData) => {
+    try {
+      const newGlass = await apiService.addGlass(glassData)
+      const updatedGlasses = [...glasses, newGlass]
+      setGlasses(updatedGlasses)
+      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+      // Keep localStorage as backup
+      localStorage.setItem('glassInventory', JSON.stringify(updatedGlasses))
+    } catch (error) {
+      console.error('Failed to add glass:', error)
+      // Fallback to local-only add
+      const newGlass = {
+        ...glassData,
+        id: Date.now() + Math.random(),
+        dateAdded: new Date().toLocaleDateString()
+      }
+      const updatedGlasses = [...glasses, newGlass]
+      setGlasses(updatedGlasses)
+      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+      localStorage.setItem('glassInventory', JSON.stringify(updatedGlasses))
     }
-    
-    const updatedGlasses = [...glasses, newGlass]
-    setGlasses(updatedGlasses)
-    applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
   }
 
-  const updateGlass = (id, updatedData) => {
-    const updatedGlasses = glasses.map(glass => 
-      glass.id === id ? { ...glass, ...updatedData } : glass
-    )
-    setGlasses(updatedGlasses)
-    applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+  const updateGlass = async (id, updatedData) => {
+    try {
+      await apiService.updateGlass(id, updatedData)
+      const updatedGlasses = glasses.map(glass => 
+        glass.id === id ? { ...glass, ...updatedData } : glass
+      )
+      setGlasses(updatedGlasses)
+      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+      // Keep localStorage as backup
+      localStorage.setItem('glassInventory', JSON.stringify(updatedGlasses))
+    } catch (error) {
+      console.error('Failed to update glass:', error)
+      // Fallback to local-only update
+      const updatedGlasses = glasses.map(glass => 
+        glass.id === id ? { ...glass, ...updatedData } : glass
+      )
+      setGlasses(updatedGlasses)
+      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+      localStorage.setItem('glassInventory', JSON.stringify(updatedGlasses))
+    }
   }
 
   const moveReservationToBacklog = (reservationId) => {
@@ -174,42 +192,84 @@ function App() {
     applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
   }
 
-  const deleteGlass = (id) => {
+  const deleteGlass = async (id) => {
     const glassToDelete = glasses.find(glass => glass.id === id)
     if (!glassToDelete) return
     
-    let updatedGlasses = glasses.filter(glass => glass.id !== id)
-    
-    // If deleting a reservation, restore the count to the original glass
-    if (glassToDelete.reservedProject) {
-      const originalGlass = updatedGlasses.find(glass => 
-        !glass.reservedProject &&
-        glass.width === glassToDelete.width &&
-        glass.height === glassToDelete.height &&
-        glass.color === glassToDelete.color &&
-        glass.heatSoaked === glassToDelete.heatSoaked
-      )
+    try {
+      await apiService.deleteGlass(id)
       
-      if (originalGlass) {
-        updatedGlasses = updatedGlasses.map(glass =>
-          glass.id === originalGlass.id 
-            ? { ...glass, count: glass.count + glassToDelete.count }
-            : glass
+      let updatedGlasses = glasses.filter(glass => glass.id !== id)
+      
+      // If deleting a reservation, restore the count to the original glass
+      if (glassToDelete.reservedProject) {
+        const originalGlass = updatedGlasses.find(glass => 
+          !glass.reservedProject &&
+          glass.width === glassToDelete.width &&
+          glass.height === glassToDelete.height &&
+          glass.color === glassToDelete.color &&
+          glass.heatSoaked === glassToDelete.heatSoaked
         )
-      } else {
-        // If no original glass exists, create one to restore the inventory
-        const restoredGlass = {
-          ...glassToDelete,
-          id: Date.now() + Math.random(),
-          reservedProject: '',
-          dateAdded: new Date().toLocaleDateString()
+        
+        if (originalGlass) {
+          updatedGlasses = updatedGlasses.map(glass =>
+            glass.id === originalGlass.id 
+              ? { ...glass, count: glass.count + glassToDelete.count }
+              : glass
+          )
+        } else {
+          // If no original glass exists, create one to restore the inventory
+          const restoredGlass = {
+            ...glassToDelete,
+            id: Date.now() + Math.random(),
+            reservedProject: '',
+            dateAdded: new Date().toLocaleDateString()
+          }
+          updatedGlasses.push(restoredGlass)
         }
-        updatedGlasses.push(restoredGlass)
       }
+      
+      setGlasses(updatedGlasses)
+      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+      // Keep localStorage as backup
+      localStorage.setItem('glassInventory', JSON.stringify(updatedGlasses))
+    } catch (error) {
+      console.error('Failed to delete glass:', error)
+      // Continue with local delete as fallback
+      let updatedGlasses = glasses.filter(glass => glass.id !== id)
+      
+      // If deleting a reservation, restore the count to the original glass
+      if (glassToDelete.reservedProject) {
+        const originalGlass = updatedGlasses.find(glass => 
+          !glass.reservedProject &&
+          glass.width === glassToDelete.width &&
+          glass.height === glassToDelete.height &&
+          glass.color === glassToDelete.color &&
+          glass.heatSoaked === glassToDelete.heatSoaked
+        )
+        
+        if (originalGlass) {
+          updatedGlasses = updatedGlasses.map(glass =>
+            glass.id === originalGlass.id 
+              ? { ...glass, count: glass.count + glassToDelete.count }
+              : glass
+          )
+        } else {
+          // If no original glass exists, create one to restore the inventory
+          const restoredGlass = {
+            ...glassToDelete,
+            id: Date.now() + Math.random(),
+            reservedProject: '',
+            dateAdded: new Date().toLocaleDateString()
+          }
+          updatedGlasses.push(restoredGlass)
+        }
+      }
+      
+      setGlasses(updatedGlasses)
+      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+      localStorage.setItem('glassInventory', JSON.stringify(updatedGlasses))
     }
-    
-    setGlasses(updatedGlasses)
-    applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
   }
 
   const deleteGlassGroup = (groupSpecs) => {
@@ -331,6 +391,87 @@ function App() {
 
   const deleteFromBacklog = (backlogItemId) => {
     setBacklogReservations(prev => prev.filter(item => item.id !== backlogItemId))
+  }
+
+  const allocateFromBacklog = (backlogItemId) => {
+    const backlogItem = backlogReservations.find(item => item.id === backlogItemId)
+    if (!backlogItem) return
+
+    // Check available inventory
+    const availableGlass = glasses.find(glass => 
+      !glass.reservedProject &&
+      glass.width === backlogItem.width &&
+      glass.height === backlogItem.height &&
+      glass.color === backlogItem.color &&
+      glass.heatSoaked === backlogItem.heatSoaked
+    )
+
+    // Remove from backlog first
+    setBacklogReservations(prev => prev.filter(item => item.id !== backlogItemId))
+    
+    // Create new reservation with original project name
+    const newReservation = {
+      ...backlogItem,
+      reservedProject: backlogItem.originalProject,
+      dateAdded: new Date().toLocaleDateString(),
+      id: Date.now() + Math.random() // New ID for the new reservation
+    }
+    
+    let updatedGlasses = [...glasses]
+    
+    if (availableGlass && availableGlass.count >= backlogItem.count) {
+      // Sufficient inventory - normal allocation
+      updatedGlasses = updatedGlasses.map(glass =>
+        glass.id === availableGlass.id 
+          ? { ...glass, count: glass.count - backlogItem.count }
+          : glass
+      )
+      
+      // Add new reservation
+      updatedGlasses.push(newReservation)
+      
+      setGlasses(updatedGlasses)
+      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+      
+      // Show success message
+      alert(`Successfully allocated ${backlogItem.count} pieces of ${backlogItem.width}" × ${backlogItem.height}" ${backlogItem.color} to ${backlogItem.originalProject}`)
+      
+    } else if (availableGlass) {
+      // Partial inventory - allocate what's available and create negative balance
+      const availableCount = availableGlass.count
+      const shortage = backlogItem.count - availableCount
+      
+      // Reduce available inventory to 0
+      updatedGlasses = updatedGlasses.map(glass =>
+        glass.id === availableGlass.id 
+          ? { ...glass, count: 0 }
+          : glass
+      )
+      
+      // Add new reservation for full amount
+      updatedGlasses.push(newReservation)
+      
+      setGlasses(updatedGlasses)
+      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+      
+      // Show warning message
+      alert(`Allocated ${backlogItem.count} pieces (${availableCount} from inventory, ${shortage} short) to ${backlogItem.originalProject}. You need to order ${shortage} more pieces.`)
+      
+    } else {
+      // No inventory available - create reservation anyway
+      updatedGlasses.push(newReservation)
+      
+      setGlasses(updatedGlasses)
+      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+      
+      // Show warning message
+      alert(`Allocated ${backlogItem.count} pieces to ${backlogItem.originalProject} with no inventory available. You need to order ${backlogItem.count} pieces.`)
+    }
+  }
+
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters)
+    applyFiltersAndSearch(glasses, searchTerm, newFilters, sortConfig)
   }
 
   const handleSearch = (term) => {
@@ -702,6 +843,12 @@ function App() {
           >
             📝 Backlog ({backlogReservations.length})
           </button>
+          <button 
+            className={`tab-btn ${activeTab === 'projects' ? 'active' : ''}`}
+            onClick={() => setActiveTab('projects')}
+          >
+            🏗️ Projects
+          </button>
         </div>
 
         {/* Tab Content */}
@@ -717,7 +864,7 @@ function App() {
               <SearchBar onSearch={handleSearch} />
               <AdvancedFilters 
                 filters={filters} 
-                onFilterChange={setFilters}
+                onFilterChange={handleFilterChange}
                 glasses={glasses}
               />
             </div>
@@ -740,10 +887,17 @@ function App() {
             <BacklogManager
               backlogReservations={backlogReservations}
               onSmartReallocate={smartReallocateFromBacklog}
+              onAllocate={allocateFromBacklog}
               onDelete={deleteFromBacklog}
               availableGlasses={glasses.filter(glass => !glass.reservedProject)}
               onOpenOrderGlass={handleOpenOrderFromBacklog}
             />
+          </div>
+        )}
+
+        {activeTab === 'projects' && (
+          <div className="tab-content">
+            <Projects glasses={glasses} />
           </div>
         )}
       </main>
