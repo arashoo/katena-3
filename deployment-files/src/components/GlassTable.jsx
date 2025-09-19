@@ -54,7 +54,6 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
   }
 
   const handleColumnFilterChange = (column, value) => {
-    console.log('Filter change:', column, '=', value)
     setColumnFilters(prev => ({
       ...prev,
       [column]: value
@@ -152,13 +151,15 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
   return (
     <div className="glass-table-container">
       {/* Debug display - remove after fixing */}
-      <div style={{background: '#f0f0f0', padding: '8px', margin: '8px 0', fontSize: '12px'}}>
-        <strong>Debug - Current Filters:</strong> 
-        Width: "{columnFilters.width}" | 
-        Height: "{columnFilters.height}" | 
-        Color: "{columnFilters.color}" | 
-        Results: {filteredGlasses.length} of {glasses.length}
-      </div>
+      {(columnFilters.width || columnFilters.height || columnFilters.color) && (
+        <div style={{background: '#f0f0f0', padding: '8px', margin: '8px 0', fontSize: '12px'}}>
+          <strong>Debug - Current Filters:</strong> 
+          Width: "{columnFilters.width}" | 
+          Height: "{columnFilters.height}" | 
+          Color: "{columnFilters.color}" | 
+          Results: {filteredGlasses.length} of {glasses.length}
+        </div>
+      )}
       
       {/* Column Filter Controls */}
       {(columnFilters.width || columnFilters.height || columnFilters.color) && (
@@ -234,12 +235,8 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
                     type="text"
                     placeholder="Search height..."
                     value={columnFilters.height}
-                    onChange={(e) => {
-                      console.log('HEIGHT onChange called:', e.target.value)
-                      handleColumnFilterChange('height', e.target.value)
-                    }}
+                    onChange={(e) => handleColumnFilterChange('height', e.target.value)}
                     className="filter-input"
-                    data-testid="height-filter"
                   />
                 </div>
               )}
@@ -263,12 +260,8 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
                     type="text"
                     placeholder="Search color..."
                     value={columnFilters.color}
-                    onChange={(e) => {
-                      console.log('COLOR onChange called:', e.target.value)
-                      handleColumnFilterChange('color', e.target.value)
-                    }}
+                    onChange={(e) => handleColumnFilterChange('color', e.target.value)}
                     className="filter-input"
-                    data-testid="color-filter"
                   />
                 </div>
               )}

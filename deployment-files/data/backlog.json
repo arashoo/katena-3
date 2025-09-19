@@ -1,0 +1,24 @@
+[
+  {
+    "id": "backlog-001",
+    "width": 48,
+    "height": 72,
+    "color": "Clear",
+    "heatSoaked": true,
+    "count": 8,
+    "originalProject": "Office Building Lobby",
+    "backlogDate": "9/15/2025",
+    "notes": "Removed from project due to design changes - high priority glass that needs reallocation"
+  },
+  {
+    "id": "backlog-002",
+    "width": 24,
+    "height": 24,
+    "color": "Clear",
+    "heatSoaked": true,
+    "count": 5,
+    "originalProject": "Restaurant Windows",
+    "backlogDate": "9/14/2025",
+    "notes": "Client canceled order - glass available for reuse"
+  }
+]

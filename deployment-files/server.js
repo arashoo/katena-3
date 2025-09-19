@@ -11,8 +11,8 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from the frontend build directory
-app.use(express.static(path.join(__dirname, '../dist')));
+// Serve static files from the dist directory
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Data file paths
 const DATA_DIR = path.join(__dirname, 'data');
@@ -104,7 +104,7 @@ async function writePendingOrders(pendingOrders) {
   }
 }
 
-// Routes
+// API Routes
 
 // Health check
 app.get('/api/health', (req, res) => {
@@ -421,14 +421,9 @@ app.use((error, req, res, next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({ error: 'Route not found' });
-});
-
 // Catch-all handler: send back React's index.html file for client-side routing
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 // Initialize data and start server
@@ -436,8 +431,8 @@ async function startServer() {
   await initializeData();
   
   app.listen(PORT, () => {
-    console.log(`Katena Backend API server running on port ${PORT}`);
-    console.log(`Health check: http://localhost:${PORT}/api/health`);
+    console.log(`Katena Production Server running on port ${PORT}`);
+    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
     console.log(`Data directory: ${DATA_DIR}`);
   });
 }
