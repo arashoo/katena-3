@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import ReservationModal from './ReservationModal'
 import ReservationEditModal from './ReservationEditModal'
 import './GlassTable.css'
@@ -25,26 +25,18 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
   })
 
   // Filter glasses based on column filters
-  const filteredGlasses = glasses.filter(glass => {
-    const widthMatch = columnFilters.width === '' || 
-                     glass.width.toString().includes(columnFilters.width)
-    const heightMatch = columnFilters.height === '' || 
-                       glass.height.toString().includes(columnFilters.height)
-    const colorMatch = columnFilters.color === '' || 
-                      glass.color.toLowerCase().includes(columnFilters.color.toLowerCase())
-    
-    // Debug logging
-    if (columnFilters.height !== '' || columnFilters.color !== '') {
-      console.log('Filter Debug:', {
-        glass: `${glass.width}x${glass.height} ${glass.color}`,
-        filters: columnFilters,
-        matches: { widthMatch, heightMatch, colorMatch },
-        finalMatch: widthMatch && heightMatch && colorMatch
-      })
-    }
-    
-    return widthMatch && heightMatch && colorMatch
-  })
+  const filteredGlasses = useMemo(() => {
+    return glasses.filter(glass => {
+      const widthMatch = columnFilters.width === '' || 
+                       glass.width.toString().includes(columnFilters.width)
+      const heightMatch = columnFilters.height === '' || 
+                         glass.height.toString().includes(columnFilters.height)
+      const colorMatch = columnFilters.color === '' || 
+                        glass.color.toLowerCase().includes(columnFilters.color.toLowerCase())
+      
+      return widthMatch && heightMatch && colorMatch
+    })
+  }, [glasses, columnFilters])
 
   const toggleColumnFilter = (column) => {
     setShowColumnFilters(prev => ({
@@ -54,7 +46,6 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
   }
 
   const handleColumnFilterChange = (column, value) => {
-    console.log('Filter change:', column, '=', value)
     setColumnFilters(prev => ({
       ...prev,
       [column]: value
@@ -86,11 +77,14 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
   }
 
   const handleReserveClick = (glass) => {
+    console.log('Reserve button clicked for glass:', glass)
     if (glass.availableCount <= 0) {
       alert('No available pieces to reserve')
       return
     }
+    console.log('Setting selectedGlass to:', glass)
     setSelectedGlass(glass)
+    console.log('Setting showReservationModal to true')
     setShowReservationModal(true)
   }
 
@@ -151,15 +145,6 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
 
   return (
     <div className="glass-table-container">
-      {/* Debug display - remove after fixing */}
-      <div style={{background: '#f0f0f0', padding: '8px', margin: '8px 0', fontSize: '12px'}}>
-        <strong>Debug - Current Filters:</strong> 
-        Width: "{columnFilters.width}" | 
-        Height: "{columnFilters.height}" | 
-        Color: "{columnFilters.color}" | 
-        Results: {filteredGlasses.length} of {glasses.length}
-      </div>
-      
       {/* Column Filter Controls */}
       {(columnFilters.width || columnFilters.height || columnFilters.color) && (
         <div className="active-filters">
@@ -234,10 +219,7 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
                     type="text"
                     placeholder="Search height..."
                     value={columnFilters.height}
-                    onChange={(e) => {
-                      console.log('HEIGHT onChange called:', e.target.value)
-                      handleColumnFilterChange('height', e.target.value)
-                    }}
+                    onChange={(e) => handleColumnFilterChange('height', e.target.value)}
                     className="filter-input"
                     data-testid="height-filter"
                   />
@@ -263,10 +245,7 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
                     type="text"
                     placeholder="Search color..."
                     value={columnFilters.color}
-                    onChange={(e) => {
-                      console.log('COLOR onChange called:', e.target.value)
-                      handleColumnFilterChange('color', e.target.value)
-                    }}
+                    onChange={(e) => handleColumnFilterChange('color', e.target.value)}
                     className="filter-input"
                     data-testid="color-filter"
                   />
@@ -437,10 +416,20 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
 
       {showReservationModal && (
         <ReservationModal
+          isOpen={showReservationModal}
           glass={selectedGlass}
-          onSubmit={handleReservationSubmit}
-          onCancel={handleReservationCancel}
+          onReserve={handleReservationSubmit}
+          onClose={handleReservationCancel}
         />
+      )}
+      
+      {/* Debug info */}
+      {showReservationModal && (
+        <div style={{position: 'fixed', top: '10px', left: '10px', background: 'white', padding: '10px', zIndex: 99999999999, border: '2px solid black'}}>
+          <div>Modal State: {showReservationModal ? 'TRUE' : 'FALSE'}</div>
+          <div>Selected Glass: {selectedGlass ? selectedGlass.id : 'NULL'}</div>
+          <div>Glass Available: {selectedGlass ? selectedGlass.availableCount : 'N/A'}</div>
+        </div>
       )}
 
       {showReservationEditModal && (

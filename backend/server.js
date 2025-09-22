@@ -125,9 +125,37 @@ app.get('/api/glasses', async (req, res) => {
 app.post('/api/glasses', async (req, res) => {
   try {
     const glasses = await readGlasses();
+    const glassData = req.body;
+    
+    // Determine availableCount and reservedCount based on project assignment
+    let availableCount, reservedCount, reservedProjects, reservedProject;
+    
+    if (glassData.reservedProject && glassData.reservedProject.trim() !== '') {
+      // Glass is assigned to a project - all pieces are reserved
+      availableCount = 0;
+      reservedCount = glassData.count;
+      reservedProjects = [glassData.reservedProject.trim()];
+      reservedProject = glassData.reservedProject.trim();
+    } else {
+      // Glass has no project - all pieces are available
+      availableCount = glassData.count;
+      reservedCount = 0;
+      reservedProjects = [];
+      reservedProject = null;
+    }
+    
     const newGlass = {
-      ...req.body,
       id: uuidv4(),
+      width: glassData.width,
+      height: glassData.height,
+      color: glassData.color,
+      heatSoaked: glassData.heatSoaked || false,
+      racks: Array.isArray(glassData.racks) ? glassData.racks : (glassData.rack ? [glassData.rack] : []),
+      count: glassData.count,
+      availableCount,
+      reservedCount,
+      reservedProjects,
+      reservedProject,
       dateAdded: new Date().toLocaleDateString()
     };
     
@@ -269,11 +297,39 @@ app.post('/api/glasses/bulk', async (req, res) => {
     }
     
     const glasses = await readGlasses();
-    const processedGlasses = newGlasses.map(glass => ({
-      ...glass,
-      id: glass.id || uuidv4(),
-      dateAdded: glass.dateAdded || new Date().toLocaleDateString()
-    }));
+    const processedGlasses = newGlasses.map(glassData => {
+      // Determine availableCount and reservedCount based on project assignment
+      let availableCount, reservedCount, reservedProjects, reservedProject;
+      
+      if (glassData.reservedProject && glassData.reservedProject.trim() !== '') {
+        // Glass is assigned to a project - all pieces are reserved
+        availableCount = 0;
+        reservedCount = glassData.count;
+        reservedProjects = [glassData.reservedProject.trim()];
+        reservedProject = glassData.reservedProject.trim();
+      } else {
+        // Glass has no project - all pieces are available
+        availableCount = glassData.count;
+        reservedCount = 0;
+        reservedProjects = [];
+        reservedProject = null;
+      }
+      
+      return {
+        id: glassData.id || uuidv4(),
+        width: glassData.width,
+        height: glassData.height,
+        color: glassData.color,
+        heatSoaked: glassData.heatSoaked || false,
+        racks: Array.isArray(glassData.racks) ? glassData.racks : (glassData.rack ? [glassData.rack] : []),
+        count: glassData.count,
+        availableCount,
+        reservedCount,
+        reservedProjects,
+        reservedProject,
+        dateAdded: glassData.dateAdded || new Date().toLocaleDateString()
+      };
+    });
     
     glasses.push(...processedGlasses);
     

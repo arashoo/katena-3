@@ -2988,5 +2988,39 @@
     "reservedCount": 0,
     "reservedProjects": [],
     "reservedProject": null
+  },
+  {
+    "id": "759a3fff-22dc-43bc-9491-46dc5e5c43e5",
+    "width": 1,
+    "height": 1,
+    "color": "Clear",
+    "heatSoaked": false,
+    "racks": [
+      "xx"
+    ],
+    "count": 22,
+    "availableCount": null,
+    "reservedCount": null,
+    "reservedProjects": [
+      null
+    ],
+    "reservedProject": null,
+    "dateAdded": "9/22/2025"
+  },
+  {
+    "id": "568f69a0-baa6-4d38-9efd-5e932bb284eb",
+    "width": 2,
+    "height": 2,
+    "color": "Clear",
+    "heatSoaked": false,
+    "racks": [
+      "xxxxx"
+    ],
+    "count": 200,
+    "availableCount": 200,
+    "reservedCount": 0,
+    "reservedProjects": [],
+    "reservedProject": null,
+    "dateAdded": "9/22/2025"
   }
 ]

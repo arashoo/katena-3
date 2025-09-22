@@ -8,7 +8,8 @@ function AddGlassForm({ onAddGlass, onCancel }) {
     color: 'Clear',
     count: '',
     heatSoaked: false,
-    rack: ''
+    rack: '',
+    reservedProject: ''
   })
 
   const handleSubmit = (e) => {
@@ -25,7 +26,7 @@ function AddGlassForm({ onAddGlass, onCancel }) {
       color: formData.color,
       count: parseInt(formData.count),
       heatSoaked: formData.heatSoaked,
-      reservedProject: '',
+      reservedProject: formData.reservedProject.trim(),
       rack: formData.rack
     })
 
@@ -36,7 +37,8 @@ function AddGlassForm({ onAddGlass, onCancel }) {
       color: 'Clear',
       count: '',
       heatSoaked: false,
-      rack: ''
+      rack: '',
+      reservedProject: ''
     })
   }
 
@@ -127,6 +129,22 @@ function AddGlassForm({ onAddGlass, onCancel }) {
               placeholder="e.g., R-001"
               required
             />
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="form-group full-width">
+            <label htmlFor="reservedProject">Project Name (Optional)</label>
+            <input
+              type="text"
+              id="reservedProject"
+              value={formData.reservedProject}
+              onChange={(e) => handleInputChange('reservedProject', e.target.value)}
+              placeholder="Leave empty if not for a specific project"
+            />
+            <small className="field-hint">
+              If assigned to a project, all pieces will be reserved. Otherwise, all pieces will be available.
+            </small>
           </div>
         </div>
 
