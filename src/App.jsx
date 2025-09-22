@@ -641,53 +641,26 @@ function App() {
     applyFiltersAndSearch(glasses, searchTerm, filters, newSortConfig)
   }
 
-  const reserveGlass = (glassId, reservationData) => {
-    const { quantity, projectName } = reservationData
-    
-    // Find the glass group to reserve from
-    const glassGroup = glasses.find(glass => glass.id === glassId)
-    if (!glassGroup) {
-      console.error('Glass group not found:', glassId)
-      return
+  const reserveGlass = async (glassId, reservationData) => {
+    try {
+      // Call the new reservation API
+      const response = await apiService.reserveGlass(glassId, reservationData)
+      
+      // Update the glasses array with the updated glass from the server
+      const updatedGlasses = glasses.map(glass =>
+        glass.id === glassId ? response.updatedGlass : glass
+      )
+      
+      setGlasses(updatedGlasses)
+      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+      
+      // Show success message
+      alert(`Successfully reserved ${reservationData.quantity} pieces for ${reservationData.projectName}`)
+      
+    } catch (error) {
+      console.error('Error creating reservation:', error)
+      alert(`Failed to reserve glass: ${error.message}`)
     }
-
-    // Validate available quantity
-    if (quantity > glassGroup.availableCount) {
-      alert(`Cannot reserve ${quantity} pieces. Only ${glassGroup.availableCount} available.`)
-      return
-    }
-
-    // Update the glass group with new reservation
-    const updatedGlass = {
-      ...glassGroup,
-      availableCount: glassGroup.availableCount - quantity,
-      reservedCount: glassGroup.reservedCount + quantity,
-      reservedProjects: glassGroup.reservedProjects 
-        ? [...glassGroup.reservedProjects, projectName]
-        : [projectName]
-    }
-
-    // Update the glasses array
-    const updatedGlasses = glasses.map(glass =>
-      glass.id === glassId ? updatedGlass : glass
-    )
-
-    setGlasses(updatedGlasses)
-    applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
-
-    // Save to backend
-    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/glasses/${glassId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedGlass),
-    }).catch(error => {
-      console.error('Error saving reservation:', error)
-      // Revert the change if save fails
-      setGlasses(glasses)
-      applyFiltersAndSearch(glasses, searchTerm, filters, sortConfig)
-    })
   }
 
   const updateReservation = (reservationId, updatedData) => {

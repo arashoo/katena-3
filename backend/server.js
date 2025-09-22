@@ -213,6 +213,127 @@ app.delete('/api/glasses/:id', async (req, res) => {
   }
 });
 
+// Reserve glass
+app.post('/api/glasses/:id/reserve', async (req, res) => {
+  try {
+    console.log('=== RESERVATION REQUEST ===');
+    console.log('Request body:', req.body);
+    console.log('Glass ID:', req.params.id);
+    
+    const { quantity, projectName } = req.body;
+    const glassId = req.params.id;
+    
+    // Validation
+    if (!quantity || !projectName) {
+      console.log('Validation failed: missing quantity or projectName');
+      return res.status(400).json({ error: 'Quantity and project name are required' });
+    }
+    
+    if (quantity <= 0) {
+      console.log('Validation failed: quantity <= 0');
+      return res.status(400).json({ error: 'Quantity must be greater than 0' });
+    }
+    
+    console.log('Reading glasses data...');
+    const glasses = await readGlasses();
+    console.log('Total glasses found:', glasses.length);
+    
+    const glassIndex = glasses.findIndex(g => g.id === glassId);
+    console.log('Glass index found:', glassIndex);
+    
+    if (glassIndex === -1) {
+      console.log('Glass not found for ID:', glassId);
+      return res.status(404).json({ error: 'Glass not found' });
+    }
+    
+    const glass = glasses[glassIndex];
+    console.log('Found glass:', JSON.stringify(glass, null, 2));
+    
+    // Check if enough pieces are available
+    if (quantity > glass.availableCount) {
+      console.log('Insufficient quantity available:', quantity, '>', glass.availableCount);
+      return res.status(400).json({ 
+        error: `Cannot reserve ${quantity} pieces. Only ${glass.availableCount} available.` 
+      });
+    }
+    
+    console.log('Creating reservation object...');
+    // Create reservation object
+    const reservation = {
+      id: uuidv4(),
+      projectName: projectName.trim(),
+      quantity: parseInt(quantity),
+      reservedDate: new Date().toISOString(),
+      glassId: glassId
+    };
+    console.log('Reservation object:', reservation);
+    
+    // Update glass data
+    const updatedGlass = { ...glass };
+    
+    // Initialize reservedProjects array if it doesn't exist
+    if (!updatedGlass.reservedProjects) {
+      console.log('Initializing reservedProjects array');
+      updatedGlass.reservedProjects = [];
+    }
+    
+    console.log('Current reservedProjects:', updatedGlass.reservedProjects);
+    
+    // Add or update project in reservedProjects
+    const existingProjectIndex = updatedGlass.reservedProjects.findIndex(
+      proj => proj && proj.projectName === projectName.trim()
+    );
+    
+    console.log('Existing project index:', existingProjectIndex);
+    
+    if (existingProjectIndex >= 0) {
+      console.log('Adding to existing project reservation');
+      // Add to existing project reservation
+      updatedGlass.reservedProjects[existingProjectIndex].quantity += parseInt(quantity);
+      if (!updatedGlass.reservedProjects[existingProjectIndex].reservations) {
+        updatedGlass.reservedProjects[existingProjectIndex].reservations = [];
+      }
+      updatedGlass.reservedProjects[existingProjectIndex].reservations.push(reservation);
+    } else {
+      console.log('Creating new project reservation');
+      // Create new project reservation
+      updatedGlass.reservedProjects.push({
+        projectName: projectName.trim(),
+        quantity: parseInt(quantity),
+        reservations: [reservation]
+      });
+    }
+    
+    // Update counts
+    console.log('Updating counts...');
+    updatedGlass.reservedCount = (updatedGlass.reservedCount || 0) + parseInt(quantity);
+    updatedGlass.availableCount = updatedGlass.count - updatedGlass.reservedCount;
+    
+    console.log('Updated glass:', JSON.stringify(updatedGlass, null, 2));
+    
+    // Update the glass in the array
+    glasses[glassIndex] = updatedGlass;
+    
+    console.log('Writing glasses data...');
+    if (await writeGlasses(glasses)) {
+      console.log('Successfully saved reservation');
+      res.status(201).json({
+        message: 'Glass reserved successfully',
+        reservation: reservation,
+        updatedGlass: updatedGlass
+      });
+    } else {
+      console.log('Failed to write glasses data');
+      res.status(500).json({ error: 'Failed to save reservation' });
+    }
+  } catch (error) {
+    console.error('=== RESERVATION ERROR ===');
+    console.error('Error details:', error);
+    console.error('Error stack:', error.stack);
+    res.status(500).json({ error: 'Failed to reserve glass' });
+  }
+});
+
 // Get backlog
 app.get('/api/backlog', async (req, res) => {
   try {

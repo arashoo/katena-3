@@ -2990,24 +2990,6 @@
     "reservedProject": null
   },
   {
-    "id": "759a3fff-22dc-43bc-9491-46dc5e5c43e5",
-    "width": 1,
-    "height": 1,
-    "color": "Clear",
-    "heatSoaked": false,
-    "racks": [
-      "xx"
-    ],
-    "count": 22,
-    "availableCount": null,
-    "reservedCount": null,
-    "reservedProjects": [
-      null
-    ],
-    "reservedProject": null,
-    "dateAdded": "9/22/2025"
-  },
-  {
     "id": "568f69a0-baa6-4d38-9efd-5e932bb284eb",
     "width": 2,
     "height": 2,
@@ -3017,9 +2999,23 @@
       "xxxxx"
     ],
     "count": 200,
-    "availableCount": 200,
-    "reservedCount": 0,
-    "reservedProjects": [],
+    "availableCount": 190,
+    "reservedCount": 10,
+    "reservedProjects": [
+      {
+        "projectName": "aa",
+        "quantity": 10,
+        "reservations": [
+          {
+            "id": "221b260f-345c-4bb5-b08f-3763d9c88d43",
+            "projectName": "aa",
+            "quantity": 10,
+            "reservedDate": "2025-09-22T17:08:50.041Z",
+            "glassId": "568f69a0-baa6-4d38-9efd-5e932bb284eb"
+          }
+        ]
+      }
+    ],
     "reservedProject": null,
     "dateAdded": "9/22/2025"
   }

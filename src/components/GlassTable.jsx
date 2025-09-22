@@ -76,6 +76,47 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
     })
   }
 
+  // Helper function to format reserved projects display
+  const formatReservedProjects = (reservedProjects) => {
+    if (!reservedProjects || reservedProjects.length === 0) {
+      return 'None'
+    }
+    
+    // Handle both old format (array of strings) and new format (array of objects)
+    const projectNames = reservedProjects
+      .filter(project => project != null) // Filter out null/undefined values
+      .map(project => {
+        if (typeof project === 'string') {
+          return project
+        } else if (project && project.projectName) {
+          return `${project.projectName} (${project.quantity})`
+        }
+        return 'Unknown'
+      })
+    
+    return projectNames.length > 0 ? projectNames.join(', ') : 'None'
+  }
+
+  // Helper function to get project tooltip
+  const getProjectTooltip = (reservedProjects) => {
+    if (!reservedProjects || reservedProjects.length === 0) {
+      return 'No reservations'
+    }
+    
+    const projectDetails = reservedProjects
+      .filter(project => project != null) // Filter out null/undefined values
+      .map(project => {
+        if (typeof project === 'string') {
+          return project
+        } else if (project && project.projectName) {
+          return `${project.projectName}: ${project.quantity} pieces`
+        }
+        return 'Unknown project'
+      })
+    
+    return projectDetails.length > 0 ? projectDetails.join('\n') : 'No valid reservations'
+  }
+
   const handleReserveClick = (glass) => {
     console.log('Reserve button clicked for glass:', glass)
     if (glass.availableCount <= 0) {
@@ -343,7 +384,7 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
                       placeholder="Rack numbers separated by commas"
                     />
                   </td>
-                  <td>{glass.reservedProjects ? glass.reservedProjects.join(', ') : 'None'}</td>
+                  <td>{formatReservedProjects(glass.reservedProjects)}</td>
                   <td>
                     <div className="action-buttons">
                       <button onClick={saveEdit} className="save-btn">✓</button>
@@ -380,11 +421,13 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
                     </span>
                   </td>
                   <td className="projects-cell">
-                    {glass.reservedProjects && glass.reservedProjects.length > 0 ? (
-                      <span title={glass.reservedProjects.join(', ')}>
-                        {glass.reservedProjects.length === 1 
-                          ? glass.reservedProjects[0] 
-                          : `${glass.reservedProjects.length} projects`
+                    {glass.reservedProjects && glass.reservedProjects.filter(p => p != null).length > 0 ? (
+                      <span title={getProjectTooltip(glass.reservedProjects)}>
+                        {glass.reservedProjects.filter(p => p != null).length === 1 
+                          ? (typeof glass.reservedProjects.find(p => p != null) === 'string' 
+                              ? glass.reservedProjects.find(p => p != null) 
+                              : glass.reservedProjects.find(p => p != null)?.projectName || 'Unknown')
+                          : `${glass.reservedProjects.filter(p => p != null).length} projects`
                         }
                       </span>
                     ) : (

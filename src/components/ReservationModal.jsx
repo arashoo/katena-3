@@ -42,7 +42,7 @@ function ReservationModal({ isOpen, onClose, glass, onReserve }) {
       quantity: qty,
       projectName: projectName.trim()
     }
-    onReserve(glass.id, reservationData)
+    onReserve(reservationData)
     onClose()
   }
 

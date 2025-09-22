@@ -61,6 +61,13 @@ class ApiService {
     });
   }
 
+  async reserveGlass(id, reservationData) {
+    return await this.fetch(`/glasses/${id}/reserve`, {
+      method: 'POST',
+      body: JSON.stringify(reservationData),
+    });
+  }
+
   // Backlog API methods
   async getBacklog() {
     return await this.fetch('/backlog');
