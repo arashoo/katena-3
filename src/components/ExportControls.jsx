@@ -215,7 +215,7 @@ function ExportControls({ glasses = [], filteredGlasses = [] }) {
             </tr>
           </thead>
           <tbody>
-            ${filteredGlasses.map(glass => `
+            ${filteredGlasses.filter(glass => glass).map(glass => `
               <tr class="${glass.reservedProject ? 'reserved' : 'available'}">
                 <td>${glass.width}" × ${glass.height}"</td>
                 <td>${glass.color}</td>

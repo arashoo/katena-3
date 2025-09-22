@@ -21,9 +21,9 @@ function AdvancedFilters({ filters: externalFilters, onFilterChange, glasses }) 
   const [showAdvanced, setShowAdvanced] = useState(false)
 
   // Get unique values from glasses data
-  const colors = [...new Set(glasses?.map(glass => glass.color) || [])].sort()
-  const racks = [...new Set(glasses?.map(glass => glass.rack) || [])].sort()
-  const projects = [...new Set(glasses?.filter(glass => glass.reservedProject).map(glass => glass.reservedProject) || [])].sort()
+  const colors = [...new Set(glasses?.filter(glass => glass).map(glass => glass.color) || [])].sort()
+  const racks = [...new Set(glasses?.filter(glass => glass).map(glass => glass.rack) || [])].sort()
+  const projects = [...new Set(glasses?.filter(glass => glass && glass.reservedProject).map(glass => glass.reservedProject) || [])].sort()
 
   const handleFilterChange = (key, value) => {
     const newFilters = { ...filters, [key]: value }

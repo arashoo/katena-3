@@ -143,11 +143,11 @@ function EmailOrder({ onCancel, glasses, initialData = null }) {
   }
 
   // Get unique colors from existing glasses
-  const uniqueColors = [...new Set(glasses.map(glass => glass.color))].sort()
+  const uniqueColors = [...new Set(glasses.filter(glass => glass).map(glass => glass.color))].sort()
   
   // Get unique projects from existing glasses
   const uniqueProjects = [...new Set(glasses
-    .filter(glass => glass.reservedProject)
+    .filter(glass => glass && glass.reservedProject)
     .map(glass => glass.reservedProject)
   )].sort()
 

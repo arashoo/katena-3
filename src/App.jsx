@@ -535,7 +535,8 @@ function App() {
   }
 
   const applyFiltersAndSearch = (currentGlasses, currentSearchTerm, currentFilters, currentSort) => {
-    let filtered = [...currentGlasses]
+    // Filter out any null/undefined entries first
+    let filtered = [...currentGlasses].filter(glass => glass)
 
     // Apply search
     if (currentSearchTerm) {
@@ -552,27 +553,27 @@ function App() {
     // Apply filters
     if (currentFilters.status !== 'all') {
       if (currentFilters.status === 'available') {
-        filtered = filtered.filter(glass => !glass.reservedProject)
+        filtered = filtered.filter(glass => glass && !glass.reservedProject)
       } else if (currentFilters.status === 'reserved') {
-        filtered = filtered.filter(glass => glass.reservedProject)
+        filtered = filtered.filter(glass => glass && glass.reservedProject)
       }
     }
 
     if (currentFilters.color !== 'all') {
-      filtered = filtered.filter(glass => glass.color === currentFilters.color)
+      filtered = filtered.filter(glass => glass && glass.color === currentFilters.color)
     }
 
     if (currentFilters.heatSoaked !== 'all') {
       const isHeatSoaked = currentFilters.heatSoaked === 'yes'
-      filtered = filtered.filter(glass => glass.heatSoaked === isHeatSoaked)
+      filtered = filtered.filter(glass => glass && glass.heatSoaked === isHeatSoaked)
     }
 
     if (currentFilters.rack !== 'all') {
-      filtered = filtered.filter(glass => glass.rackNumber === currentFilters.rack)
+      filtered = filtered.filter(glass => glass && glass.rackNumber === currentFilters.rack)
     }
 
     if (currentFilters.project !== 'all') {
-      filtered = filtered.filter(glass => glass.reservedProject === currentFilters.project)
+      filtered = filtered.filter(glass => glass && glass.reservedProject === currentFilters.project)
     }
 
     if (currentFilters.dateRange !== 'all') {
@@ -725,9 +726,31 @@ function App() {
     setShowConfirmation(false)
   }
 
-  const handleMoveToBacklogConfirm = (reservation) => {
-    setGlassToBacklog(reservation)
-    setShowBacklogConfirmation(true)
+  const handleMoveToBacklogConfirm = async (backlogData) => {
+    try {
+      // Create proper backlog entry format
+      const backlogEntry = {
+        width: backlogData.width,
+        height: backlogData.height,
+        color: backlogData.color,
+        heatSoaked: backlogData.heatSoaked,
+        count: backlogData.quantity,
+        originalProject: backlogData.projectName,
+        notes: `Moved from reservation - ${backlogData.projectName}`,
+        reservedDate: backlogData.reservedDate
+      }
+
+      // Add to backend backlog
+      const newBacklogItem = await apiService.addToBacklog(backlogEntry)
+      
+      // Update local backlog state
+      setBacklogReservations(prev => [...prev, newBacklogItem])
+      
+      console.log('Successfully moved project to backlog:', newBacklogItem)
+    } catch (error) {
+      console.error('Failed to move project to backlog:', error)
+      alert('Failed to move project to backlog. Please try again.')
+    }
   }
 
   const confirmMoveToBacklog = () => {
@@ -782,8 +805,8 @@ function App() {
   }
 
   // Calculate proper inventory totals
-  const availableGlasses = glasses.filter(glass => !glass.reservedProject)
-  const reservedGlasses = glasses.filter(glass => glass.reservedProject)
+  const availableGlasses = glasses.filter(glass => glass && !glass.reservedProject)
+  const reservedGlasses = glasses.filter(glass => glass && glass.reservedProject)
   
   const availableCount = availableGlasses.reduce((sum, glass) => sum + glass.count, 0)
   const reservedCount = reservedGlasses.reduce((sum, glass) => sum + glass.count, 0)
@@ -941,6 +964,7 @@ function App() {
               sortConfig={sortConfig}
               onReserveGlass={reserveGlass}
               onUpdateReservation={updateReservation}
+              onSwitchToBacklog={() => setActiveTab('backlog')}
             />
           </div>
         )}
@@ -952,7 +976,7 @@ function App() {
               onSmartReallocate={smartReallocateFromBacklog}
               onAllocate={allocateFromBacklog}
               onDelete={deleteFromBacklog}
-              availableGlasses={glasses.filter(glass => !glass.reservedProject)}
+              availableGlasses={glasses.filter(glass => glass && !glass.reservedProject)}
               onOpenOrderGlass={handleOpenOrderFromBacklog}
             />
           </div>

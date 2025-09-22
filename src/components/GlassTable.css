@@ -287,19 +287,17 @@
 }
 
 .edit-btn, .delete-btn, .save-btn, .cancel-btn, .reserve-btn, .backlog-btn {
-  padding: 6px 8px;
-  margin: 0 1px;
+  padding: 8px;
+  margin: 0 2px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 10px;
+  font-size: 16px;
   font-weight: 600;
   transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
   white-space: nowrap;
-  width: 32px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -353,9 +351,9 @@
 }
 
 .glass-table td:last-child {
-  width: 140px;
-  min-width: 140px;
-  max-width: 140px;
+  width: 120px;
+  min-width: 120px;
+  max-width: 120px;
   text-align: center;
   padding: 16px 4px;
   transition: all 0.3s ease;
@@ -752,4 +750,305 @@
 
 .sortable:hover {
   color: #4f46e5;
+}
+
+/* Row reservation status background colors */
+.glass-table tr.partially-reserved {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+}
+
+.glass-table tr.partially-reserved:hover {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+}
+
+.glass-table tr.fully-reserved {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+}
+
+.glass-table tr.fully-reserved:hover {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+/* Clickable row styles */
+.glass-table tr.clickable-row {
+  transition: all 0.3s ease;
+}
+
+.glass-table tr.clickable-row:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.glass-table tr.expanded {
+  border-bottom: none;
+}
+
+/* Reservation details dropdown */
+.reservation-details-row {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-top: none !important;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    max-height: 300px;
+    transform: translateY(0);
+  }
+}
+
+.reservation-details-cell {
+  padding: 0 !important;
+  border-bottom: 1px solid #cbd5e0 !important;
+}
+
+.reservation-details-content {
+  padding: 20px;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-left: 4px solid #3b82f6;
+  animation: fadeIn 0.3s ease-out 0.1s both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.reservation-details-title {
+  margin: 0 0 16px 0;
+  color: #1e40af;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reservation-details-title::before {
+  content: '📊';
+  font-size: 18px;
+}
+
+.reservation-projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reservation-project-item {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid #d1d5db;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.reservation-project-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.project-name {
+  font-weight: 700;
+  color: #1f2937;
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.project-quantity {
+  color: #059669;
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.project-quantity::before {
+  content: '📦';
+  font-size: 12px;
+}
+
+.project-reservations {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.reservation-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  background: #f3f4f6;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.reservation-date {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.reservation-id {
+  color: #9ca3af;
+  font-family: monospace;
+  font-size: 11px;
+}
+
+/* Project editing styles */
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.project-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.project-edit-btn, .project-delete-btn, .project-save-btn, .project-cancel-btn, .project-backlog-btn {
+  background: none;
+  border: none;
+  padding: 4px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.project-edit-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+}
+
+.project-edit-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
+}
+
+.project-delete-btn {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+}
+
+.project-delete-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3);
+}
+
+.project-save-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.project-save-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
+}
+
+.project-cancel-btn {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+  color: white;
+}
+
+.project-cancel-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 6px rgba(107, 114, 128, 0.3);
+}
+
+.project-backlog-btn {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: white;
+}
+
+.project-backlog-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 6px rgba(139, 92, 246, 0.3);
+}
+
+.project-edit-form {
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 8px;
+  border: 2px solid #3b82f6;
+  animation: editFormSlideIn 0.3s ease-out;
+}
+
+@keyframes editFormSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.project-edit-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.project-edit-row label {
+  font-weight: 600;
+  color: #374151;
+  min-width: 100px;
+  font-size: 13px;
+}
+
+.project-edit-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 2px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #374151;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.project-edit-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.project-edit-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
 }

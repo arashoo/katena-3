@@ -3,7 +3,7 @@ import ReservationModal from './ReservationModal'
 import ReservationEditModal from './ReservationEditModal'
 import './GlassTable.css'
 
-function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, onSort, sortConfig, onReserveGlass, onUpdateReservation }) {
+function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, onSort, sortConfig, onReserveGlass, onUpdateReservation, onSwitchToBacklog }) {
   const [editingId, setEditingId] = useState(null)
   const [editData, setEditData] = useState({})
   const [exitingEdit, setExitingEdit] = useState(false)
@@ -11,6 +11,9 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
   const [selectedGlass, setSelectedGlass] = useState(null)
   const [showReservationEditModal, setShowReservationEditModal] = useState(false)
   const [selectedReservation, setSelectedReservation] = useState(null)
+  const [expandedRows, setExpandedRows] = useState(new Set())
+  const [editingProject, setEditingProject] = useState(null) // { glassId, projectIndex }
+  const [editingProjectData, setEditingProjectData] = useState({})
   
   // Column filter states
   const [showColumnFilters, setShowColumnFilters] = useState({
@@ -184,6 +187,187 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
     return `${racks.slice(0, 2).join(', ')} +${racks.length - 2} more`
   }
 
+  // Helper function to get reservation status class
+  const getReservationStatusClass = (glass) => {
+    const totalCount = glass.count || 0
+    const reservedCount = glass.reservedCount || 0
+    
+    if (reservedCount === 0) {
+      return '' // No reservation
+    } else if (reservedCount >= totalCount) {
+      return 'fully-reserved' // Deep yellow
+    } else {
+      return 'partially-reserved' // Light yellow
+    }
+  }
+
+  // Handle row click for reserved glasses
+  const handleRowClick = (glass, event) => {
+    // Don't expand if clicking on buttons or input fields
+    if (event.target.tagName === 'BUTTON' || 
+        event.target.tagName === 'INPUT' || 
+        event.target.tagName === 'SELECT' ||
+        event.target.closest('.action-buttons')) {
+      return
+    }
+
+    // Only expand if glass has reservations
+    if (glass.reservedCount > 0 && glass.reservedProjects && glass.reservedProjects.length > 0) {
+      const newExpandedRows = new Set(expandedRows)
+      if (expandedRows.has(glass.id)) {
+        newExpandedRows.delete(glass.id)
+      } else {
+        newExpandedRows.add(glass.id)
+      }
+      setExpandedRows(newExpandedRows)
+    }
+  }
+
+  // Check if a row is expanded
+  const isRowExpanded = (glassId) => {
+    return expandedRows.has(glassId)
+  }
+
+  // Project editing functions
+  const startProjectEdit = (glassId, projectIndex, project) => {
+    setEditingProject({ glassId, projectIndex })
+    setEditingProjectData({
+      projectName: typeof project === 'string' ? project : project.projectName,
+      quantity: typeof project === 'string' ? 0 : project.quantity
+    })
+  }
+
+  const cancelProjectEdit = () => {
+    setEditingProject(null)
+    setEditingProjectData({})
+  }
+
+  const saveProjectEdit = () => {
+    if (!editingProject) return
+
+    const { glassId, projectIndex } = editingProject
+    const glass = glasses.find(g => g.id === glassId)
+    if (!glass) return
+
+    // Create updated glass object
+    const updatedGlass = { ...glass }
+    const updatedProjects = [...(updatedGlass.reservedProjects || [])]
+    
+    // Calculate quantity difference
+    const oldProject = updatedProjects[projectIndex]
+    const oldQuantity = typeof oldProject === 'string' ? 0 : oldProject.quantity
+    const newQuantity = editingProjectData.quantity
+    const quantityDiff = newQuantity - oldQuantity
+
+    // Update the project
+    updatedProjects[projectIndex] = {
+      projectName: editingProjectData.projectName,
+      quantity: newQuantity,
+      reservations: typeof oldProject === 'string' ? [] : oldProject.reservations || []
+    }
+
+    // Update glass counts
+    updatedGlass.reservedProjects = updatedProjects
+    updatedGlass.reservedCount = (updatedGlass.reservedCount || 0) + quantityDiff
+    updatedGlass.availableCount = updatedGlass.count - updatedGlass.reservedCount
+
+    // Call the update function
+    onUpdateGlass(glassId, updatedGlass)
+
+    // Clear editing state
+    setEditingProject(null)
+    setEditingProjectData({})
+  }
+
+  const handleProjectInputChange = (field, value) => {
+    setEditingProjectData({ ...editingProjectData, [field]: value })
+  }
+
+  const deleteProject = (glassId, projectIndex) => {
+    if (!confirm('Are you sure you want to delete this project reservation?')) return
+
+    const glass = glasses.find(g => g.id === glassId)
+    if (!glass) return
+
+    const updatedGlass = { ...glass }
+    const updatedProjects = [...(updatedGlass.reservedProjects || [])]
+    const projectToDelete = updatedProjects[projectIndex]
+    
+    // Calculate quantity to remove
+    const quantityToRemove = typeof projectToDelete === 'string' ? 0 : projectToDelete.quantity
+
+    // Remove the project
+    updatedProjects.splice(projectIndex, 1)
+
+    // Update glass counts
+    updatedGlass.reservedProjects = updatedProjects
+    updatedGlass.reservedCount = (updatedGlass.reservedCount || 0) - quantityToRemove
+    updatedGlass.availableCount = updatedGlass.count - updatedGlass.reservedCount
+
+    // Call the update function
+    onUpdateGlass(glassId, updatedGlass)
+
+    // If no more projects, collapse the row
+    if (updatedProjects.length === 0) {
+      const newExpandedRows = new Set(expandedRows)
+      newExpandedRows.delete(glassId)
+      setExpandedRows(newExpandedRows)
+    }
+  }
+
+  const moveProjectToBacklog = (glassId, projectIndex, project) => {
+    if (!confirm('Are you sure you want to move this project reservation to backlog?')) return
+
+    const glass = glasses.find(g => g.id === glassId)
+    if (!glass) return
+
+    // Create backlog entry with the correct format
+    const backlogEntry = {
+      width: glass.width,
+      height: glass.height,
+      color: glass.color,
+      heatSoaked: glass.heatSoaked,
+      quantity: typeof project === 'string' ? 0 : project.quantity,
+      projectName: typeof project === 'string' ? project : project.projectName,
+      reservedDate: project.reservations && project.reservations.length > 0 
+        ? project.reservations[0].reservedDate 
+        : new Date().toISOString()
+    }
+
+    // Move to backlog via API
+    onMoveToBacklog(backlogEntry)
+
+    // Remove from current reservations (same logic as delete)
+    const updatedGlass = { ...glass }
+    const updatedProjects = [...(updatedGlass.reservedProjects || [])]
+    const quantityToRemove = typeof project === 'string' ? 0 : project.quantity
+
+    // Remove the project
+    updatedProjects.splice(projectIndex, 1)
+
+    // Update glass counts
+    updatedGlass.reservedProjects = updatedProjects
+    updatedGlass.reservedCount = (updatedGlass.reservedCount || 0) - quantityToRemove
+    updatedGlass.availableCount = updatedGlass.count - updatedGlass.reservedCount
+
+    // Call the update function
+    onUpdateGlass(glassId, updatedGlass)
+
+    // If no more projects, collapse the row
+    if (updatedProjects.length === 0) {
+      const newExpandedRows = new Set(expandedRows)
+      newExpandedRows.delete(glassId)
+      setExpandedRows(newExpandedRows)
+    }
+
+    // Switch to backlog tab to show the moved item
+    if (onSwitchToBacklog) {
+      setTimeout(() => {
+        onSwitchToBacklog()
+      }, 500) // Small delay to allow the move operation to complete
+    }
+  }
+
   return (
     <div className="glass-table-container">
       {/* Column Filter Controls */}
@@ -320,11 +504,13 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
               </td>
             </tr>
           ) : (
-            filteredGlasses.map((glass) => (
-            <tr 
-              key={glass.id} 
-              className={`${editingId === glass.id ? 'editing' : ''} ${exitingEdit && editingId === glass.id ? 'exiting' : ''}`}
-            >
+            filteredGlasses.filter(glass => glass).map((glass) => (
+            <React.Fragment key={glass.id}>
+              <tr 
+                className={`${editingId === glass.id ? 'editing' : ''} ${exitingEdit && editingId === glass.id ? 'exiting' : ''} ${getReservationStatusClass(glass)} ${glass.reservedCount > 0 ? 'clickable-row' : ''} ${isRowExpanded(glass.id) ? 'expanded' : ''}`}
+                onClick={(e) => handleRowClick(glass, e)}
+                style={{ cursor: glass.reservedCount > 0 ? 'pointer' : 'default' }}
+              >
               {editingId === glass.id ? (
                 // Edit mode
                 <>
@@ -387,8 +573,8 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
                   <td>{formatReservedProjects(glass.reservedProjects)}</td>
                   <td>
                     <div className="action-buttons">
-                      <button onClick={saveEdit} className="save-btn">✓</button>
-                      <button onClick={cancelEdit} className="cancel-btn">✗</button>
+                      <button onClick={saveEdit} className="save-btn" title="Save changes">✅</button>
+                      <button onClick={cancelEdit} className="cancel-btn" title="Cancel editing">❌</button>
                     </div>
                   </td>
                 </>
@@ -440,18 +626,112 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
                         onClick={() => handleReserveClick(glass)} 
                         className="reserve-btn"
                         disabled={glass.availableCount <= 0}
-                        title={glass.availableCount <= 0 ? 'No available pieces' : 'Reserve pieces'}
+                        title={glass.availableCount <= 0 ? 'No available pieces' : `Reserve pieces (${glass.availableCount} available)`}
                       >
-                        Reserve ({glass.availableCount})
+                        📋
                       </button>
-                      <button onClick={() => startEdit(glass)} className="edit-btn">Edit</button>
-                      <button onClick={() => onDeleteGlass(glass)} className="delete-btn">Delete</button>
-                      <button onClick={() => onMoveToBacklog(glass)} className="backlog-btn">Backlog</button>
+                      <button onClick={() => startEdit(glass)} className="edit-btn" title="Edit glass">✏️</button>
+                      <button onClick={() => onDeleteGlass(glass)} className="delete-btn" title="Delete glass">🗑️</button>
                     </div>
                   </td>
                 </>
               )}
             </tr>
+            
+            {/* Reservation Details Dropdown */}
+            {isRowExpanded(glass.id) && glass.reservedProjects && glass.reservedProjects.length > 0 && (
+              <tr className="reservation-details-row">
+                <td colSpan="10" className="reservation-details-cell">
+                  <div className="reservation-details-content">
+                    <h4 className="reservation-details-title">Reservation Details</h4>
+                    <div className="reservation-projects-list">
+                      {glass.reservedProjects.filter(p => p != null).map((project, index) => (
+                        <div key={index} className="reservation-project-item">
+                          {editingProject && editingProject.glassId === glass.id && editingProject.projectIndex === index ? (
+                            // Edit mode for project
+                            <div className="project-edit-form">
+                              <div className="project-edit-row">
+                                <label>Project Name:</label>
+                                <input
+                                  type="text"
+                                  value={editingProjectData.projectName}
+                                  onChange={(e) => handleProjectInputChange('projectName', e.target.value)}
+                                  className="project-edit-input"
+                                />
+                              </div>
+                              <div className="project-edit-row">
+                                <label>Quantity:</label>
+                                <input
+                                  type="number"
+                                  min="1"
+                                  value={editingProjectData.quantity}
+                                  onChange={(e) => handleProjectInputChange('quantity', parseInt(e.target.value) || 0)}
+                                  className="project-edit-input"
+                                />
+                              </div>
+                              <div className="project-edit-actions">
+                                <button onClick={saveProjectEdit} className="project-save-btn" title="Save changes">✅</button>
+                                <button onClick={cancelProjectEdit} className="project-cancel-btn" title="Cancel editing">❌</button>
+                              </div>
+                            </div>
+                          ) : (
+                            // View mode for project
+                            <>
+                              <div className="project-header">
+                                <div className="project-name">
+                                  📋 {typeof project === 'string' ? project : project.projectName}
+                                </div>
+                                <div className="project-actions">
+                                  <button 
+                                    onClick={() => startProjectEdit(glass.id, index, project)} 
+                                    className="project-edit-btn" 
+                                    title="Edit project"
+                                  >
+                                    ✏️
+                                  </button>
+                                  <button 
+                                    onClick={() => moveProjectToBacklog(glass.id, index, project)} 
+                                    className="project-backlog-btn" 
+                                    title="Move project to backlog"
+                                  >
+                                    📦
+                                  </button>
+                                  <button 
+                                    onClick={() => deleteProject(glass.id, index)} 
+                                    className="project-delete-btn" 
+                                    title="Delete project"
+                                  >
+                                    🗑️
+                                  </button>
+                                </div>
+                              </div>
+                              <div className="project-quantity">
+                                {typeof project === 'string' ? 'Unknown quantity' : `${project.quantity} pieces`}
+                              </div>
+                              {project.reservations && project.reservations.length > 0 && (
+                                <div className="project-reservations">
+                                  {project.reservations.map((reservation, resIndex) => (
+                                    <div key={resIndex} className="reservation-item">
+                                      <span className="reservation-date">
+                                        📅 {new Date(reservation.reservedDate).toLocaleDateString()}
+                                      </span>
+                                      <span className="reservation-id">
+                                        ID: {reservation.id.substring(0, 8)}...
+                                      </span>
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            )}
+            </React.Fragment>
             ))
           )}
         </tbody>
