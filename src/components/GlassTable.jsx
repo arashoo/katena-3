@@ -490,9 +490,9 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
               Reserved {getSortIcon('reservedCount')}
             </th>
             <th>
-              Rack Locations
+              Rack
             </th>
-            <th>Reserved Projects</th>
+            <th>Res Projects</th>
             <th>Actions</th>
           </tr>
         </thead>

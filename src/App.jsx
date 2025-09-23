@@ -667,21 +667,21 @@ function App() {
   const updateReservation = (reservationId, updatedData) => {
     const reservation = glasses.find(glass => glass.id === reservationId)
     if (!reservation || !reservation.reservedProject) return
-    
+
     const oldCount = reservation.count
     const newCount = updatedData.count || oldCount
     const countDifference = newCount - oldCount
-    
+
     // Find the corresponding original glass entry that was reduced when this reservation was made
     // Look for glass with same specs but no reservedProject
-    const originalGlass = glasses.find(glass => 
+    const originalGlass = glasses.find(glass =>
       !glass.reservedProject &&
       glass.width === reservation.width &&
       glass.height === reservation.height &&
       glass.color === reservation.color &&
       glass.heatSoaked === reservation.heatSoaked
     )
-    
+
     const updatedGlasses = glasses.map(glass => {
       if (glass.id === reservationId) {
         // Update the reservation
@@ -692,9 +692,27 @@ function App() {
       }
       return glass
     })
-    
+
+    // Clear all filters and search so the updated row is visible
+    setFilters({
+      status: 'all',
+      color: 'all',
+      heatSoaked: 'all',
+      rack: 'all',
+      project: 'all',
+      dateRange: 'all'
+    })
+    setSearchTerm('')
+
     setGlasses(updatedGlasses)
-    applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+    applyFiltersAndSearch(updatedGlasses, '', {
+      status: 'all',
+      color: 'all',
+      heatSoaked: 'all',
+      rack: 'all',
+      project: 'all',
+      dateRange: 'all'
+    }, sortConfig)
   }
 
   const handleDeleteConfirm = (glass) => {
