@@ -2,34 +2,23 @@ import { useState, useEffect } from 'react'
 import GlassTable from './components/GlassTable'
 import AddGlassForm from './components/AddGlassForm'
 import EmailOrder from './components/EmailOrder'
-import SearchBar from './components/SearchBar'
-import AdvancedFilters from './components/AdvancedFilters'
 import ExportControls from './components/ExportControls'
 import Dashboard from './components/Dashboard'
 import BacklogManager from './components/BacklogManager'
 import PendingOrders from './components/PendingOrders'
 import Projects from './components/Projects'
 import ConfirmationModal from './components/ConfirmationModal'
+import ChangelogButton from './components/ChangelogButton'
 import apiService from './services/apiService'
 import './App.css'
 
 function App() {
   const [glasses, setGlasses] = useState([])
-  const [filteredGlasses, setFilteredGlasses] = useState([])
   const [backlogReservations, setBacklogReservations] = useState([]) // New backlog state
   const [showAddForm, setShowAddForm] = useState(false)
   const [showEmailOrder, setShowEmailOrder] = useState(false)
   const [activeTab, setActiveTab] = useState('dashboard') // New state for tab management
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' })
-  const [searchTerm, setSearchTerm] = useState('')
-  const [filters, setFilters] = useState({
-    status: 'all',
-    color: 'all',
-    heatSoaked: 'all',
-    rack: 'all',
-    project: 'all',
-    dateRange: 'all'
-  })
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [glassToDelete, setGlassToDelete] = useState(null)
   const [showBacklogConfirmation, setShowBacklogConfirmation] = useState(false)
@@ -46,7 +35,6 @@ function App() {
       // Load glasses from backend
       const glassesData = await apiService.getGlasses()
       setGlasses(glassesData)
-      applyFiltersAndSearch(glassesData, '', filters, sortConfig)
 
       // Load backlog from backend
       const backlogData = await apiService.getBacklog()
@@ -60,7 +48,6 @@ function App() {
       if (savedGlasses) {
         const parsedGlasses = JSON.parse(savedGlasses)
         setGlasses(parsedGlasses)
-        applyFiltersAndSearch(parsedGlasses, '', filters, sortConfig)
       }
       
       if (savedBacklog) {
@@ -106,7 +93,6 @@ function App() {
       const newGlass = await apiService.addGlass(glassData)
       const updatedGlasses = [...glasses, newGlass]
       setGlasses(updatedGlasses)
-      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
       // Keep localStorage as backup
       localStorage.setItem('glassInventory', JSON.stringify(updatedGlasses))
     } catch (error) {
@@ -146,7 +132,6 @@ function App() {
       }
       const updatedGlasses = [...glasses, newGlass]
       setGlasses(updatedGlasses)
-      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
       localStorage.setItem('glassInventory', JSON.stringify(updatedGlasses))
     }
   }
@@ -158,7 +143,6 @@ function App() {
         glass.id === id ? { ...glass, ...updatedData } : glass
       )
       setGlasses(updatedGlasses)
-      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
       // Keep localStorage as backup
       localStorage.setItem('glassInventory', JSON.stringify(updatedGlasses))
     } catch (error) {
@@ -168,7 +152,6 @@ function App() {
         glass.id === id ? { ...glass, ...updatedData } : glass
       )
       setGlasses(updatedGlasses)
-      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
       localStorage.setItem('glassInventory', JSON.stringify(updatedGlasses))
     }
   }
@@ -217,7 +200,6 @@ function App() {
     }
     
     setGlasses(updatedGlasses)
-    applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
   }
 
   const deleteGlass = async (id) => {
@@ -260,7 +242,7 @@ function App() {
       }
       
       setGlasses(updatedGlasses)
-      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+
       // Keep localStorage as backup
       localStorage.setItem('glassInventory', JSON.stringify(updatedGlasses))
       console.log('🎉 Delete operation completed successfully')
@@ -299,7 +281,7 @@ function App() {
       }
       
       setGlasses(updatedGlasses)
-      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+
       localStorage.setItem('glassInventory', JSON.stringify(updatedGlasses))
     }
   }
@@ -333,7 +315,7 @@ function App() {
       })
       
       setGlasses(updatedGlasses)
-      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+
     } catch (error) {
       console.error('❌ Error deleting group:', error)
       // You might want to show an error message to the user here
@@ -436,7 +418,7 @@ function App() {
       updatedGlasses.push(newReservation)
       
       setGlasses(updatedGlasses)
-      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+
     } else {
       alert('Insufficient inventory available for this allocation.')
       // Put back in backlog if allocation failed
@@ -486,7 +468,7 @@ function App() {
       updatedGlasses.push(newReservation)
       
       setGlasses(updatedGlasses)
-      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+
       
       // Show success message
       alert(`Successfully allocated ${backlogItem.count} pieces of ${backlogItem.width}" × ${backlogItem.height}" ${backlogItem.color} to ${backlogItem.originalProject}`)
@@ -507,7 +489,7 @@ function App() {
       updatedGlasses.push(newReservation)
       
       setGlasses(updatedGlasses)
-      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+
       
       // Show warning message
       alert(`Allocated ${backlogItem.count} pieces (${availableCount} from inventory, ${shortage} short) to ${backlogItem.originalProject}. You need to order ${shortage} more pieces.`)
@@ -517,118 +499,11 @@ function App() {
       updatedGlasses.push(newReservation)
       
       setGlasses(updatedGlasses)
-      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
+
       
       // Show warning message
       alert(`Allocated ${backlogItem.count} pieces to ${backlogItem.originalProject} with no inventory available. You need to order ${backlogItem.count} pieces.`)
     }
-  }
-
-  const handleFilterChange = (newFilters) => {
-    setFilters(newFilters)
-    applyFiltersAndSearch(glasses, searchTerm, newFilters, sortConfig)
-  }
-
-  const handleSearch = (term) => {
-    setSearchTerm(term)
-    applyFiltersAndSearch(glasses, term, filters, sortConfig)
-  }
-
-  const applyFiltersAndSearch = (currentGlasses, currentSearchTerm, currentFilters, currentSort) => {
-    // Filter out any null/undefined entries first
-    let filtered = [...currentGlasses].filter(glass => glass)
-
-    // Apply search
-    if (currentSearchTerm) {
-      const term = currentSearchTerm.toLowerCase()
-      filtered = filtered.filter(glass =>
-        glass.color.toLowerCase().includes(term) ||
-        glass.width.toString().includes(term) ||
-        glass.height.toString().includes(term) ||
-        glass.rackNumber.toLowerCase().includes(term) ||
-        (glass.reservedProject && glass.reservedProject.toLowerCase().includes(term))
-      )
-    }
-
-    // Apply filters
-    if (currentFilters.status !== 'all') {
-      if (currentFilters.status === 'available') {
-        filtered = filtered.filter(glass => glass && !glass.reservedProject)
-      } else if (currentFilters.status === 'reserved') {
-        filtered = filtered.filter(glass => glass && glass.reservedProject)
-      }
-    }
-
-    if (currentFilters.color !== 'all') {
-      filtered = filtered.filter(glass => glass && glass.color === currentFilters.color)
-    }
-
-    if (currentFilters.heatSoaked !== 'all') {
-      const isHeatSoaked = currentFilters.heatSoaked === 'yes'
-      filtered = filtered.filter(glass => glass && glass.heatSoaked === isHeatSoaked)
-    }
-
-    if (currentFilters.rack !== 'all') {
-      filtered = filtered.filter(glass => glass && glass.rackNumber === currentFilters.rack)
-    }
-
-    if (currentFilters.project !== 'all') {
-      filtered = filtered.filter(glass => glass && glass.reservedProject === currentFilters.project)
-    }
-
-    if (currentFilters.dateRange !== 'all') {
-      const now = new Date()
-      filtered = filtered.filter(glass => {
-        const glassDate = new Date(glass.dateAdded)
-        switch (currentFilters.dateRange) {
-          case 'today':
-            return glassDate.toDateString() === now.toDateString()
-          case 'week':
-            const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000)
-            return glassDate >= weekAgo
-          case 'month':
-            const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000)
-            return glassDate >= monthAgo
-          default:
-            return true
-        }
-      })
-    }
-
-    // Apply sorting
-    if (currentSort.key) {
-      filtered = sortData(filtered, currentSort.key, currentSort.direction)
-    }
-
-    setFilteredGlasses(filtered)
-  }
-
-  const sortData = (data, key, direction) => {
-    return [...data].sort((a, b) => {
-      let aVal = a[key]
-      let bVal = b[key]
-      
-      // Handle different data types
-      if (key === 'width' || key === 'height' || key === 'count') {
-        aVal = Number(aVal)
-        bVal = Number(bVal)
-      } else if (key === 'heatSoaked') {
-        aVal = aVal ? 1 : 0
-        bVal = bVal ? 1 : 0
-      } else if (key === 'dateAdded') {
-        aVal = new Date(aVal)
-        bVal = new Date(bVal)
-      } else {
-        aVal = String(aVal).toLowerCase()
-        bVal = String(bVal).toLowerCase()
-      }
-      
-      if (direction === 'asc') {
-        return aVal > bVal ? 1 : aVal < bVal ? -1 : 0
-      } else {
-        return aVal < bVal ? 1 : aVal > bVal ? -1 : 0
-      }
-    })
   }
 
   const handleSort = (key) => {
@@ -639,7 +514,6 @@ function App() {
     
     const newSortConfig = { key, direction }
     setSortConfig(newSortConfig)
-    applyFiltersAndSearch(glasses, searchTerm, filters, newSortConfig)
   }
 
   const reserveGlass = async (glassId, reservationData) => {
@@ -653,10 +527,7 @@ function App() {
       )
       
       setGlasses(updatedGlasses)
-      applyFiltersAndSearch(updatedGlasses, searchTerm, filters, sortConfig)
       
-      // Show success message
-      alert(`Successfully reserved ${reservationData.quantity} pieces for ${reservationData.projectName}`)
       
     } catch (error) {
       console.error('Error creating reservation:', error)
@@ -694,25 +565,7 @@ function App() {
     })
 
     // Clear all filters and search so the updated row is visible
-    setFilters({
-      status: 'all',
-      color: 'all',
-      heatSoaked: 'all',
-      rack: 'all',
-      project: 'all',
-      dateRange: 'all'
-    })
-    setSearchTerm('')
-
     setGlasses(updatedGlasses)
-    applyFiltersAndSearch(updatedGlasses, '', {
-      status: 'all',
-      color: 'all',
-      heatSoaked: 'all',
-      rack: 'all',
-      project: 'all',
-      dateRange: 'all'
-    }, sortConfig)
   }
 
   const handleDeleteConfirm = (glass) => {
@@ -832,6 +685,7 @@ function App() {
 
   return (
     <div className="app">
+      <ChangelogButton />
       <header className="app-header">
         <h1>Glass Inventory Management System</h1>
         <div className="stats">
@@ -852,7 +706,7 @@ function App() {
           >
             📧 Order Glass
           </button>
-          <ExportControls glasses={glasses} filteredGlasses={filteredGlasses} />
+          <ExportControls glasses={glasses} />
         </div>
       </header>
 
@@ -964,17 +818,8 @@ function App() {
 
         {activeTab === 'inventory' && (
           <div className="tab-content">
-            <div className="controls-section">
-              <SearchBar onSearch={handleSearch} />
-              <AdvancedFilters 
-                filters={filters} 
-                onFilterChange={handleFilterChange}
-                glasses={glasses}
-              />
-            </div>
-            
             <GlassTable 
-              glasses={filteredGlasses}
+              glasses={glasses}
               onUpdateGlass={updateGlass}
               onDeleteGlass={handleDeleteConfirm}
               onMoveToBacklog={handleMoveToBacklogConfirm}

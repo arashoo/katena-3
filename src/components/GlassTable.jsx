@@ -15,69 +15,74 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
   const [editingProject, setEditingProject] = useState(null) // { glassId, projectIndex }
   const [editingProjectData, setEditingProjectData] = useState({})
   
-  // Column filter states
-  const [showColumnFilters, setShowColumnFilters] = useState({
-    width: false,
-    height: false,
-    color: false
-  })
-  const [columnFilters, setColumnFilters] = useState({
-    width: '',
-    height: '',
-    color: ''
-  })
+  // State for search input values
+  const [widthSearchValue, setWidthSearchValue] = useState('')
+  const [heightSearchValue, setHeightSearchValue] = useState('')
+  const [colorSearchValue, setColorSearchValue] = useState('')
+  const [thicknessSearchValue, setThicknessSearchValue] = useState('')
 
-  // Filter glasses based on column filters
+  // Apply search filtering and sorting
   const filteredGlasses = useMemo(() => {
-    return glasses.filter(glass => {
-      const widthMatch = columnFilters.width === '' || 
-                       glass.width.toString().includes(columnFilters.width)
-      const heightMatch = columnFilters.height === '' || 
-                         glass.height.toString().includes(columnFilters.height)
-      const colorMatch = columnFilters.color === '' || 
-                        glass.color.toLowerCase().includes(columnFilters.color.toLowerCase())
-      
-      return widthMatch && heightMatch && colorMatch
-    })
-  }, [glasses, columnFilters])
-
-  const toggleColumnFilter = (column) => {
-    setShowColumnFilters(prev => ({
-      ...prev,
-      [column]: !prev[column]
-    }))
-  }
-
-  const handleColumnFilterChange = (column, value) => {
-    setColumnFilters(prev => ({
-      ...prev,
-      [column]: value
-    }))
-  }
-
-  const clearColumnFilter = (column) => {
-    setColumnFilters(prev => ({
-      ...prev,
-      [column]: ''
-    }))
-    setShowColumnFilters(prev => ({
-      ...prev,
-      [column]: false
-    }))
-  }
-
-  const clearAllColumnFilters = () => {
-    setColumnFilters({
-      width: '',
-      height: '',
-      color: ''
-    })
-    setShowColumnFilters({
-      width: false,
-      height: false,
-      color: false
-    })
-  }
+    let filtered = glasses
+    
+    // Apply width search
+    if (widthSearchValue.trim()) {
+      filtered = filtered.filter(glass => 
+        String(glass.width || '').toLowerCase().includes(widthSearchValue.toLowerCase())
+      )
+    }
+    
+    // Apply height search  
+    if (heightSearchValue.trim()) {
+      filtered = filtered.filter(glass => 
+        String(glass.height || '').toLowerCase().includes(heightSearchValue.toLowerCase())
+      )
+    }
+    
+    // Apply color search
+    if (colorSearchValue.trim()) {
+      filtered = filtered.filter(glass => 
+        String(glass.color || '').toLowerCase().includes(colorSearchValue.toLowerCase())
+      )
+    }
+    
+    // Apply thickness search
+    if (thicknessSearchValue.trim()) {
+      filtered = filtered.filter(glass => 
+        String(glass.thickness || '6mm').toLowerCase().includes(thicknessSearchValue.toLowerCase())
+      )
+    }
+    
+    // Apply sorting if sortConfig is provided
+    if (sortConfig && sortConfig.key) {
+      filtered.sort((a, b) => {
+        const aValue = a[sortConfig.key]
+        const bValue = b[sortConfig.key]
+        
+        // Handle numeric sorting for width and height
+        if (sortConfig.key === 'width' || sortConfig.key === 'height') {
+          const aNum = parseFloat(aValue) || 0
+          const bNum = parseFloat(bValue) || 0
+          if (sortConfig.direction === 'asc') {
+            return aNum - bNum
+          } else {
+            return bNum - aNum
+          }
+        }
+        
+        // Handle string sorting for other fields
+        const aStr = String(aValue || '').toLowerCase()
+        const bStr = String(bValue || '').toLowerCase()
+        if (sortConfig.direction === 'asc') {
+          return aStr.localeCompare(bStr)
+        } else {
+          return bStr.localeCompare(aStr)
+        }
+      })
+    }
+    
+    return filtered
+  }, [glasses, widthSearchValue, heightSearchValue, colorSearchValue, thicknessSearchValue, sortConfig])
 
   // Helper function to format reserved projects display
   const formatReservedProjects = (reservedProjects) => {
@@ -370,112 +375,75 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
 
   return (
     <div className="glass-table-container">
-      {/* Column Filter Controls */}
-      {(columnFilters.width || columnFilters.height || columnFilters.color) && (
-        <div className="active-filters">
-          <span className="filter-label">Active Filters:</span>
-          {columnFilters.width && (
-            <span className="filter-tag">
-              Width: {columnFilters.width}
-              <button onClick={() => clearColumnFilter('width')} className="clear-filter">×</button>
-            </span>
-          )}
-          {columnFilters.height && (
-            <span className="filter-tag">
-              Height: {columnFilters.height}
-              <button onClick={() => clearColumnFilter('height')} className="clear-filter">×</button>
-            </span>
-          )}
-          {columnFilters.color && (
-            <span className="filter-tag">
-              Color: {columnFilters.color}
-              <button onClick={() => clearColumnFilter('color')} className="clear-filter">×</button>
-            </span>
-          )}
-          <button onClick={clearAllColumnFilters} className="clear-all-filters">Clear All</button>
-        </div>
-      )}
+      {/* Search input fields - always visible above corresponding columns */}
+      <table className="search-inputs-table">
+        <tbody>
+          <tr>
+            <td className="search-input-cell">
+              <input
+                type="text"
+                value={widthSearchValue}
+                onChange={(e) => setWidthSearchValue(e.target.value)}
+                placeholder="Search width..."
+                className="column-search-input"
+              />
+            </td>
+            <td className="search-input-cell">
+              <input
+                type="text"
+                value={heightSearchValue}
+                onChange={(e) => setHeightSearchValue(e.target.value)}
+                placeholder="Search height..."
+                className="column-search-input"
+              />
+            </td>
+            <td className="search-input-cell">
+              <input
+                type="text"
+                value={colorSearchValue}
+                onChange={(e) => setColorSearchValue(e.target.value)}
+                placeholder="Search color..."
+                className="column-search-input"
+              />
+            </td>
+            <td className="search-input-cell">
+              <input
+                type="text"
+                value={thicknessSearchValue}
+                onChange={(e) => setThicknessSearchValue(e.target.value)}
+                placeholder="Search thickness..."
+                className="column-search-input"
+              />
+            </td>
+            <td className="search-input-cell"></td>
+            <td className="search-input-cell"></td>
+            <td className="search-input-cell"></td>
+          </tr>
+        </tbody>
+      </table>
       
       <table className="glass-table">
         <thead>
           <tr>
-            <th className="filterable-column">
-              <div className="column-header">
-                <span onClick={() => onSort('width')} className="sortable">
-                  Width {getSortIcon('width')}
-                </span>
-                <button 
-                  onClick={() => toggleColumnFilter('width')} 
-                  className={`filter-toggle ${showColumnFilters.width ? 'active' : ''}`}
-                  title="Filter by width"
-                >
-                  🔍
-                </button>
-              </div>
-              {showColumnFilters.width && (
-                <div className="column-filter">
-                  <input
-                    type="text"
-                    placeholder="Search width..."
-                    value={columnFilters.width}
-                    onChange={(e) => handleColumnFilterChange('width', e.target.value)}
-                    className="filter-input"
-                    autoFocus
-                  />
-                </div>
-              )}
+            <th>
+              <span onClick={() => onSort('width')} className="sortable">
+                Width
+              </span>
             </th>
-            <th className="filterable-column">
-              <div className="column-header">
-                <span onClick={() => onSort('height')} className="sortable">
-                  Height {getSortIcon('height')}
-                </span>
-                <button 
-                  onClick={() => toggleColumnFilter('height')} 
-                  className={`filter-toggle ${showColumnFilters.height ? 'active' : ''}`}
-                  title="Filter by height"
-                >
-                  🔍
-                </button>
-              </div>
-              {showColumnFilters.height && (
-                <div className="column-filter">
-                  <input
-                    type="text"
-                    placeholder="Search height..."
-                    value={columnFilters.height}
-                    onChange={(e) => handleColumnFilterChange('height', e.target.value)}
-                    className="filter-input"
-                    data-testid="height-filter"
-                  />
-                </div>
-              )}
+            <th>
+              <span onClick={() => onSort('height')} className="sortable">
+                Height
+              </span>
             </th>
-            <th className="filterable-column">
-              <div className="column-header">
-                <span onClick={() => onSort('color')} className="sortable">
-                  Color {getSortIcon('color')}
-                </span>
-                <button 
-                  onClick={() => toggleColumnFilter('color')} 
-                  className={`filter-toggle ${showColumnFilters.color ? 'active' : ''}`}
-                  title="Filter by color"
-                >
-                  🔍
-                </button>
-              </div>
-              {showColumnFilters.color && (
-                <div className="column-filter">
-                  <input
-                    type="text"
-                    placeholder="Search color..."
-                    value={columnFilters.color}
-                    onChange={(e) => handleColumnFilterChange('color', e.target.value)}
-                    className="filter-input"
-                    data-testid="color-filter"
-                  />
-                </div>
-              )}
+            <th>
+              <span onClick={() => onSort('color')} className="sortable">
+                Color
+              </span>
+            </th>
+            <th>
+              <span onClick={() => onSort('thickness')} className="sortable">
+                Thickness
+              </span>
             </th>
             <th onClick={() => onSort('heatSoaked')} className="sortable">
               Heat Soaked {getSortIcon('heatSoaked')}
@@ -499,7 +467,7 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
         <tbody>
           {filteredGlasses.length === 0 ? (
             <tr>
-              <td colSpan="10" className="no-results">
+              <td colSpan="11" className="no-results">
                 {glasses.length === 0 ? 'No glass inventory found' : 'No glasses match the current filters'}
               </td>
             </tr>
@@ -541,6 +509,17 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
                       <option value="Blue">Blue</option>
                       <option value="Green">Green</option>
                       <option value="Acid Etched">Acid Etched</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select
+                      value={editData.thickness || '6mm'}
+                      onChange={(e) => handleInputChange('thickness', e.target.value)}
+                    >
+                      <option value="6mm">6mm</option>
+                      <option value="8mm">8mm</option>
+                      <option value="10mm">10mm</option>
+                      <option value="12mm">12mm</option>
                     </select>
                   </td>
                   <td>
@@ -587,6 +566,7 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
                     <span className={`color-indicator ${glass.color.toLowerCase().replace(/\s+/g, '-')}`}></span>
                     {glass.color}
                   </td>
+                  <td>{glass.thickness || '6mm'}</td>
                   <td>{glass.heatSoaked ? 'Yes' : 'No'}</td>
                   <td className="count-cell">
                     <span className="total-count">{glass.count}</span>

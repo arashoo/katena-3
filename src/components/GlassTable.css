@@ -51,6 +51,21 @@
   background: linear-gradient(135deg, #cbd5e0 0%, #a0aec0 100%);
 }
 
+/* Make sortable spans look clickable */
+.glass-table th .sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.glass-table th .sortable:hover {
+  background: rgba(59, 130, 246, 0.1);
+  color: #2563eb;
+}
+
 .glass-table tr {
   transition: all 0.3s ease;
 }
@@ -1051,4 +1066,66 @@
   margin-top: 16px;
   padding-top: 12px;
   border-top: 1px solid #e5e7eb;
+}
+
+/* Tiny magnifier buttons */
+.tiny-magnifier {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 4px;
+  font-size: 8px;
+  line-height: 1;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  vertical-align: middle;
+}
+
+.tiny-magnifier:hover {
+  opacity: 1;
+}
+
+.tiny-magnifier:active {
+  transform: scale(0.9);
+}
+
+/* Search input fields */
+.search-inputs-table {
+  width: 60%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 8px;
+  table-layout: fixed;
+}
+
+.search-input-cell {
+  padding: 0;
+  margin: 0;
+  vertical-align: top;
+  width: 33.33%;
+}
+
+.column-search-input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 2px solid #3b82f6;
+  border-radius: 0;
+  margin: 0;
+  font-size: 13px;
+  color: #374151;
+  background: white;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.column-search-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.column-search-input::placeholder {
+  color: #9ca3af;
+  font-size: 12px;
 }

@@ -1,0 +1,5 @@
+# Force all requests to go through Node.js app
+RewriteEngine On
+RewriteRule ^(.*)$ http://localhost:PORT/$1 [P,L]
+
+# Replace PORT with your actual Node.js port (usually auto-assigned by cPanel)

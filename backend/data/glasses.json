@@ -10,7 +10,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "42x36_acid_etched_group",
@@ -23,7 +24,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "43x36_acid_etched_group",
@@ -36,7 +38,8 @@
     "availableCount": 14,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "45x36_acid_etched_group",
@@ -49,7 +52,8 @@
     "availableCount": 12,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "21x68_acid_etched_group",
@@ -62,7 +66,8 @@
     "availableCount": 27,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "23x68_acid_etched_group",
@@ -75,7 +80,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "24x68_acid_etched_group",
@@ -88,7 +94,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "25x68_acid_etched_group",
@@ -101,7 +108,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "27x68_acid_etched_group",
@@ -114,7 +122,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "28x68_acid_etched_group",
@@ -127,7 +136,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "29x68_acid_etched_group",
@@ -140,7 +150,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "31x68_acid_etched_group",
@@ -153,7 +164,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "32x68_acid_etched_group",
@@ -166,7 +178,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "33x68_acid_etched_group",
@@ -179,7 +192,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "34x68_acid_etched_group",
@@ -192,7 +206,8 @@
     "availableCount": 20,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "34x68_clear_group",
@@ -205,7 +220,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "35x68_acid_etched_group",
@@ -218,7 +234,8 @@
     "availableCount": 5,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "35x68_clear_group",
@@ -231,7 +248,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "52x39_acid_etched_group",
@@ -244,7 +262,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "36x68_acid_etched_group",
@@ -257,7 +276,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "38x68_acid_etched_group",
@@ -270,7 +290,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "39x68_acid_etched_group",
@@ -283,7 +304,8 @@
     "availableCount": 12,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "27x40_blue_group",
@@ -296,7 +318,8 @@
     "availableCount": 7,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "28x40_blue_group",
@@ -309,7 +332,8 @@
     "availableCount": 5,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "30x40_blue_group",
@@ -322,7 +346,8 @@
     "availableCount": 9,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "31x40_blue_group",
@@ -335,7 +360,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "32x40_blue_group",
@@ -348,7 +374,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "33x40_blue_group",
@@ -361,7 +388,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "33x50_blue_group",
@@ -374,7 +402,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "34x40_blue_group",
@@ -387,7 +416,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "35x39_blue_group",
@@ -400,7 +430,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "37x39_blue_group",
@@ -413,7 +444,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "38x40_blue_group",
@@ -426,7 +458,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "39x52_blue_group",
@@ -439,7 +472,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "39x40_blue_group",
@@ -452,7 +486,8 @@
     "availableCount": 28,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "40x48_blue_group",
@@ -465,7 +500,8 @@
     "availableCount": 6,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "40x40_blue_group",
@@ -478,7 +514,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "41x39_blue_group",
@@ -491,7 +528,8 @@
     "availableCount": 43,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "44x39_blue_group",
@@ -504,7 +542,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "44x40_blue_group",
@@ -517,7 +556,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "46x40_blue_group",
@@ -530,7 +570,8 @@
     "availableCount": 15,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "48x40_blue_group",
@@ -543,7 +584,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "49x52_blue_group",
@@ -556,7 +598,8 @@
     "availableCount": 9,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "49x40_blue_group",
@@ -569,7 +612,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "50x52_blue_group",
@@ -582,7 +626,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "50x40_blue_group",
@@ -595,7 +640,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "51x40_blue_group",
@@ -608,7 +654,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "52x40_blue_group",
@@ -621,7 +668,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "53x52_blue_group",
@@ -634,7 +682,8 @@
     "availableCount": 4,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "54x52_blue_group",
@@ -647,7 +696,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "56x52_blue_group",
@@ -660,7 +710,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "21x52_bronze_group",
@@ -673,7 +724,8 @@
     "availableCount": 14,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "47x39_brown_group",
@@ -686,7 +738,8 @@
     "availableCount": 32,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "20x52_brown_group",
@@ -699,7 +752,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "44x52_brown_group",
@@ -712,7 +766,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "46x52_brown_group",
@@ -725,7 +780,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "39x40_brown_group",
@@ -738,7 +794,8 @@
     "availableCount": 7,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "21x52_brown_group",
@@ -751,7 +808,8 @@
     "availableCount": 30,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "20x14_brown_group",
@@ -764,7 +822,8 @@
     "availableCount": 14,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "21x14_brown_group",
@@ -777,7 +836,8 @@
     "availableCount": 5,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "44x14_brown_group",
@@ -790,7 +850,8 @@
     "availableCount": 31,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "45x14_brown_group",
@@ -803,7 +864,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "46x14_brown_group",
@@ -816,7 +878,8 @@
     "availableCount": 21,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "48x52_clear_group",
@@ -829,7 +892,8 @@
     "availableCount": 209,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "44x42_clear_group",
@@ -842,7 +906,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "48x46_clear_group",
@@ -855,7 +920,8 @@
     "availableCount": 6,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "48x49_clear_group",
@@ -868,7 +934,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "50x44_clear_group",
@@ -881,7 +948,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "54x44_clear_group",
@@ -894,7 +962,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "30x36_clear_group",
@@ -907,7 +976,8 @@
     "availableCount": 16,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "35x39_clear_group",
@@ -920,7 +990,8 @@
     "availableCount": 275,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "36x39_clear_group",
@@ -933,7 +1004,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "33x39_clear_group",
@@ -946,7 +1018,8 @@
     "availableCount": 188,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "34x39_clear_group",
@@ -959,7 +1032,8 @@
     "availableCount": 200,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "36x36_clear_group",
@@ -972,7 +1046,8 @@
     "availableCount": 10,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "44x39_clear_group",
@@ -985,7 +1060,8 @@
     "availableCount": 100,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "47x39_clear_group",
@@ -998,7 +1074,8 @@
     "availableCount": 265,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "51x39_clear_group",
@@ -1011,7 +1088,8 @@
     "availableCount": 118,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "68x39_clear_group",
@@ -1024,7 +1102,8 @@
     "availableCount": 12,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "32x39_clear_group",
@@ -1037,7 +1116,8 @@
     "availableCount": 6,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "45x39_clear_group",
@@ -1050,7 +1130,8 @@
     "availableCount": 377,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "46x39_clear_group",
@@ -1063,7 +1144,8 @@
     "availableCount": 98,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "34x26_clear_group",
@@ -1076,7 +1158,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "38x26_clear_group",
@@ -1089,7 +1172,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "40x26_clear_group",
@@ -1102,7 +1186,8 @@
     "availableCount": 20,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "40x52_clear_group",
@@ -1115,7 +1200,8 @@
     "availableCount": 10,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "42x26_clear_group",
@@ -1128,7 +1214,8 @@
     "availableCount": 56,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "44x26_clear_group",
@@ -1141,7 +1228,8 @@
     "availableCount": 23,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "45x26_clear_group",
@@ -1154,7 +1242,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "48x26_clear_group",
@@ -1167,7 +1256,8 @@
     "availableCount": 5,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "38x39_clear_group",
@@ -1180,7 +1270,8 @@
     "availableCount": 311,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "39x39_clear_group",
@@ -1193,7 +1284,8 @@
     "availableCount": 88,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "40x39_clear_group",
@@ -1206,7 +1298,8 @@
     "availableCount": 313,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "42x39_clear_group",
@@ -1219,7 +1312,8 @@
     "availableCount": 570,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "26x39_clear_group",
@@ -1232,7 +1326,8 @@
     "availableCount": 42,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "31x39_clear_group",
@@ -1245,7 +1340,8 @@
     "availableCount": 18,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "50x26_clear_group",
@@ -1258,7 +1354,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "33x52_clear_group",
@@ -1271,7 +1368,8 @@
     "availableCount": 5,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "34x52_clear_group",
@@ -1284,7 +1382,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "39x52_clear_group",
@@ -1297,7 +1396,8 @@
     "availableCount": 4,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "32x44_clear_group",
@@ -1310,7 +1410,8 @@
     "availableCount": 42,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "37x36_clear_group",
@@ -1323,7 +1424,8 @@
     "availableCount": 10,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "42x36_clear_group",
@@ -1336,7 +1438,8 @@
     "availableCount": 20,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "43x36_clear_group",
@@ -1349,7 +1452,8 @@
     "availableCount": 20,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "20x52_clear_group",
@@ -1362,7 +1466,8 @@
     "availableCount": 20,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "21x52_clear_group",
@@ -1375,7 +1480,8 @@
     "availableCount": 22,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "28x39_clear_group",
@@ -1388,7 +1494,8 @@
     "availableCount": 73,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "36x52_clear_group",
@@ -1401,7 +1508,8 @@
     "availableCount": 4,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "38x52_clear_group",
@@ -1414,7 +1522,8 @@
     "availableCount": 11,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "39x55_clear_group",
@@ -1427,7 +1536,8 @@
     "availableCount": 4,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "43x52_clear_group",
@@ -1440,7 +1550,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "45x52_clear_group",
@@ -1453,7 +1564,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "46x52_clear_group",
@@ -1466,7 +1578,8 @@
     "availableCount": 16,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "47x52_clear_group",
@@ -1479,7 +1592,8 @@
     "availableCount": 81,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "41x39_clear_group",
@@ -1492,7 +1606,8 @@
     "availableCount": 155,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "20x39_clear_group",
@@ -1505,7 +1620,8 @@
     "availableCount": 32,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "14x36_clear_group",
@@ -1518,7 +1634,8 @@
     "availableCount": 5,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "14x43_clear_group",
@@ -1531,7 +1648,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "14x42_clear_group",
@@ -1544,7 +1662,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "14x40_clear_group",
@@ -1557,7 +1676,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "14x34_clear_group",
@@ -1570,7 +1690,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "24x52_clear_group",
@@ -1583,7 +1704,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "24x39_clear_group",
@@ -1596,7 +1718,8 @@
     "availableCount": 15,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "43x24_clear_group",
@@ -1609,7 +1732,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "44x24_clear_group",
@@ -1622,7 +1746,8 @@
     "availableCount": 17,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "45x34_clear_group",
@@ -1635,7 +1760,8 @@
     "availableCount": 87,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "48x24_clear_group",
@@ -1648,7 +1774,8 @@
     "availableCount": 14,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "40x68_clear_group",
@@ -1661,7 +1788,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "48x39_clear_group",
@@ -1674,7 +1802,8 @@
     "availableCount": 148,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "49x39_clear_group",
@@ -1687,7 +1816,8 @@
     "availableCount": 65,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "50x39_clear_group",
@@ -1700,7 +1830,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "22x42_clear_group",
@@ -1713,7 +1844,8 @@
     "availableCount": 4,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "24x44_clear_group",
@@ -1726,7 +1858,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "26x40_clear_group",
@@ -1739,7 +1872,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "26x43_clear_group",
@@ -1752,7 +1886,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "26x48_clear_group",
@@ -1765,7 +1900,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "26x44_clear_group",
@@ -1778,7 +1914,8 @@
     "availableCount": 4,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "40x35_clear_group",
@@ -1791,7 +1928,8 @@
     "availableCount": 10,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "41x35_clear_group",
@@ -1804,7 +1942,8 @@
     "availableCount": 12,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "42x35_clear_group",
@@ -1817,7 +1956,8 @@
     "availableCount": 23,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "44x35_clear_group",
@@ -1830,7 +1970,8 @@
     "availableCount": 20,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "35x44_clear_group",
@@ -1843,7 +1984,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "50x52_clear_group",
@@ -1856,7 +1998,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "56x39_clear_group",
@@ -1869,7 +2012,8 @@
     "availableCount": 58,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "43x39_clear_group",
@@ -1882,7 +2026,8 @@
     "availableCount": 146,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "42x68_acid_etched_group",
@@ -1895,7 +2040,8 @@
     "availableCount": 17,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "34x14_clear_group",
@@ -1908,7 +2054,8 @@
     "availableCount": 13,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "42x52_clear_group",
@@ -1921,7 +2068,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "30x34_clear_group",
@@ -1934,7 +2082,8 @@
     "availableCount": 7,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "36x34_clear_group",
@@ -1947,7 +2096,8 @@
     "availableCount": 17,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "37x34_clear_group",
@@ -1960,7 +2110,8 @@
     "availableCount": 5,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "41x34_clear_group",
@@ -1973,7 +2124,8 @@
     "availableCount": 5,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "46x34_clear_group",
@@ -1986,7 +2138,8 @@
     "availableCount": 73,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "55x34_clear_group",
@@ -1999,7 +2152,8 @@
     "availableCount": 10,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "57x34_clear_group",
@@ -2012,7 +2166,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "18x34_clear_group",
@@ -2025,7 +2180,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "28x34_clear_group",
@@ -2038,7 +2194,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "30x39_clear_group",
@@ -2051,7 +2208,8 @@
     "availableCount": 37,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "32x34_clear_group",
@@ -2064,7 +2222,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "33x34_clear_group",
@@ -2077,7 +2236,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "34x34_clear_group",
@@ -2090,7 +2250,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "43x34_clear_group",
@@ -2103,7 +2264,8 @@
     "availableCount": 10,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "44x34_clear_group",
@@ -2116,7 +2278,8 @@
     "availableCount": 5,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "47x34_clear_group",
@@ -2129,7 +2292,8 @@
     "availableCount": 4,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "48x34_clear_group",
@@ -2142,7 +2306,8 @@
     "availableCount": 14,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "49x34_clear_group",
@@ -2155,7 +2320,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "50x34_clear_group",
@@ -2168,7 +2334,8 @@
     "availableCount": 4,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "51x34_clear_group",
@@ -2181,7 +2348,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "54x34_clear_group",
@@ -2194,7 +2362,8 @@
     "availableCount": 4,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "58x34_clear_group",
@@ -2207,7 +2376,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "52x39_clear_group",
@@ -2220,7 +2390,8 @@
     "availableCount": 222,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "37x39_clear_group",
@@ -2233,7 +2404,8 @@
     "availableCount": 104,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "40x34_clear_group",
@@ -2246,7 +2418,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "53x39_clear_group",
@@ -2259,7 +2432,8 @@
     "availableCount": 4,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "60x39_clear_group",
@@ -2272,7 +2446,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "60x34_clear_group",
@@ -2285,7 +2460,8 @@
     "availableCount": 4,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "18x39_clear_group",
@@ -2298,7 +2474,8 @@
     "availableCount": 46,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "41x30_clear_group",
@@ -2311,7 +2488,8 @@
     "availableCount": 4,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "42x30_clear_group",
@@ -2324,7 +2502,8 @@
     "availableCount": 22,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "43x30_clear_group",
@@ -2337,7 +2516,8 @@
     "availableCount": 8,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "44x30_clear_group",
@@ -2350,7 +2530,8 @@
     "availableCount": 14,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "45x30_clear_group",
@@ -2363,7 +2544,8 @@
     "availableCount": 4,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "55x39_clear_group",
@@ -2376,7 +2558,8 @@
     "availableCount": 190,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "43x68_acid_etched_group",
@@ -2389,7 +2572,8 @@
     "availableCount": 13,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "44x68_clear_group",
@@ -2402,7 +2586,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "46x68_acid_etched_group",
@@ -2415,7 +2600,8 @@
     "availableCount": 7,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "47x68_acid_etched_group",
@@ -2428,7 +2614,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "48x68_acid_etched_group",
@@ -2441,7 +2628,8 @@
     "availableCount": 4,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "52x68_acid_etched_group",
@@ -2454,7 +2642,8 @@
     "availableCount": 11,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "55x68_acid_etched_group",
@@ -2467,7 +2656,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "13x38_gray_group",
@@ -2480,7 +2670,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "16x39_gray_group",
@@ -2493,7 +2684,8 @@
     "availableCount": 5,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "18x39_gray_group",
@@ -2506,7 +2698,8 @@
     "availableCount": 6,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "22x43_gray_group",
@@ -2519,7 +2712,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "30x39_gray_group",
@@ -2532,7 +2726,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "31x39_gray_group",
@@ -2545,7 +2740,8 @@
     "availableCount": 5,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "31.5x39_gray_group",
@@ -2558,7 +2754,8 @@
     "availableCount": 6,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "32x39_gray_group",
@@ -2571,7 +2768,8 @@
     "availableCount": 9,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "33x39_gray_group",
@@ -2584,7 +2782,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "34x39_gray_group",
@@ -2597,7 +2796,8 @@
     "availableCount": 5,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "34x52_gray_group",
@@ -2610,7 +2810,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "35x39_gray_group",
@@ -2623,7 +2824,8 @@
     "availableCount": 4,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "36x39_gray_group",
@@ -2636,7 +2838,8 @@
     "availableCount": 17,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "37x39_gray_group",
@@ -2649,7 +2852,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "37x52_gray_group",
@@ -2662,7 +2866,8 @@
     "availableCount": 6,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "38x39_gray_group",
@@ -2675,7 +2880,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "38x42_gray_group",
@@ -2688,7 +2894,8 @@
     "availableCount": 6,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "38x52_gray_group",
@@ -2701,7 +2908,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "38x32_gray_group",
@@ -2714,7 +2922,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "38.5x39_gray_group",
@@ -2727,7 +2936,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "39x39_gray_group",
@@ -2740,7 +2950,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "40x39_gray_group",
@@ -2753,7 +2964,8 @@
     "availableCount": 18,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "40x52_gray_group",
@@ -2766,7 +2978,8 @@
     "availableCount": 4,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "40x38_gray_group",
@@ -2779,7 +2992,8 @@
     "availableCount": 8,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "41x22_gray_group",
@@ -2792,7 +3006,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "41x52_gray_group",
@@ -2805,7 +3020,8 @@
     "availableCount": 4,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "41x39_gray_group",
@@ -2818,7 +3034,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "42x22_gray_group",
@@ -2831,7 +3048,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "42x52_gray_group",
@@ -2844,7 +3062,8 @@
     "availableCount": 27,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "42x39_gray_group",
@@ -2857,7 +3076,8 @@
     "availableCount": 14,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "43x22_gray_group",
@@ -2870,7 +3090,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "43x39_gray_group",
@@ -2883,7 +3104,8 @@
     "availableCount": 6,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "43x52_gray_group",
@@ -2896,7 +3118,8 @@
     "availableCount": 1,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "44x52_gray_group",
@@ -2909,7 +3132,8 @@
     "availableCount": 36,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "46x39_gray_group",
@@ -2922,7 +3146,8 @@
     "availableCount": 5,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "46x52_gray_group",
@@ -2935,7 +3160,8 @@
     "availableCount": 5,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "48x52_gray_group",
@@ -2948,7 +3174,8 @@
     "availableCount": 15,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "48x54_gray_group",
@@ -2961,7 +3188,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "50x52_gray_group",
@@ -2974,7 +3202,8 @@
     "availableCount": 3,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "52x39_gray_group",
@@ -2987,7 +3216,8 @@
     "availableCount": 2,
     "reservedCount": 0,
     "reservedProjects": [],
-    "reservedProject": null
+    "reservedProject": null,
+    "thickness": "6mm"
   },
   {
     "id": "568f69a0-baa6-4d38-9efd-5e932bb284eb",
@@ -2999,24 +3229,11 @@
       "xxxxx"
     ],
     "count": 200,
-    "availableCount": 190,
-    "reservedCount": 10,
-    "reservedProjects": [
-      {
-        "projectName": "aa",
-        "quantity": 10,
-        "reservations": [
-          {
-            "id": "0036278f-9357-4bb1-a2ec-a51008d5559b",
-            "projectName": "aa",
-            "quantity": 10,
-            "reservedDate": "2025-09-22T23:32:02.607Z",
-            "glassId": "568f69a0-baa6-4d38-9efd-5e932bb284eb"
-          }
-        ]
-      }
-    ],
+    "availableCount": 200,
+    "reservedCount": 0,
+    "reservedProjects": [],
     "reservedProject": null,
-    "dateAdded": "9/22/2025"
+    "dateAdded": "9/22/2025",
+    "thickness": "6mm"
   }
 ]

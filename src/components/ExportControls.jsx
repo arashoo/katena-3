@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import './ExportControls.css'
 
-function ExportControls({ glasses = [], filteredGlasses = [] }) {
+function ExportControls({ glasses = [] }) {
   const [isOpen, setIsOpen] = useState(false)
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 })
   const dropdownRef = useRef(null)
@@ -125,7 +125,7 @@ function ExportControls({ glasses = [], filteredGlasses = [] }) {
 
   const exportFiltered = () => {
     const timestamp = new Date().toISOString().split('T')[0]
-    exportToCSV(filteredGlasses, `glass_inventory_filtered_${timestamp}.csv`)
+    exportToCSV(glasses, `glass_inventory_filtered_${timestamp}.csv`)
   }
 
   const exportSummary = () => {
@@ -199,7 +199,7 @@ function ExportControls({ glasses = [], filteredGlasses = [] }) {
         <div class="header">
           <h1>Glass Inventory Report</h1>
           <p>Generated on: ${timestamp}</p>
-          <p>Total Items: ${filteredGlasses.length}</p>
+          <p>Total Items: ${glasses.length}</p>
         </div>
         <table>
           <thead>
@@ -215,7 +215,7 @@ function ExportControls({ glasses = [], filteredGlasses = [] }) {
             </tr>
           </thead>
           <tbody>
-            ${filteredGlasses.filter(glass => glass).map(glass => `
+            ${glasses.filter(glass => glass).map(glass => `
               <tr class="${glass.reservedProject ? 'reserved' : 'available'}">
                 <td>${glass.width}" × ${glass.height}"</td>
                 <td>${glass.color}</td>
@@ -271,7 +271,7 @@ function ExportControls({ glasses = [], filteredGlasses = [] }) {
             <span className="option-icon">🔍</span>
             <div className="option-text">
               <div className="option-title">Export Filtered</div>
-              <div className="option-subtitle">{filteredGlasses.length} filtered items</div>
+              <div className="option-subtitle">{glasses.length} items</div>
             </div>
           </button>
           
