@@ -1,7 +1,21 @@
 // Katena 3 Changelog and Version Information
-export const CURRENT_VERSION = "1.01";
+export const CURRENT_VERSION = "1.02";
 
 export const CHANGELOG = [
+  {
+    version: "1.02",
+    date: "2025-09-23",
+    title: "Glass Thickness & Authentication",
+    changes: [
+      "Added thickness column to inventory system with search and filter capabilities",
+      "Implemented password protection with 24-hour session persistence (passkey: 9220katena)",
+      "Added logout functionality with secure session management",
+      "Imported 2,330 glass pieces from JOYO shipment JOYO-KR-250001/0002",
+      "Added support for 10mm thickness glass panels",
+      "Enhanced inventory with proper thickness tracking and display"
+    ],
+    type: "minor"
+  },
   {
     version: "1.01",
     date: "2025-09-23",
