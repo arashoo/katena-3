@@ -9,10 +9,12 @@ import PendingOrders from './components/PendingOrders'
 import Projects from './components/Projects'
 import ConfirmationModal from './components/ConfirmationModal'
 import ChangelogButton from './components/ChangelogButton'
+import Login from './components/Login'
 import apiService from './services/apiService'
 import './App.css'
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [glasses, setGlasses] = useState([])
   const [backlogReservations, setBacklogReservations] = useState([]) // New backlog state
   const [showAddForm, setShowAddForm] = useState(false)
@@ -24,6 +26,27 @@ function App() {
   const [showBacklogConfirmation, setShowBacklogConfirmation] = useState(false)
   const [glassToBacklog, setGlassToBacklog] = useState(null)
   const [orderInitialData, setOrderInitialData] = useState(null)
+
+  // Check authentication on app load
+  useEffect(() => {
+    const checkAuthentication = () => {
+      const loginTimestamp = localStorage.getItem('katenaLoginTime')
+      if (loginTimestamp) {
+        const loginTime = parseInt(loginTimestamp)
+        const currentTime = Date.now()
+        const twentyFourHours = 24 * 60 * 60 * 1000 // 24 hours in milliseconds
+        
+        if (currentTime - loginTime < twentyFourHours) {
+          setIsAuthenticated(true)
+        } else {
+          // Login expired, remove from localStorage
+          localStorage.removeItem('katenaLoginTime')
+        }
+      }
+    }
+    
+    checkAuthentication()
+  }, [])
 
   // Load data from backend on startup
   useEffect(() => {
@@ -683,6 +706,24 @@ function App() {
   const reservedCount = reservedGlasses.reduce((sum, glass) => sum + glass.count, 0)
   const totalCount = availableCount + reservedCount
 
+  // Handle login
+  const handleLogin = () => {
+    const currentTime = Date.now()
+    localStorage.setItem('katenaLoginTime', currentTime.toString())
+    setIsAuthenticated(true)
+  }
+
+  // Handle logout
+  const handleLogout = () => {
+    localStorage.removeItem('katenaLoginTime')
+    setIsAuthenticated(false)
+  }
+
+  // If not authenticated, show login
+  if (!isAuthenticated) {
+    return <Login onLogin={handleLogin} />
+  }
+
   return (
     <div className="app">
       <ChangelogButton />
@@ -707,6 +748,13 @@ function App() {
             📧 Order Glass
           </button>
           <ExportControls glasses={glasses} />
+          <button 
+            className="logout-btn"
+            onClick={handleLogout}
+            title="Logout"
+          >
+            🚪 Logout
+          </button>
         </div>
       </header>
 
