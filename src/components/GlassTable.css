@@ -15,6 +15,56 @@
   table-layout: fixed;
 }
 
+/* Column width specifications - narrow width and height columns */
+.glass-table th:nth-child(1), /* Width column */
+.glass-table td:nth-child(1) {
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
+  padding: 16px 6px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.glass-table th:nth-child(2), /* Height column */
+.glass-table td:nth-child(2) {
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
+  padding: 16px 6px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.glass-table th:nth-child(3), /* Color column */
+.glass-table td:nth-child(3) {
+  width: 100px;
+  min-width: 100px;
+}
+
+.glass-table th:nth-child(4), /* Thickness column */
+.glass-table td:nth-child(4) {
+  width: 80px;
+  min-width: 80px;
+}
+
+.glass-table th:nth-child(9), /* Rack column */
+.glass-table td:nth-child(9) {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.glass-table th:nth-child(10), /* Reserved Projects column - give it more space */
+.glass-table td:nth-child(10) {
+  width: 250px;
+  min-width: 250px;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
 .glass-table th,
 .glass-table td {
   padding: 16px 12px;
@@ -1092,7 +1142,7 @@
 
 /* Search input fields */
 .search-inputs-table {
-  width: 60%;
+  width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
   margin-bottom: 8px;
@@ -1103,7 +1153,29 @@
   padding: 0;
   margin: 0;
   vertical-align: top;
-  width: 33.33%;
+}
+
+/* Match search input widths to main table columns */
+.search-input-cell:nth-child(1) { /* Width column */
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
+}
+
+.search-input-cell:nth-child(2) { /* Height column */
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
+}
+
+.search-input-cell:nth-child(3) { /* Color column */
+  width: auto;
+  min-width: 100px;
+}
+
+.search-input-cell:nth-child(4) { /* Thickness column */
+  width: auto;
+  min-width: 80px;
 }
 
 .column-search-input {

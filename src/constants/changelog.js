@@ -1,7 +1,21 @@
 // Katena 3 Changelog and Version Information
-export const CURRENT_VERSION = "1.02";
+export const CURRENT_VERSION = "1.03";
 
 export const CHANGELOG = [
+  {
+    version: "1.03",
+    date: "2025-09-24",
+    title: "UI Optimization & Data Sync",
+    changes: [
+      "Optimized table layout: narrowed width/height columns (60px) for better space utilization",
+      "Expanded Reserved Projects column (250px) for improved project name visibility",
+      "Reduced font size for dimensions (12px) and rack info (11px) for compact display",
+      "Aligned search input widths to match respective column widths perfectly",
+      "The website is now hosted on Virtual Private Server (VPS) for improved reliability and performance",
+      "Updated inventory with 551 current glass entries from Excel sync",
+    ],
+    type: "minor"
+  },
   {
     version: "1.02",
     date: "2025-09-23",

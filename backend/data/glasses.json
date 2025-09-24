@@ -1,22 +1,5 @@
 [
   {
-    "id": "568f69a0-baa6-4d38-9efd-5e932bb284eb",
-    "width": 2,
-    "height": 2,
-    "color": "Clear",
-    "heatSoaked": false,
-    "racks": [
-      "xxxxx"
-    ],
-    "count": 200,
-    "availableCount": 200,
-    "reservedCount": 0,
-    "reservedProjects": [],
-    "reservedProject": null,
-    "dateAdded": "9/22/2025",
-    "thickness": "6mm"
-  },
-  {
     "id": "4x39_6mm_clear",
     "width": 4,
     "height": 39,
