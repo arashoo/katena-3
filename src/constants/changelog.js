@@ -5,14 +5,16 @@ export const CHANGELOG = [
   {
     version: "1.03",
     date: "2025-09-24",
-    title: "UI Optimization & Data Sync",
+    title: "UI & Server Improvement",
     changes: [
-      "Optimized table layout: narrowed width/height columns (60px) for better space utilization",
-      "Expanded Reserved Projects column (250px) for improved project name visibility",
-      "Reduced font size for dimensions (12px) and rack info (11px) for compact display",
-      "Aligned search input widths to match respective column widths perfectly",
-      "The website is now hosted on Virtual Private Server (VPS) for improved reliability and performance",
-      "Updated inventory with 551 current glass entries from Excel sync",
+      "Inventory:",
+      "Table resized for better readability",
+      "Inventory is now all synced with the excel sheet",
+
+      "Server:",
+      "The website is now hosted on Virtual Private Server (VPS)",
+
+      
     ],
     type: "minor"
   },

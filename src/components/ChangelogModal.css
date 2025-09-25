@@ -164,14 +164,7 @@
   padding-left: 20px;
 }
 
-.changelog-entry-changes li:before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: #16a34a;
-  font-weight: bold;
-  font-size: 12px;
-}
+
 
 .changelog-divider {
   border: none;

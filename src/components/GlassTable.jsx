@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useCallback, useRef } from 'react'
 import ReservationModal from './ReservationModal'
 import ReservationEditModal from './ReservationEditModal'
 import './GlassTable.css'
@@ -20,36 +20,92 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
   const [heightSearchValue, setHeightSearchValue] = useState('')
   const [colorSearchValue, setColorSearchValue] = useState('')
   const [thicknessSearchValue, setThicknessSearchValue] = useState('')
+  
+  // Debounced search values for actual filtering
+  const [debouncedWidthSearch, setDebouncedWidthSearch] = useState('')
+  const [debouncedHeightSearch, setDebouncedHeightSearch] = useState('')
+  const [debouncedColorSearch, setDebouncedColorSearch] = useState('')
+  const [debouncedThicknessSearch, setDebouncedThicknessSearch] = useState('')
+  
+  // Loading state for search operations
+  const [isFiltering, setIsFiltering] = useState(false)
+  
+  // Refs for debounce timers
+  const widthTimeoutRef = useRef(null)
+  const heightTimeoutRef = useRef(null)
+  const colorTimeoutRef = useRef(null)
+  const thicknessTimeoutRef = useRef(null)
+
+  // Debounced search handlers
+  const handleWidthSearch = useCallback((value) => {
+    setWidthSearchValue(value)
+    setIsFiltering(!!value)
+    if (widthTimeoutRef.current) clearTimeout(widthTimeoutRef.current)
+    widthTimeoutRef.current = setTimeout(() => {
+      setDebouncedWidthSearch(value)
+      setIsFiltering(false)
+    }, 300)
+  }, [])
+
+  const handleHeightSearch = useCallback((value) => {
+    setHeightSearchValue(value)
+    setIsFiltering(!!value)
+    if (heightTimeoutRef.current) clearTimeout(heightTimeoutRef.current)
+    heightTimeoutRef.current = setTimeout(() => {
+      setDebouncedHeightSearch(value)
+      setIsFiltering(false)
+    }, 300)
+  }, [])
+
+  const handleColorSearch = useCallback((value) => {
+    setColorSearchValue(value)
+    setIsFiltering(!!value)
+    if (colorTimeoutRef.current) clearTimeout(colorTimeoutRef.current)
+    colorTimeoutRef.current = setTimeout(() => {
+      setDebouncedColorSearch(value)
+      setIsFiltering(false)
+    }, 300)
+  }, [])
+
+  const handleThicknessSearch = useCallback((value) => {
+    setThicknessSearchValue(value)
+    setIsFiltering(!!value)
+    if (thicknessTimeoutRef.current) clearTimeout(thicknessTimeoutRef.current)
+    thicknessTimeoutRef.current = setTimeout(() => {
+      setDebouncedThicknessSearch(value)
+      setIsFiltering(false)
+    }, 300)
+  }, [])
 
   // Apply search filtering and sorting
   const filteredGlasses = useMemo(() => {
     let filtered = glasses
     
     // Apply width search
-    if (widthSearchValue.trim()) {
+    if (debouncedWidthSearch.trim()) {
       filtered = filtered.filter(glass => 
-        String(glass.width || '').toLowerCase().includes(widthSearchValue.toLowerCase())
+        String(glass.width || '').toLowerCase().includes(debouncedWidthSearch.toLowerCase())
       )
     }
     
     // Apply height search  
-    if (heightSearchValue.trim()) {
+    if (debouncedHeightSearch.trim()) {
       filtered = filtered.filter(glass => 
-        String(glass.height || '').toLowerCase().includes(heightSearchValue.toLowerCase())
+        String(glass.height || '').toLowerCase().includes(debouncedHeightSearch.toLowerCase())
       )
     }
     
     // Apply color search
-    if (colorSearchValue.trim()) {
+    if (debouncedColorSearch.trim()) {
       filtered = filtered.filter(glass => 
-        String(glass.color || '').toLowerCase().includes(colorSearchValue.toLowerCase())
+        String(glass.color || '').toLowerCase().includes(debouncedColorSearch.toLowerCase())
       )
     }
     
     // Apply thickness search
-    if (thicknessSearchValue.trim()) {
+    if (debouncedThicknessSearch.trim()) {
       filtered = filtered.filter(glass => 
-        String(glass.thickness || '6mm').toLowerCase().includes(thicknessSearchValue.toLowerCase())
+        String(glass.thickness || '6mm').toLowerCase().includes(debouncedThicknessSearch.toLowerCase())
       )
     }
     
@@ -82,7 +138,7 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
     }
     
     return filtered
-  }, [glasses, widthSearchValue, heightSearchValue, colorSearchValue, thicknessSearchValue, sortConfig])
+  }, [glasses, debouncedWidthSearch, debouncedHeightSearch, debouncedColorSearch, debouncedThicknessSearch, sortConfig])
 
   // Helper function to format reserved projects display
   const formatReservedProjects = (reservedProjects) => {
@@ -125,17 +181,14 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
     return projectDetails.length > 0 ? projectDetails.join('\n') : 'No valid reservations'
   }
 
-  const handleReserveClick = (glass) => {
-    console.log('Reserve button clicked for glass:', glass)
+  const handleReserveClick = useCallback((glass) => {
     if (glass.availableCount <= 0) {
       alert('No available pieces to reserve')
       return
     }
-    console.log('Setting selectedGlass to:', glass)
     setSelectedGlass(glass)
-    console.log('Setting showReservationModal to true')
     setShowReservationModal(true)
-  }
+  }, [])
 
   const handleReservationSubmit = (reservationData) => {
     if (selectedGlass) {
@@ -207,7 +260,7 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
   }
 
   // Handle row click for reserved glasses
-  const handleRowClick = (glass, event) => {
+  const handleRowClick = useCallback((glass, event) => {
     // Don't expand if clicking on buttons or input fields
     if (event.target.tagName === 'BUTTON' || 
         event.target.tagName === 'INPUT' || 
@@ -218,15 +271,17 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
 
     // Only expand if glass has reservations
     if (glass.reservedCount > 0 && glass.reservedProjects && glass.reservedProjects.length > 0) {
-      const newExpandedRows = new Set(expandedRows)
-      if (expandedRows.has(glass.id)) {
-        newExpandedRows.delete(glass.id)
-      } else {
-        newExpandedRows.add(glass.id)
-      }
-      setExpandedRows(newExpandedRows)
+      setExpandedRows(prev => {
+        const newExpandedRows = new Set(prev)
+        if (prev.has(glass.id)) {
+          newExpandedRows.delete(glass.id)
+        } else {
+          newExpandedRows.add(glass.id)
+        }
+        return newExpandedRows
+      })
     }
-  }
+  }, [])
 
   // Check if a row is expanded
   const isRowExpanded = (glassId) => {
@@ -375,6 +430,12 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
 
   return (
     <div className="glass-table-container">
+      <style>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
       {/* Search input fields - always visible above corresponding columns */}
       <table className="search-inputs-table">
         <tbody>
@@ -383,7 +444,7 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
               <input
                 type="text"
                 value={widthSearchValue}
-                onChange={(e) => setWidthSearchValue(e.target.value)}
+                onChange={(e) => handleWidthSearch(e.target.value)}
                 placeholder="Search width..."
                 className="column-search-input"
               />
@@ -392,7 +453,7 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
               <input
                 type="text"
                 value={heightSearchValue}
-                onChange={(e) => setHeightSearchValue(e.target.value)}
+                onChange={(e) => handleHeightSearch(e.target.value)}
                 placeholder="Search height..."
                 className="column-search-input"
               />
@@ -401,7 +462,7 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
               <input
                 type="text"
                 value={colorSearchValue}
-                onChange={(e) => setColorSearchValue(e.target.value)}
+                onChange={(e) => handleColorSearch(e.target.value)}
                 placeholder="Search color..."
                 className="column-search-input"
               />
@@ -410,7 +471,7 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
               <input
                 type="text"
                 value={thicknessSearchValue}
-                onChange={(e) => setThicknessSearchValue(e.target.value)}
+                onChange={(e) => handleThicknessSearch(e.target.value)}
                 placeholder="Search thickness..."
                 className="column-search-input"
               />
@@ -465,15 +526,24 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
           </tr>
         </thead>
         <tbody>
-          {filteredGlasses.length === 0 ? (
+          {isFiltering ? (
+            <tr>
+              <td colSpan="11" className="no-results">
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
+                  <span>Filtering...</span>
+                  <div style={{ width: '20px', height: '20px', border: '2px solid #f3f3f3', borderTop: '2px solid #3498db', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+                </div>
+              </td>
+            </tr>
+          ) : filteredGlasses.length === 0 ? (
             <tr>
               <td colSpan="11" className="no-results">
                 {glasses.length === 0 ? 'No glass inventory found' : 'No glasses match the current filters'}
               </td>
             </tr>
           ) : (
-            filteredGlasses.filter(glass => glass).map((glass) => (
-            <React.Fragment key={glass.id}>
+            filteredGlasses.filter(glass => glass).map((glass, glassIndex) => (
+            <React.Fragment key={`${glass.id}-${glassIndex}`}>
               <tr 
                 className={`${editingId === glass.id ? 'editing' : ''} ${exitingEdit && editingId === glass.id ? 'exiting' : ''} ${getReservationStatusClass(glass)} ${glass.reservedCount > 0 ? 'clickable-row' : ''} ${isRowExpanded(glass.id) ? 'expanded' : ''}`}
                 onClick={(e) => handleRowClick(glass, e)}
@@ -626,7 +696,7 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
                     <h4 className="reservation-details-title">Reservation Details</h4>
                     <div className="reservation-projects-list">
                       {glass.reservedProjects.filter(p => p != null).map((project, index) => (
-                        <div key={index} className="reservation-project-item">
+                        <div key={`${glass.id}-project-${index}`} className="reservation-project-item">
                           {editingProject && editingProject.glassId === glass.id && editingProject.projectIndex === index ? (
                             // Edit mode for project
                             <div className="project-edit-form">
@@ -691,7 +761,7 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
                               {project.reservations && project.reservations.length > 0 && (
                                 <div className="project-reservations">
                                   {project.reservations.map((reservation, resIndex) => (
-                                    <div key={resIndex} className="reservation-item">
+                                    <div key={`${glass.id}-project-${index}-reservation-${resIndex}`} className="reservation-item">
                                       <span className="reservation-date">
                                         📅 {new Date(reservation.reservedDate).toLocaleDateString()}
                                       </span>
@@ -737,9 +807,20 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
 
       {showReservationEditModal && (
         <ReservationEditModal
+          isOpen={showReservationEditModal}
+          onClose={() => setShowReservationEditModal(false)}
           reservation={selectedReservation}
+          glasses={glasses}
+          groupedGlasses={glasses.reduce((groups, glass) => {
+            const key = `${glass.width}-${glass.height}-${glass.color}-${glass.heatSoaked}`;
+            groups[key] = {
+              main: glass,
+              available: [],
+              reserved: []
+            };
+            return groups;
+          }, {})}
           onSave={onUpdateReservation}
-          onCancel={() => setShowReservationEditModal(false)}
         />
       )}
     </div>
