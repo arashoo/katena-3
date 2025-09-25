@@ -1,25 +1,33 @@
 // Katena 3 Changelog and Version Information
-export const CURRENT_VERSION = "1.03";
+export const CURRENT_VERSION = "1.0.4";
 
 export const CHANGELOG = [
   {
-    version: "1.03",
+    version: "1.0.4",
+    date: "2025-09-25",
+    title: "small tweaks",
+    changes: [
+      "projects allocated to recent update",
+      " color for project changed from yellow to blue (personal preference)",
+      "added search bar for reserved projects",    
+    ],
+    type: "minor"
+  },
+  {
+    version: "1.0.3",
     date: "2025-09-24",
     title: "UI & Server Improvement",
     changes: [
       "Inventory:",
       "Table resized for better readability",
       "Inventory is now all synced with the excel sheet",
-
       "Server:",
-      "The website is now hosted on Virtual Private Server (VPS)",
-
-      
+      "The website is now hosted on Virtual Private Server (VPS)",     
     ],
     type: "minor"
   },
   {
-    version: "1.02",
+    version: "1.0.2",
     date: "2025-09-23",
     title: "Glass Thickness & Authentication",
     changes: [
@@ -33,7 +41,7 @@ export const CHANGELOG = [
     type: "minor"
   },
   {
-    version: "1.01",
+    version: "1.0.1",
     date: "2025-09-23",
     title: "Minor bug fixes",
     changes: [
@@ -43,7 +51,7 @@ export const CHANGELOG = [
     type: "minor" // major, minor, patch
   },
   {
-    version: "1.00",
+    version: "1.0.0",
     date: "2025-09-20",
     title: "Initial Release",
     changes: [
