@@ -2,7 +2,7 @@
 const API_BASE_URL = import.meta.env.VITE_API_URL || (
   import.meta.env.MODE === 'production' 
     ? '/api' // Use relative URL for production (same domain)
-    : 'http://localhost:3001/api' // Use localhost for development
+    : 'http://203.161.44.83:3001/api' // Use VPS IP for development
 );
 
 class ApiService {
