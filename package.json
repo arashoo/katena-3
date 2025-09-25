@@ -1,14 +1,13 @@
 {
   "name": "katena-3",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "build-and-serve": "npm run build && cd backend && npm start"
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^19.1.1",

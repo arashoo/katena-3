@@ -1,9 +1,5 @@
 // API service for communicating with the backend
-const API_BASE_URL = import.meta.env.VITE_API_URL || (
-  import.meta.env.MODE === 'production' 
-    ? '/api' // Use relative URL for production (same domain)
-    : 'http://203.161.44.83:3001/api' // Use VPS IP for development
-);
+const API_BASE_URL = 'http://localhost:3001/api'; // Local development API URL
 
 class ApiService {
   // Generic fetch wrapper with error handling

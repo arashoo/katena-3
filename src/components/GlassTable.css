@@ -267,6 +267,17 @@
   box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
 }
 
+.allocate-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.allocate-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
 .backlog-btn {
   background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
   color: white;
@@ -351,7 +362,7 @@
   margin-left: 4px;
 }
 
-.edit-btn, .delete-btn, .save-btn, .cancel-btn, .reserve-btn, .backlog-btn {
+.edit-btn, .delete-btn, .save-btn, .cancel-btn, .reserve-btn, .backlog-btn, .allocate-btn {
   padding: 8px;
   margin: 0 2px;
   border: none;
@@ -834,6 +845,26 @@
   background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
 }
 
+/* Row colors based on reserved projects */
+.glass-table tr.has-projects {
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  border-left: 4px solid #0284c7;
+}
+
+.glass-table tr.has-projects:hover {
+  background: linear-gradient(135deg, #bae6fd 0%, #7dd3fc 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+}
+
+.glass-table tr.no-projects {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.glass-table tr.no-projects:hover {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
 /* Clickable row styles */
 .glass-table tr.clickable-row {
   transition: all 0.3s ease;
@@ -1178,6 +1209,11 @@
   min-width: 80px;
 }
 
+.search-input-cell:nth-child(6) { /* Reserved Projects column */
+  width: 250px;
+  min-width: 250px;
+}
+
 .column-search-input {
   width: 100%;
   padding: 6px 8px;
@@ -1200,4 +1236,42 @@
 .column-search-input::placeholder {
   color: #9ca3af;
   font-size: 12px;
+}
+
+/* Project badges styling */
+.has-projects-badge {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.has-projects-badge:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+}
+
+.no-projects-badge {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.7;
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
 }

@@ -23,10 +23,19 @@
       "X118"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968082-0",
+            "reservedDate": "2025-09-25T22:39:28.082Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "SOUTHTOWER",
     "thickness": "6mm"
@@ -41,10 +50,19 @@
       "X118"
     ],
     "count": 20,
-    "availableCount": 20,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 20,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 20,
+        "reservations": [
+          {
+            "id": "auto-1758839968084-0",
+            "reservedDate": "2025-09-25T22:39:28.084Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "SOUTHTOWER",
     "thickness": "6mm"
@@ -59,10 +77,19 @@
       "X118"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968085-0",
+            "reservedDate": "2025-09-25T22:39:28.085Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "SOUTHTOWER",
     "thickness": "6mm"
@@ -245,10 +272,19 @@
       "X67"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968086-0",
+            "reservedDate": "2025-09-25T22:39:28.086Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -305,10 +341,19 @@
       "X77"
     ],
     "count": 92,
-    "availableCount": 92,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 92,
     "reservedProjects": [
-      "MARLSTONE"
+      {
+        "projectName": "MARLSTONE",
+        "quantity": 92,
+        "reservations": [
+          {
+            "id": "auto-1758839968087-0",
+            "reservedDate": "2025-09-25T22:39:28.087Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "MARLSTONE",
     "thickness": "6mm"
@@ -423,10 +468,19 @@
       "X77"
     ],
     "count": 36,
-    "availableCount": 36,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 36,
     "reservedProjects": [
-      "MARLSTONE"
+      {
+        "projectName": "MARLSTONE",
+        "quantity": 36,
+        "reservations": [
+          {
+            "id": "auto-1758839968088-0",
+            "reservedDate": "2025-09-25T22:39:28.088Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "MARLSTONE",
     "thickness": "6mm"
@@ -615,10 +669,19 @@
       "A15"
     ],
     "count": 63,
-    "availableCount": 63,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 63,
     "reservedProjects": [
-      "ROCKWELL"
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 63,
+        "reservations": [
+          {
+            "id": "auto-1758839968089-0",
+            "reservedDate": "2025-09-25T22:39:28.089Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "ROCKWELL",
     "thickness": "6mm"
@@ -945,10 +1008,19 @@
       "X112"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968091-0",
+            "reservedDate": "2025-09-25T22:39:28.091Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -995,10 +1067,19 @@
       "X67"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968092-0",
+            "reservedDate": "2025-09-25T22:39:28.092Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -1017,11 +1098,29 @@
       "X102"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968093-0",
+            "reservedDate": "2025-09-25T22:39:28.093Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968093-1",
+            "reservedDate": "2025-09-25T22:39:28.093Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -1040,11 +1139,29 @@
       "X102"
     ],
     "count": 12,
-    "availableCount": 12,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 12,
     "reservedProjects": [
-      "QUEEN",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 6,
+        "reservations": [
+          {
+            "id": "auto-1758839968094-0",
+            "reservedDate": "2025-09-25T22:39:28.094Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 6,
+        "reservations": [
+          {
+            "id": "auto-1758839968094-1",
+            "reservedDate": "2025-09-25T22:39:28.095Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -1063,11 +1180,29 @@
       "X102"
     ],
     "count": 6,
-    "availableCount": 6,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 6,
     "reservedProjects": [
-      "QUEEN",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968095-0",
+            "reservedDate": "2025-09-25T22:39:28.095Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968096-1",
+            "reservedDate": "2025-09-25T22:39:28.096Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -1086,11 +1221,29 @@
       "X102"
     ],
     "count": 16,
-    "availableCount": 16,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 16,
     "reservedProjects": [
-      "QUEEN",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 8,
+        "reservations": [
+          {
+            "id": "auto-1758839968096-0",
+            "reservedDate": "2025-09-25T22:39:28.096Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 8,
+        "reservations": [
+          {
+            "id": "auto-1758839968096-1",
+            "reservedDate": "2025-09-25T22:39:28.096Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -1109,11 +1262,29 @@
       "X102"
     ],
     "count": 20,
-    "availableCount": 20,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 20,
     "reservedProjects": [
-      "QUEEN",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 10,
+        "reservations": [
+          {
+            "id": "auto-1758839968097-0",
+            "reservedDate": "2025-09-25T22:39:28.097Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 10,
+        "reservations": [
+          {
+            "id": "auto-1758839968097-1",
+            "reservedDate": "2025-09-25T22:39:28.097Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -1132,11 +1303,29 @@
       "X102"
     ],
     "count": 100,
-    "availableCount": 100,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 100,
     "reservedProjects": [
-      "QUEEN",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 50,
+        "reservations": [
+          {
+            "id": "auto-1758839968098-0",
+            "reservedDate": "2025-09-25T22:39:28.098Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 50,
+        "reservations": [
+          {
+            "id": "auto-1758839968098-1",
+            "reservedDate": "2025-09-25T22:39:28.098Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "STOCK",
     "thickness": "6mm"
@@ -1181,10 +1370,19 @@
       "X118"
     ],
     "count": 10,
-    "availableCount": 10,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 10,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 10,
+        "reservations": [
+          {
+            "id": "auto-1758839968098-0",
+            "reservedDate": "2025-09-25T22:39:28.098Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "SOUTHTOWER",
     "thickness": "6mm"
@@ -1229,10 +1427,19 @@
       "X118"
     ],
     "count": 12,
-    "availableCount": 12,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 12,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 12,
+        "reservations": [
+          {
+            "id": "auto-1758839968099-0",
+            "reservedDate": "2025-09-25T22:39:28.099Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "SOUTHTOWER",
     "thickness": "6mm"
@@ -1296,10 +1503,19 @@
       "X67"
     ],
     "count": 6,
-    "availableCount": 6,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 6,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 6,
+        "reservations": [
+          {
+            "id": "auto-1758839968099-0",
+            "reservedDate": "2025-09-25T22:39:28.099Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -1315,10 +1531,19 @@
       "X67"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968100-0",
+            "reservedDate": "2025-09-25T22:39:28.100Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -1350,10 +1575,19 @@
       "X67"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968100-0",
+            "reservedDate": "2025-09-25T22:39:28.100Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -1369,10 +1603,19 @@
       "X67"
     ],
     "count": 30,
-    "availableCount": 30,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 30,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 30,
+        "reservations": [
+          {
+            "id": "auto-1758839968101-0",
+            "reservedDate": "2025-09-25T22:39:28.101Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -1431,10 +1674,19 @@
       "X118"
     ],
     "count": 20,
-    "availableCount": 20,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 20,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 20,
+        "reservations": [
+          {
+            "id": "auto-1758839968102-0",
+            "reservedDate": "2025-09-25T22:39:28.102Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "SOUTHTOWER",
     "thickness": "6mm"
@@ -1645,10 +1897,19 @@
       "X67"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968102-0",
+            "reservedDate": "2025-09-25T22:39:28.102Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -1775,10 +2036,19 @@
       "X118"
     ],
     "count": 30,
-    "availableCount": 30,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 30,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 30,
+        "reservations": [
+          {
+            "id": "auto-1758839968104-0",
+            "reservedDate": "2025-09-25T22:39:28.104Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "SOUTHTOWER",
     "thickness": "6mm"
@@ -1793,10 +2063,19 @@
       "X118"
     ],
     "count": 22,
-    "availableCount": 22,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 22,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 22,
+        "reservations": [
+          {
+            "id": "auto-1758839968105-0",
+            "reservedDate": "2025-09-25T22:39:28.105Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "SOUTHTOWER",
     "thickness": "6mm"
@@ -1825,10 +2104,19 @@
       "X66"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968105-0",
+            "reservedDate": "2025-09-25T22:39:28.105Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -1843,10 +2131,19 @@
       "X67"
     ],
     "count": 3,
-    "availableCount": 3,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 3,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968106-0",
+            "reservedDate": "2025-09-25T22:39:28.106Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -1906,10 +2203,19 @@
       "X100"
     ],
     "count": 36,
-    "availableCount": 36,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 36,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 36,
+        "reservations": [
+          {
+            "id": "auto-1758839968107-0",
+            "reservedDate": "2025-09-25T22:39:28.107Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -1927,10 +2233,19 @@
       "X100"
     ],
     "count": 126,
-    "availableCount": 126,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 126,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 126,
+        "reservations": [
+          {
+            "id": "auto-1758839968108-0",
+            "reservedDate": "2025-09-25T22:39:28.108Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "STOCK",
     "thickness": "6mm"
@@ -2131,10 +2446,19 @@
       "X67"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968109-0",
+            "reservedDate": "2025-09-25T22:39:28.109Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -2200,10 +2524,19 @@
       "X91"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968109-0",
+            "reservedDate": "2025-09-25T22:39:28.109Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -2223,10 +2556,19 @@
       "X91"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968110-0",
+            "reservedDate": "2025-09-25T22:39:28.110Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -2246,10 +2588,19 @@
       "X91"
     ],
     "count": 47,
-    "availableCount": 47,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 47,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 47,
+        "reservations": [
+          {
+            "id": "auto-1758839968110-0",
+            "reservedDate": "2025-09-25T22:39:28.110Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -2269,10 +2620,19 @@
       "X91"
     ],
     "count": 140,
-    "availableCount": 140,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 140,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 140,
+        "reservations": [
+          {
+            "id": "auto-1758839968111-0",
+            "reservedDate": "2025-09-25T22:39:28.111Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "STOCK",
     "thickness": "6mm"
@@ -2334,10 +2694,19 @@
       "X118"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968112-0",
+            "reservedDate": "2025-09-25T22:39:28.112Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -2355,10 +2724,19 @@
       "X118"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968113-0",
+            "reservedDate": "2025-09-25T22:39:28.113Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -2376,10 +2754,19 @@
       "X118"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968114-0",
+            "reservedDate": "2025-09-25T22:39:28.114Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -2397,10 +2784,19 @@
       "X118"
     ],
     "count": 11,
-    "availableCount": 11,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 11,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 11,
+        "reservations": [
+          {
+            "id": "auto-1758839968115-0",
+            "reservedDate": "2025-09-25T22:39:28.115Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "SOUTHTOWER",
     "thickness": "6mm"
@@ -2467,10 +2863,19 @@
       "X66"
     ],
     "count": 3,
-    "availableCount": 3,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 3,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968117-0",
+            "reservedDate": "2025-09-25T22:39:28.117Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -2488,10 +2893,19 @@
       "X66"
     ],
     "count": 53,
-    "availableCount": 53,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 53,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 53,
+        "reservations": [
+          {
+            "id": "auto-1758839968117-0",
+            "reservedDate": "2025-09-25T22:39:28.117Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -2509,10 +2923,19 @@
       "X66"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968118-0",
+            "reservedDate": "2025-09-25T22:39:28.118Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -2541,10 +2964,19 @@
       "X77"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "MARLSTONE"
+      {
+        "projectName": "MARLSTONE",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968120-0",
+            "reservedDate": "2025-09-25T22:39:28.120Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "MARLSTONE",
     "thickness": "6mm"
@@ -2579,11 +3011,29 @@
       "X80"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968121-0",
+            "reservedDate": "2025-09-25T22:39:28.121Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968121-1",
+            "reservedDate": "2025-09-25T22:39:28.121Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -2604,11 +3054,29 @@
       "X80"
     ],
     "count": 12,
-    "availableCount": 12,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 12,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 6,
+        "reservations": [
+          {
+            "id": "auto-1758839968121-0",
+            "reservedDate": "2025-09-25T22:39:28.121Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 6,
+        "reservations": [
+          {
+            "id": "auto-1758839968122-1",
+            "reservedDate": "2025-09-25T22:39:28.122Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -2654,11 +3122,29 @@
       "X80"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968123-0",
+            "reservedDate": "2025-09-25T22:39:28.123Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968123-1",
+            "reservedDate": "2025-09-25T22:39:28.123Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -2679,11 +3165,29 @@
       "X80"
     ],
     "count": 47,
-    "availableCount": 47,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 47,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 24,
+        "reservations": [
+          {
+            "id": "auto-1758839968124-0",
+            "reservedDate": "2025-09-25T22:39:28.124Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 23,
+        "reservations": [
+          {
+            "id": "auto-1758839968124-1",
+            "reservedDate": "2025-09-25T22:39:28.124Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -2704,11 +3208,29 @@
       "X80"
     ],
     "count": 67,
-    "availableCount": 67,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 67,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 34,
+        "reservations": [
+          {
+            "id": "auto-1758839968125-0",
+            "reservedDate": "2025-09-25T22:39:28.125Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 33,
+        "reservations": [
+          {
+            "id": "auto-1758839968125-1",
+            "reservedDate": "2025-09-25T22:39:28.125Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -2729,11 +3251,29 @@
       "X80"
     ],
     "count": 84,
-    "availableCount": 84,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 84,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 42,
+        "reservations": [
+          {
+            "id": "auto-1758839968125-0",
+            "reservedDate": "2025-09-25T22:39:28.125Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 42,
+        "reservations": [
+          {
+            "id": "auto-1758839968125-1",
+            "reservedDate": "2025-09-25T22:39:28.125Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "ROCKWELL",
     "thickness": "6mm"
@@ -2754,11 +3294,29 @@
       "X80"
     ],
     "count": 56,
-    "availableCount": 56,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 56,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 28,
+        "reservations": [
+          {
+            "id": "auto-1758839968126-0",
+            "reservedDate": "2025-09-25T22:39:28.126Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 28,
+        "reservations": [
+          {
+            "id": "auto-1758839968126-1",
+            "reservedDate": "2025-09-25T22:39:28.126Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "ROCKWELL",
     "thickness": "6mm"
@@ -2909,11 +3467,29 @@
       "X76"
     ],
     "count": 8,
-    "availableCount": 8,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 8,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968127-0",
+            "reservedDate": "2025-09-25T22:39:28.127Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968127-1",
+            "reservedDate": "2025-09-25T22:39:28.127Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -2930,11 +3506,29 @@
       "X76"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968128-0",
+            "reservedDate": "2025-09-25T22:39:28.128Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968128-1",
+            "reservedDate": "2025-09-25T22:39:28.128Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -2951,11 +3545,29 @@
       "X76"
     ],
     "count": 8,
-    "availableCount": 8,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 8,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968128-0",
+            "reservedDate": "2025-09-25T22:39:28.128Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968128-1",
+            "reservedDate": "2025-09-25T22:39:28.128Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "WESTMOUNT",
     "thickness": "6mm"
@@ -3030,10 +3642,19 @@
       "X094"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968129-0",
+            "reservedDate": "2025-09-25T22:39:28.129Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -3078,10 +3699,19 @@
       "X094"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968129-0",
+            "reservedDate": "2025-09-25T22:39:28.129Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -3102,10 +3732,19 @@
       "X094"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968130-0",
+            "reservedDate": "2025-09-25T22:39:28.130Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -3174,10 +3813,19 @@
       "X094"
     ],
     "count": 98,
-    "availableCount": 98,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 98,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 98,
+        "reservations": [
+          {
+            "id": "auto-1758839968131-0",
+            "reservedDate": "2025-09-25T22:39:28.131Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "STOCK",
     "thickness": "6mm"
@@ -3319,10 +3967,19 @@
       "X67"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968131-0",
+            "reservedDate": "2025-09-25T22:39:28.131Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -3338,10 +3995,19 @@
       "X67"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968132-0",
+            "reservedDate": "2025-09-25T22:39:28.132Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -3407,11 +4073,29 @@
       "X81"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "WESTMOUNT",
-      "ROCKWELL"
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968133-0",
+            "reservedDate": "2025-09-25T22:39:28.133Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968133-1",
+            "reservedDate": "2025-09-25T22:39:28.133Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -3451,11 +4135,29 @@
       "X81"
     ],
     "count": 9,
-    "availableCount": 9,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 9,
     "reservedProjects": [
-      "WESTMOUNT",
-      "ROCKWELL"
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 5,
+        "reservations": [
+          {
+            "id": "auto-1758839968133-0",
+            "reservedDate": "2025-09-25T22:39:28.133Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968134-1",
+            "reservedDate": "2025-09-25T22:39:28.134Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "WESTMOUNT",
     "thickness": "6mm"
@@ -3473,11 +4175,29 @@
       "X81"
     ],
     "count": 68,
-    "availableCount": 68,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 68,
     "reservedProjects": [
-      "WESTMOUNT",
-      "ROCKWELL"
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 34,
+        "reservations": [
+          {
+            "id": "auto-1758839968134-0",
+            "reservedDate": "2025-09-25T22:39:28.134Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 34,
+        "reservations": [
+          {
+            "id": "auto-1758839968134-1",
+            "reservedDate": "2025-09-25T22:39:28.134Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "ROCKWELL",
     "thickness": "6mm"
@@ -3584,10 +4304,19 @@
       "X112"
     ],
     "count": 6,
-    "availableCount": 6,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 6,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 6,
+        "reservations": [
+          {
+            "id": "auto-1758839968135-0",
+            "reservedDate": "2025-09-25T22:39:28.135Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -3918,10 +4647,19 @@
       "X116"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968135-0",
+            "reservedDate": "2025-09-25T22:39:28.135Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -3938,10 +4676,19 @@
       "X116"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968136-0",
+            "reservedDate": "2025-09-25T22:39:28.136Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -3958,10 +4705,19 @@
       "X116"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968137-0",
+            "reservedDate": "2025-09-25T22:39:28.137Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -3978,10 +4734,19 @@
       "X116"
     ],
     "count": 5,
-    "availableCount": 5,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 5,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 5,
+        "reservations": [
+          {
+            "id": "auto-1758839968137-0",
+            "reservedDate": "2025-09-25T22:39:28.137Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "SOUTHTOWER",
     "thickness": "6mm"
@@ -4010,10 +4775,19 @@
       "X112"
     ],
     "count": 3,
-    "availableCount": 3,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 3,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968138-0",
+            "reservedDate": "2025-09-25T22:39:28.138Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -4092,10 +4866,19 @@
       "X095"
     ],
     "count": 41,
-    "availableCount": 41,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 41,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 41,
+        "reservations": [
+          {
+            "id": "auto-1758839968138-0",
+            "reservedDate": "2025-09-25T22:39:28.138Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -4114,10 +4897,19 @@
       "X095"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968139-0",
+            "reservedDate": "2025-09-25T22:39:28.139Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -4136,10 +4928,19 @@
       "X095"
     ],
     "count": 40,
-    "availableCount": 40,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 40,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 40,
+        "reservations": [
+          {
+            "id": "auto-1758839968140-0",
+            "reservedDate": "2025-09-25T22:39:28.140Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -4158,10 +4959,19 @@
       "X095"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968141-0",
+            "reservedDate": "2025-09-25T22:39:28.141Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -4180,10 +4990,19 @@
       "X095"
     ],
     "count": 89,
-    "availableCount": 89,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 89,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 89,
+        "reservations": [
+          {
+            "id": "auto-1758839968141-0",
+            "reservedDate": "2025-09-25T22:39:28.141Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "STOCK",
     "thickness": "6mm"
@@ -4289,10 +5108,19 @@
       "X116"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968143-0",
+            "reservedDate": "2025-09-25T22:39:28.143Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -4310,10 +5138,19 @@
       "X116"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968143-0",
+            "reservedDate": "2025-09-25T22:39:28.143Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -4331,10 +5168,19 @@
       "X116"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968144-0",
+            "reservedDate": "2025-09-25T22:39:28.144Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -4352,10 +5198,19 @@
       "X116"
     ],
     "count": 15,
-    "availableCount": 15,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 15,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 15,
+        "reservations": [
+          {
+            "id": "auto-1758839968145-0",
+            "reservedDate": "2025-09-25T22:39:28.145Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "SOUTHTOWER",
     "thickness": "6mm"
@@ -4464,10 +5319,19 @@
       "X76"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "WESTMOUNT"
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968145-0",
+            "reservedDate": "2025-09-25T22:39:28.145Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "WESTMOUNT",
     "thickness": "6mm"
@@ -4553,11 +5417,29 @@
       "X76"
     ],
     "count": 5,
-    "availableCount": 5,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 5,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968146-0",
+            "reservedDate": "2025-09-25T22:39:28.146Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968146-1",
+            "reservedDate": "2025-09-25T22:39:28.146Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -4609,11 +5491,29 @@
       "X76"
     ],
     "count": 8,
-    "availableCount": 8,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 8,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968147-0",
+            "reservedDate": "2025-09-25T22:39:28.147Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968147-1",
+            "reservedDate": "2025-09-25T22:39:28.147Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -4637,11 +5537,29 @@
       "X76"
     ],
     "count": 70,
-    "availableCount": 70,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 70,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 35,
+        "reservations": [
+          {
+            "id": "auto-1758839968147-0",
+            "reservedDate": "2025-09-25T22:39:28.147Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 35,
+        "reservations": [
+          {
+            "id": "auto-1758839968148-1",
+            "reservedDate": "2025-09-25T22:39:28.148Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -4665,11 +5583,29 @@
       "X76"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968148-0",
+            "reservedDate": "2025-09-25T22:39:28.148Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968148-1",
+            "reservedDate": "2025-09-25T22:39:28.148Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -4693,11 +5629,29 @@
       "X76"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968150-0",
+            "reservedDate": "2025-09-25T22:39:28.150Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968150-1",
+            "reservedDate": "2025-09-25T22:39:28.150Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -4721,11 +5675,29 @@
       "X76"
     ],
     "count": 20,
-    "availableCount": 20,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 20,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 10,
+        "reservations": [
+          {
+            "id": "auto-1758839968150-0",
+            "reservedDate": "2025-09-25T22:39:28.150Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 10,
+        "reservations": [
+          {
+            "id": "auto-1758839968150-1",
+            "reservedDate": "2025-09-25T22:39:28.150Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -4749,11 +5721,29 @@
       "X76"
     ],
     "count": 64,
-    "availableCount": 64,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 64,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 32,
+        "reservations": [
+          {
+            "id": "auto-1758839968151-0",
+            "reservedDate": "2025-09-25T22:39:28.151Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 32,
+        "reservations": [
+          {
+            "id": "auto-1758839968151-1",
+            "reservedDate": "2025-09-25T22:39:28.151Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -4805,11 +5795,29 @@
       "X76"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968152-0",
+            "reservedDate": "2025-09-25T22:39:28.152Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968152-1",
+            "reservedDate": "2025-09-25T22:39:28.152Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "WESTMOUNT",
     "thickness": "6mm"
@@ -4901,10 +5909,19 @@
       "X116"
     ],
     "count": 3,
-    "availableCount": 3,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 3,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968153-0",
+            "reservedDate": "2025-09-25T22:39:28.153Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -4922,10 +5939,19 @@
       "X116"
     ],
     "count": 7,
-    "availableCount": 7,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 7,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 7,
+        "reservations": [
+          {
+            "id": "auto-1758839968153-0",
+            "reservedDate": "2025-09-25T22:39:28.153Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -4943,10 +5969,19 @@
       "X116"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968154-0",
+            "reservedDate": "2025-09-25T22:39:28.154Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -4964,10 +5999,19 @@
       "X116"
     ],
     "count": 25,
-    "availableCount": 25,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 25,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 25,
+        "reservations": [
+          {
+            "id": "auto-1758839968154-0",
+            "reservedDate": "2025-09-25T22:39:28.154Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "SOUTHTOWER",
     "thickness": "6mm"
@@ -5110,11 +6154,29 @@
       "X76"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968155-0",
+            "reservedDate": "2025-09-25T22:39:28.155Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968155-1",
+            "reservedDate": "2025-09-25T22:39:28.155Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -5131,11 +6193,29 @@
       "X76"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968156-0",
+            "reservedDate": "2025-09-25T22:39:28.156Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968156-1",
+            "reservedDate": "2025-09-25T22:39:28.156Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -5152,11 +6232,29 @@
       "X76"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968156-0",
+            "reservedDate": "2025-09-25T22:39:28.156Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968157-1",
+            "reservedDate": "2025-09-25T22:39:28.157Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "WESTMOUNT",
     "thickness": "6mm"
@@ -5207,12 +6305,39 @@
       "X101"
     ],
     "count": 43,
-    "availableCount": 43,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 43,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 15,
+        "reservations": [
+          {
+            "id": "auto-1758839968157-0",
+            "reservedDate": "2025-09-25T22:39:28.157Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 14,
+        "reservations": [
+          {
+            "id": "auto-1758839968157-1",
+            "reservedDate": "2025-09-25T22:39:28.157Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 14,
+        "reservations": [
+          {
+            "id": "auto-1758839968157-2",
+            "reservedDate": "2025-09-25T22:39:28.157Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -5233,12 +6358,39 @@
       "X101"
     ],
     "count": 23,
-    "availableCount": 23,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 23,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 8,
+        "reservations": [
+          {
+            "id": "auto-1758839968158-0",
+            "reservedDate": "2025-09-25T22:39:28.158Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 8,
+        "reservations": [
+          {
+            "id": "auto-1758839968158-1",
+            "reservedDate": "2025-09-25T22:39:28.158Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 7,
+        "reservations": [
+          {
+            "id": "auto-1758839968158-2",
+            "reservedDate": "2025-09-25T22:39:28.158Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -5259,12 +6411,39 @@
       "X101"
     ],
     "count": 3,
-    "availableCount": 3,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 3,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968159-0",
+            "reservedDate": "2025-09-25T22:39:28.159Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968159-1",
+            "reservedDate": "2025-09-25T22:39:28.159Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968159-2",
+            "reservedDate": "2025-09-25T22:39:28.159Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -5285,12 +6464,39 @@
       "X101"
     ],
     "count": 20,
-    "availableCount": 20,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 20,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 7,
+        "reservations": [
+          {
+            "id": "auto-1758839968160-0",
+            "reservedDate": "2025-09-25T22:39:28.160Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 7,
+        "reservations": [
+          {
+            "id": "auto-1758839968160-1",
+            "reservedDate": "2025-09-25T22:39:28.160Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 6,
+        "reservations": [
+          {
+            "id": "auto-1758839968160-2",
+            "reservedDate": "2025-09-25T22:39:28.160Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -5311,12 +6517,39 @@
       "X101"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968161-0",
+            "reservedDate": "2025-09-25T22:39:28.161Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968161-1",
+            "reservedDate": "2025-09-25T22:39:28.161Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968161-2",
+            "reservedDate": "2025-09-25T22:39:28.161Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "WESTMOUNT",
     "thickness": "6mm"
@@ -5337,12 +6570,39 @@
       "X101"
     ],
     "count": 186,
-    "availableCount": 186,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 186,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 62,
+        "reservations": [
+          {
+            "id": "auto-1758839968161-0",
+            "reservedDate": "2025-09-25T22:39:28.161Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 62,
+        "reservations": [
+          {
+            "id": "auto-1758839968161-1",
+            "reservedDate": "2025-09-25T22:39:28.161Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 62,
+        "reservations": [
+          {
+            "id": "auto-1758839968161-2",
+            "reservedDate": "2025-09-25T22:39:28.161Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -5363,12 +6623,39 @@
       "X101"
     ],
     "count": 100,
-    "availableCount": 100,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 100,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 34,
+        "reservations": [
+          {
+            "id": "auto-1758839968162-0",
+            "reservedDate": "2025-09-25T22:39:28.162Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 33,
+        "reservations": [
+          {
+            "id": "auto-1758839968162-1",
+            "reservedDate": "2025-09-25T22:39:28.162Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 33,
+        "reservations": [
+          {
+            "id": "auto-1758839968162-2",
+            "reservedDate": "2025-09-25T22:39:28.162Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "STOCK",
     "thickness": "6mm"
@@ -5459,10 +6746,19 @@
       "X116"
     ],
     "count": 15,
-    "availableCount": 15,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 15,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 15,
+        "reservations": [
+          {
+            "id": "auto-1758839968163-0",
+            "reservedDate": "2025-09-25T22:39:28.163Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "SOUTHTOWER",
     "thickness": "6mm"
@@ -5614,10 +6910,19 @@
       "X77"
     ],
     "count": 20,
-    "availableCount": 20,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 20,
     "reservedProjects": [
-      "MARLSTONE"
+      {
+        "projectName": "MARLSTONE",
+        "quantity": 20,
+        "reservations": [
+          {
+            "id": "auto-1758839968163-0",
+            "reservedDate": "2025-09-25T22:39:28.163Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -5633,10 +6938,19 @@
       "X77"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "MARLSTONE"
+      {
+        "projectName": "MARLSTONE",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968164-0",
+            "reservedDate": "2025-09-25T22:39:28.164Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "MARLSTONE",
     "thickness": "6mm"
@@ -5664,11 +6978,29 @@
       "X82"
     ],
     "count": 6,
-    "availableCount": 6,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 6,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968164-0",
+            "reservedDate": "2025-09-25T22:39:28.164Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968164-1",
+            "reservedDate": "2025-09-25T22:39:28.164Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -5696,11 +7028,29 @@
       "X82"
     ],
     "count": 14,
-    "availableCount": 14,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 14,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 7,
+        "reservations": [
+          {
+            "id": "auto-1758839968165-0",
+            "reservedDate": "2025-09-25T22:39:28.165Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 7,
+        "reservations": [
+          {
+            "id": "auto-1758839968165-1",
+            "reservedDate": "2025-09-25T22:39:28.165Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -5728,11 +7078,29 @@
       "X82"
     ],
     "count": 150,
-    "availableCount": 150,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 150,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 75,
+        "reservations": [
+          {
+            "id": "auto-1758839968165-0",
+            "reservedDate": "2025-09-25T22:39:28.165Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 75,
+        "reservations": [
+          {
+            "id": "auto-1758839968165-1",
+            "reservedDate": "2025-09-25T22:39:28.165Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -5760,11 +7128,29 @@
       "X82"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968166-0",
+            "reservedDate": "2025-09-25T22:39:28.166Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968166-1",
+            "reservedDate": "2025-09-25T22:39:28.166Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -5856,11 +7242,29 @@
       "X82"
     ],
     "count": 15,
-    "availableCount": 15,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 15,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 8,
+        "reservations": [
+          {
+            "id": "auto-1758839968167-0",
+            "reservedDate": "2025-09-25T22:39:28.167Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 7,
+        "reservations": [
+          {
+            "id": "auto-1758839968167-1",
+            "reservedDate": "2025-09-25T22:39:28.167Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -5888,11 +7292,29 @@
       "X82"
     ],
     "count": 29,
-    "availableCount": 29,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 29,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 15,
+        "reservations": [
+          {
+            "id": "auto-1758839968167-0",
+            "reservedDate": "2025-09-25T22:39:28.167Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 14,
+        "reservations": [
+          {
+            "id": "auto-1758839968167-1",
+            "reservedDate": "2025-09-25T22:39:28.167Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -5920,11 +7342,29 @@
       "X82"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968168-0",
+            "reservedDate": "2025-09-25T22:39:28.168Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968168-1",
+            "reservedDate": "2025-09-25T22:39:28.168Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -5952,11 +7392,29 @@
       "X82"
     ],
     "count": 5,
-    "availableCount": 5,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 5,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968169-0",
+            "reservedDate": "2025-09-25T22:39:28.169Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968169-1",
+            "reservedDate": "2025-09-25T22:39:28.169Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -5984,11 +7442,29 @@
       "X82"
     ],
     "count": 39,
-    "availableCount": 39,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 39,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 20,
+        "reservations": [
+          {
+            "id": "auto-1758839968169-0",
+            "reservedDate": "2025-09-25T22:39:28.169Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 19,
+        "reservations": [
+          {
+            "id": "auto-1758839968170-1",
+            "reservedDate": "2025-09-25T22:39:28.170Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -6016,11 +7492,29 @@
       "X82"
     ],
     "count": 113,
-    "availableCount": 113,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 113,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 57,
+        "reservations": [
+          {
+            "id": "auto-1758839968170-0",
+            "reservedDate": "2025-09-25T22:39:28.170Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 56,
+        "reservations": [
+          {
+            "id": "auto-1758839968170-1",
+            "reservedDate": "2025-09-25T22:39:28.170Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -6048,11 +7542,29 @@
       "X82"
     ],
     "count": 25,
-    "availableCount": 25,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 25,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 13,
+        "reservations": [
+          {
+            "id": "auto-1758839968171-0",
+            "reservedDate": "2025-09-25T22:39:28.171Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 12,
+        "reservations": [
+          {
+            "id": "auto-1758839968171-1",
+            "reservedDate": "2025-09-25T22:39:28.171Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "ROCKWELL",
     "thickness": "6mm"
@@ -6080,11 +7592,29 @@
       "X82"
     ],
     "count": 46,
-    "availableCount": 46,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 46,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 23,
+        "reservations": [
+          {
+            "id": "auto-1758839968172-0",
+            "reservedDate": "2025-09-25T22:39:28.172Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 23,
+        "reservations": [
+          {
+            "id": "auto-1758839968172-1",
+            "reservedDate": "2025-09-25T22:39:28.172Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -6130,10 +7660,19 @@
       "X115"
     ],
     "count": 13,
-    "availableCount": 13,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 13,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 13,
+        "reservations": [
+          {
+            "id": "auto-1758839968172-0",
+            "reservedDate": "2025-09-25T22:39:28.172Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -6151,10 +7690,19 @@
       "X115"
     ],
     "count": 14,
-    "availableCount": 14,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 14,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 14,
+        "reservations": [
+          {
+            "id": "auto-1758839968173-0",
+            "reservedDate": "2025-09-25T22:39:28.173Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -6172,10 +7720,19 @@
       "X115"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968174-0",
+            "reservedDate": "2025-09-25T22:39:28.174Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -6193,10 +7750,19 @@
       "X115"
     ],
     "count": 20,
-    "availableCount": 20,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 20,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 20,
+        "reservations": [
+          {
+            "id": "auto-1758839968174-0",
+            "reservedDate": "2025-09-25T22:39:28.174Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "SOUTHTOWER",
     "thickness": "6mm"
@@ -6363,10 +7929,19 @@
       "X67"
     ],
     "count": 10,
-    "availableCount": 10,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 10,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 10,
+        "reservations": [
+          {
+            "id": "auto-1758839968175-0",
+            "reservedDate": "2025-09-25T22:39:28.175Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -6396,10 +7971,19 @@
       "X77"
     ],
     "count": 20,
-    "availableCount": 20,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 20,
     "reservedProjects": [
-      "MARLSTONE"
+      {
+        "projectName": "MARLSTONE",
+        "quantity": 20,
+        "reservations": [
+          {
+            "id": "auto-1758839968176-0",
+            "reservedDate": "2025-09-25T22:39:28.176Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -6415,10 +7999,19 @@
       "X77"
     ],
     "count": 40,
-    "availableCount": 40,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 40,
     "reservedProjects": [
-      "MARLSTONE"
+      {
+        "projectName": "MARLSTONE",
+        "quantity": 40,
+        "reservations": [
+          {
+            "id": "auto-1758839968176-0",
+            "reservedDate": "2025-09-25T22:39:28.176Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "MARLSTONE",
     "thickness": "6mm"
@@ -6489,11 +8082,29 @@
       "X096"
     ],
     "count": 5,
-    "availableCount": 5,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 5,
     "reservedProjects": [
-      "ROCKWELL",
-      "STOCK"
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968177-0",
+            "reservedDate": "2025-09-25T22:39:28.177Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968177-1",
+            "reservedDate": "2025-09-25T22:39:28.177Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -6514,11 +8125,29 @@
       "X096"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "ROCKWELL",
-      "STOCK"
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968177-0",
+            "reservedDate": "2025-09-25T22:39:28.177Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968177-1",
+            "reservedDate": "2025-09-25T22:39:28.177Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -6539,11 +8168,29 @@
       "X096"
     ],
     "count": 69,
-    "availableCount": 69,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 69,
     "reservedProjects": [
-      "ROCKWELL",
-      "STOCK"
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 35,
+        "reservations": [
+          {
+            "id": "auto-1758839968178-0",
+            "reservedDate": "2025-09-25T22:39:28.178Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 34,
+        "reservations": [
+          {
+            "id": "auto-1758839968178-1",
+            "reservedDate": "2025-09-25T22:39:28.178Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "ROCKWELL",
     "thickness": "6mm"
@@ -6589,11 +8236,29 @@
       "X096"
     ],
     "count": 20,
-    "availableCount": 20,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 20,
     "reservedProjects": [
-      "ROCKWELL",
-      "STOCK"
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 10,
+        "reservations": [
+          {
+            "id": "auto-1758839968179-0",
+            "reservedDate": "2025-09-25T22:39:28.179Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 10,
+        "reservations": [
+          {
+            "id": "auto-1758839968179-1",
+            "reservedDate": "2025-09-25T22:39:28.179Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "STOCK",
     "thickness": "6mm"
@@ -6614,11 +8279,29 @@
       "X096"
     ],
     "count": 120,
-    "availableCount": 120,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 120,
     "reservedProjects": [
-      "ROCKWELL",
-      "STOCK"
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 60,
+        "reservations": [
+          {
+            "id": "auto-1758839968179-0",
+            "reservedDate": "2025-09-25T22:39:28.179Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 60,
+        "reservations": [
+          {
+            "id": "auto-1758839968179-1",
+            "reservedDate": "2025-09-25T22:39:28.179Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "STOCK",
     "thickness": "6mm"
@@ -6755,10 +8438,19 @@
       "X66"
     ],
     "count": 6,
-    "availableCount": 6,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 6,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 6,
+        "reservations": [
+          {
+            "id": "auto-1758839968180-0",
+            "reservedDate": "2025-09-25T22:39:28.180Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -6884,11 +8576,29 @@
       "X76"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968180-0",
+            "reservedDate": "2025-09-25T22:39:28.180Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968180-1",
+            "reservedDate": "2025-09-25T22:39:28.181Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -6904,11 +8614,29 @@
       "X76"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968181-0",
+            "reservedDate": "2025-09-25T22:39:28.181Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968181-1",
+            "reservedDate": "2025-09-25T22:39:28.181Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "WESTMOUNT",
     "thickness": "6mm"
@@ -6961,12 +8689,39 @@
       "X092"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968182-0",
+            "reservedDate": "2025-09-25T22:39:28.182Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968182-1",
+            "reservedDate": "2025-09-25T22:39:28.182Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968182-2",
+            "reservedDate": "2025-09-25T22:39:28.182Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -6989,12 +8744,39 @@
       "X092"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968183-0",
+            "reservedDate": "2025-09-25T22:39:28.183Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968183-1",
+            "reservedDate": "2025-09-25T22:39:28.183Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968183-2",
+            "reservedDate": "2025-09-25T22:39:28.183Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -7017,12 +8799,39 @@
       "X092"
     ],
     "count": 30,
-    "availableCount": 30,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 30,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 10,
+        "reservations": [
+          {
+            "id": "auto-1758839968183-0",
+            "reservedDate": "2025-09-25T22:39:28.183Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 10,
+        "reservations": [
+          {
+            "id": "auto-1758839968183-1",
+            "reservedDate": "2025-09-25T22:39:28.183Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 10,
+        "reservations": [
+          {
+            "id": "auto-1758839968184-2",
+            "reservedDate": "2025-09-25T22:39:28.184Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -7045,12 +8854,39 @@
       "X092"
     ],
     "count": 21,
-    "availableCount": 21,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 21,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 7,
+        "reservations": [
+          {
+            "id": "auto-1758839968184-0",
+            "reservedDate": "2025-09-25T22:39:28.184Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 7,
+        "reservations": [
+          {
+            "id": "auto-1758839968184-1",
+            "reservedDate": "2025-09-25T22:39:28.184Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 7,
+        "reservations": [
+          {
+            "id": "auto-1758839968185-2",
+            "reservedDate": "2025-09-25T22:39:28.185Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -7073,12 +8909,39 @@
       "X092"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968185-0",
+            "reservedDate": "2025-09-25T22:39:28.185Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968185-1",
+            "reservedDate": "2025-09-25T22:39:28.185Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968185-2",
+            "reservedDate": "2025-09-25T22:39:28.185Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -7101,12 +8964,39 @@
       "X092"
     ],
     "count": 20,
-    "availableCount": 20,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 20,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 7,
+        "reservations": [
+          {
+            "id": "auto-1758839968186-0",
+            "reservedDate": "2025-09-25T22:39:28.186Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 7,
+        "reservations": [
+          {
+            "id": "auto-1758839968186-1",
+            "reservedDate": "2025-09-25T22:39:28.186Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 6,
+        "reservations": [
+          {
+            "id": "auto-1758839968186-2",
+            "reservedDate": "2025-09-25T22:39:28.186Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -7129,12 +9019,39 @@
       "X092"
     ],
     "count": 11,
-    "availableCount": 11,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 11,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968187-0",
+            "reservedDate": "2025-09-25T22:39:28.187Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968187-1",
+            "reservedDate": "2025-09-25T22:39:28.187Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968187-2",
+            "reservedDate": "2025-09-25T22:39:28.187Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "ROCKWELL",
     "thickness": "6mm"
@@ -7157,12 +9074,39 @@
       "X092"
     ],
     "count": 10,
-    "availableCount": 10,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 10,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968188-0",
+            "reservedDate": "2025-09-25T22:39:28.188Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968188-1",
+            "reservedDate": "2025-09-25T22:39:28.188Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968188-2",
+            "reservedDate": "2025-09-25T22:39:28.188Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "ROCKWELL",
     "thickness": "6mm"
@@ -7185,12 +9129,39 @@
       "X092"
     ],
     "count": 120,
-    "availableCount": 120,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 120,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 40,
+        "reservations": [
+          {
+            "id": "auto-1758839968188-0",
+            "reservedDate": "2025-09-25T22:39:28.188Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 40,
+        "reservations": [
+          {
+            "id": "auto-1758839968188-1",
+            "reservedDate": "2025-09-25T22:39:28.188Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 40,
+        "reservations": [
+          {
+            "id": "auto-1758839968188-2",
+            "reservedDate": "2025-09-25T22:39:28.188Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "STOCK",
     "thickness": "6mm"
@@ -7421,11 +9392,29 @@
       "X76"
     ],
     "count": 3,
-    "availableCount": 3,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 3,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968189-0",
+            "reservedDate": "2025-09-25T22:39:28.189Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968189-1",
+            "reservedDate": "2025-09-25T22:39:28.189Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -7442,11 +9431,29 @@
       "X76"
     ],
     "count": 23,
-    "availableCount": 23,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 23,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 12,
+        "reservations": [
+          {
+            "id": "auto-1758839968190-0",
+            "reservedDate": "2025-09-25T22:39:28.190Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 11,
+        "reservations": [
+          {
+            "id": "auto-1758839968190-1",
+            "reservedDate": "2025-09-25T22:39:28.190Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -7463,11 +9470,29 @@
       "X76"
     ],
     "count": 61,
-    "availableCount": 61,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 61,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 31,
+        "reservations": [
+          {
+            "id": "auto-1758839968190-0",
+            "reservedDate": "2025-09-25T22:39:28.190Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 30,
+        "reservations": [
+          {
+            "id": "auto-1758839968190-1",
+            "reservedDate": "2025-09-25T22:39:28.190Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "WESTMOUNT",
     "thickness": "6mm"
@@ -7496,10 +9521,19 @@
       "X77"
     ],
     "count": 40,
-    "availableCount": 40,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 40,
     "reservedProjects": [
-      "MARLSTONE"
+      {
+        "projectName": "MARLSTONE",
+        "quantity": 40,
+        "reservations": [
+          {
+            "id": "auto-1758839968191-0",
+            "reservedDate": "2025-09-25T22:39:28.191Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "MARLSTONE",
     "thickness": "6mm"
@@ -7522,12 +9556,39 @@
       "X86"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968191-0",
+            "reservedDate": "2025-09-25T22:39:28.191Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968192-1",
+            "reservedDate": "2025-09-25T22:39:28.192Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968192-2",
+            "reservedDate": "2025-09-25T22:39:28.192Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -7550,12 +9611,39 @@
       "X86"
     ],
     "count": 103,
-    "availableCount": 103,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 103,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 35,
+        "reservations": [
+          {
+            "id": "auto-1758839968192-0",
+            "reservedDate": "2025-09-25T22:39:28.192Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 34,
+        "reservations": [
+          {
+            "id": "auto-1758839968192-1",
+            "reservedDate": "2025-09-25T22:39:28.192Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 34,
+        "reservations": [
+          {
+            "id": "auto-1758839968192-2",
+            "reservedDate": "2025-09-25T22:39:28.192Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -7578,12 +9666,39 @@
       "X86"
     ],
     "count": 10,
-    "availableCount": 10,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 10,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968193-0",
+            "reservedDate": "2025-09-25T22:39:28.193Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968193-1",
+            "reservedDate": "2025-09-25T22:39:28.193Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968193-2",
+            "reservedDate": "2025-09-25T22:39:28.193Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -7606,12 +9721,39 @@
       "X86"
     ],
     "count": 18,
-    "availableCount": 18,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 18,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 6,
+        "reservations": [
+          {
+            "id": "auto-1758839968194-0",
+            "reservedDate": "2025-09-25T22:39:28.194Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 6,
+        "reservations": [
+          {
+            "id": "auto-1758839968194-1",
+            "reservedDate": "2025-09-25T22:39:28.194Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 6,
+        "reservations": [
+          {
+            "id": "auto-1758839968194-2",
+            "reservedDate": "2025-09-25T22:39:28.194Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -7634,12 +9776,39 @@
       "X86"
     ],
     "count": 71,
-    "availableCount": 71,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 71,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 24,
+        "reservations": [
+          {
+            "id": "auto-1758839968194-0",
+            "reservedDate": "2025-09-25T22:39:28.194Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 24,
+        "reservations": [
+          {
+            "id": "auto-1758839968194-1",
+            "reservedDate": "2025-09-25T22:39:28.194Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 23,
+        "reservations": [
+          {
+            "id": "auto-1758839968194-2",
+            "reservedDate": "2025-09-25T22:39:28.194Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -7662,12 +9831,39 @@
       "X86"
     ],
     "count": 6,
-    "availableCount": 6,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 6,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968195-0",
+            "reservedDate": "2025-09-25T22:39:28.195Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968195-1",
+            "reservedDate": "2025-09-25T22:39:28.195Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968195-2",
+            "reservedDate": "2025-09-25T22:39:28.195Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -7718,12 +9914,39 @@
       "X86"
     ],
     "count": 11,
-    "availableCount": 11,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 11,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968196-0",
+            "reservedDate": "2025-09-25T22:39:28.196Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968196-1",
+            "reservedDate": "2025-09-25T22:39:28.196Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968196-2",
+            "reservedDate": "2025-09-25T22:39:28.196Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "WESTMOUNT",
     "thickness": "6mm"
@@ -7746,12 +9969,39 @@
       "X86"
     ],
     "count": 74,
-    "availableCount": 74,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 74,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 25,
+        "reservations": [
+          {
+            "id": "auto-1758839968196-0",
+            "reservedDate": "2025-09-25T22:39:28.196Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 25,
+        "reservations": [
+          {
+            "id": "auto-1758839968197-1",
+            "reservedDate": "2025-09-25T22:39:28.197Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 24,
+        "reservations": [
+          {
+            "id": "auto-1758839968197-2",
+            "reservedDate": "2025-09-25T22:39:28.197Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "ROCKWELL",
     "thickness": "6mm"
@@ -7774,12 +10024,39 @@
       "X86"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968197-0",
+            "reservedDate": "2025-09-25T22:39:28.197Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968197-1",
+            "reservedDate": "2025-09-25T22:39:28.197Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968197-2",
+            "reservedDate": "2025-09-25T22:39:28.197Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "ROCKWELL",
     "thickness": "6mm"
@@ -7855,10 +10132,19 @@
       "X67"
     ],
     "count": 71,
-    "availableCount": 71,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 71,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 71,
+        "reservations": [
+          {
+            "id": "auto-1758839968198-0",
+            "reservedDate": "2025-09-25T22:39:28.198Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -7874,10 +10160,19 @@
       "X67"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968199-0",
+            "reservedDate": "2025-09-25T22:39:28.199Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -7897,11 +10192,29 @@
       "X76"
     ],
     "count": 86,
-    "availableCount": 86,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 86,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 43,
+        "reservations": [
+          {
+            "id": "auto-1758839968199-0",
+            "reservedDate": "2025-09-25T22:39:28.199Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 43,
+        "reservations": [
+          {
+            "id": "auto-1758839968199-1",
+            "reservedDate": "2025-09-25T22:39:28.199Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -7921,11 +10234,29 @@
       "X76"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968200-0",
+            "reservedDate": "2025-09-25T22:39:28.200Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968200-1",
+            "reservedDate": "2025-09-25T22:39:28.200Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -7945,11 +10276,29 @@
       "X76"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968200-0",
+            "reservedDate": "2025-09-25T22:39:28.200Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968201-1",
+            "reservedDate": "2025-09-25T22:39:28.201Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -7969,11 +10318,29 @@
       "X76"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968201-0",
+            "reservedDate": "2025-09-25T22:39:28.201Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968201-1",
+            "reservedDate": "2025-09-25T22:39:28.201Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -7993,11 +10360,29 @@
       "X76"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968202-0",
+            "reservedDate": "2025-09-25T22:39:28.202Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968202-1",
+            "reservedDate": "2025-09-25T22:39:28.202Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -8017,11 +10402,29 @@
       "X76"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968203-0",
+            "reservedDate": "2025-09-25T22:39:28.203Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968203-1",
+            "reservedDate": "2025-09-25T22:39:28.203Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "WESTMOUNT",
     "thickness": "6mm"
@@ -8233,10 +10636,19 @@
       "X67"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968203-0",
+            "reservedDate": "2025-09-25T22:39:28.203Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -8274,11 +10686,29 @@
       "X84"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968204-0",
+            "reservedDate": "2025-09-25T22:39:28.204Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968204-1",
+            "reservedDate": "2025-09-25T22:39:28.204Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -8302,11 +10732,29 @@
       "X84"
     ],
     "count": 10,
-    "availableCount": 10,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 10,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 5,
+        "reservations": [
+          {
+            "id": "auto-1758839968204-0",
+            "reservedDate": "2025-09-25T22:39:28.204Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 5,
+        "reservations": [
+          {
+            "id": "auto-1758839968205-1",
+            "reservedDate": "2025-09-25T22:39:28.205Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -8330,11 +10778,29 @@
       "X84"
     ],
     "count": 70,
-    "availableCount": 70,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 70,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 35,
+        "reservations": [
+          {
+            "id": "auto-1758839968205-0",
+            "reservedDate": "2025-09-25T22:39:28.205Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 35,
+        "reservations": [
+          {
+            "id": "auto-1758839968205-1",
+            "reservedDate": "2025-09-25T22:39:28.205Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -8358,11 +10824,29 @@
       "X84"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968206-0",
+            "reservedDate": "2025-09-25T22:39:28.206Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968206-1",
+            "reservedDate": "2025-09-25T22:39:28.206Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -8386,11 +10870,29 @@
       "X84"
     ],
     "count": 32,
-    "availableCount": 32,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 32,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 16,
+        "reservations": [
+          {
+            "id": "auto-1758839968206-0",
+            "reservedDate": "2025-09-25T22:39:28.206Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 16,
+        "reservations": [
+          {
+            "id": "auto-1758839968207-1",
+            "reservedDate": "2025-09-25T22:39:28.207Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -8414,11 +10916,29 @@
       "X84"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968207-0",
+            "reservedDate": "2025-09-25T22:39:28.207Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968207-1",
+            "reservedDate": "2025-09-25T22:39:28.207Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -8442,11 +10962,29 @@
       "X84"
     ],
     "count": 60,
-    "availableCount": 60,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 60,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 30,
+        "reservations": [
+          {
+            "id": "auto-1758839968208-0",
+            "reservedDate": "2025-09-25T22:39:28.208Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 30,
+        "reservations": [
+          {
+            "id": "auto-1758839968208-1",
+            "reservedDate": "2025-09-25T22:39:28.208Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -8470,11 +11008,29 @@
       "X84"
     ],
     "count": 32,
-    "availableCount": 32,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 32,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 16,
+        "reservations": [
+          {
+            "id": "auto-1758839968208-0",
+            "reservedDate": "2025-09-25T22:39:28.208Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 16,
+        "reservations": [
+          {
+            "id": "auto-1758839968208-1",
+            "reservedDate": "2025-09-25T22:39:28.208Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -8498,11 +11054,29 @@
       "X84"
     ],
     "count": 44,
-    "availableCount": 44,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 44,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 22,
+        "reservations": [
+          {
+            "id": "auto-1758839968209-0",
+            "reservedDate": "2025-09-25T22:39:28.209Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 22,
+        "reservations": [
+          {
+            "id": "auto-1758839968209-1",
+            "reservedDate": "2025-09-25T22:39:28.209Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -8526,11 +11100,29 @@
       "X84"
     ],
     "count": 6,
-    "availableCount": 6,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 6,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968210-0",
+            "reservedDate": "2025-09-25T22:39:28.210Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 3,
+        "reservations": [
+          {
+            "id": "auto-1758839968210-1",
+            "reservedDate": "2025-09-25T22:39:28.210Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "ROCKWELL",
     "thickness": "6mm"
@@ -8671,10 +11263,19 @@
       "X67"
     ],
     "count": 14,
-    "availableCount": 14,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 14,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 14,
+        "reservations": [
+          {
+            "id": "auto-1758839968210-0",
+            "reservedDate": "2025-09-25T22:39:28.210Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -8692,11 +11293,29 @@
       "X097"
     ],
     "count": 71,
-    "availableCount": 71,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 71,
     "reservedProjects": [
-      "QUEEN",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 36,
+        "reservations": [
+          {
+            "id": "auto-1758839968211-0",
+            "reservedDate": "2025-09-25T22:39:28.211Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 35,
+        "reservations": [
+          {
+            "id": "auto-1758839968211-1",
+            "reservedDate": "2025-09-25T22:39:28.211Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -8714,11 +11333,29 @@
       "X097"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "QUEEN",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968211-0",
+            "reservedDate": "2025-09-25T22:39:28.211Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968212-1",
+            "reservedDate": "2025-09-25T22:39:28.212Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -8736,11 +11373,29 @@
       "X097"
     ],
     "count": 59,
-    "availableCount": 59,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 59,
     "reservedProjects": [
-      "QUEEN",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 30,
+        "reservations": [
+          {
+            "id": "auto-1758839968212-0",
+            "reservedDate": "2025-09-25T22:39:28.212Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 29,
+        "reservations": [
+          {
+            "id": "auto-1758839968212-1",
+            "reservedDate": "2025-09-25T22:39:28.212Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -8758,11 +11413,29 @@
       "X097"
     ],
     "count": 70,
-    "availableCount": 70,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 70,
     "reservedProjects": [
-      "QUEEN",
-      "STOCK"
+      {
+        "projectName": "QUEEN",
+        "quantity": 35,
+        "reservations": [
+          {
+            "id": "auto-1758839968213-0",
+            "reservedDate": "2025-09-25T22:39:28.213Z"
+          }
+        ]
+      },
+      {
+        "projectName": "STOCK",
+        "quantity": 35,
+        "reservations": [
+          {
+            "id": "auto-1758839968213-1",
+            "reservedDate": "2025-09-25T22:39:28.213Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "STOCK",
     "thickness": "6mm"
@@ -9043,10 +11716,19 @@
       "X67"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968214-0",
+            "reservedDate": "2025-09-25T22:39:28.214Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -9064,10 +11746,19 @@
       "X099"
     ],
     "count": 14,
-    "availableCount": 14,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 14,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 14,
+        "reservations": [
+          {
+            "id": "auto-1758839968214-0",
+            "reservedDate": "2025-09-25T22:39:28.214Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -9085,10 +11776,19 @@
       "X099"
     ],
     "count": 9,
-    "availableCount": 9,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 9,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 9,
+        "reservations": [
+          {
+            "id": "auto-1758839968215-0",
+            "reservedDate": "2025-09-25T22:39:28.215Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -9106,10 +11806,19 @@
       "X099"
     ],
     "count": 14,
-    "availableCount": 14,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 14,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 14,
+        "reservations": [
+          {
+            "id": "auto-1758839968216-0",
+            "reservedDate": "2025-09-25T22:39:28.216Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "STOCK",
     "thickness": "6mm"
@@ -9127,10 +11836,19 @@
       "X099"
     ],
     "count": 110,
-    "availableCount": 110,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 110,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 110,
+        "reservations": [
+          {
+            "id": "auto-1758839968216-0",
+            "reservedDate": "2025-09-25T22:39:28.216Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "STOCK",
     "thickness": "6mm"
@@ -9251,10 +11969,19 @@
       "X67"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968217-0",
+            "reservedDate": "2025-09-25T22:39:28.217Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -9427,10 +12154,19 @@
       "X67"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968217-0",
+            "reservedDate": "2025-09-25T22:39:28.217Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -9529,10 +12265,19 @@
       "X115"
     ],
     "count": 60,
-    "availableCount": 60,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 60,
     "reservedProjects": [
-      "SOUTHTOWER"
+      {
+        "projectName": "SOUTHTOWER",
+        "quantity": 60,
+        "reservations": [
+          {
+            "id": "auto-1758839968218-0",
+            "reservedDate": "2025-09-25T22:39:28.218Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "SOUTHTOWER",
     "thickness": "6mm"
@@ -9565,11 +12310,29 @@
       "X86"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968218-0",
+            "reservedDate": "2025-09-25T22:39:28.218Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 0,
+        "reservations": [
+          {
+            "id": "auto-1758839968218-1",
+            "reservedDate": "2025-09-25T22:39:28.218Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -9588,11 +12351,29 @@
       "X86"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968219-0",
+            "reservedDate": "2025-09-25T22:39:28.219Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968219-1",
+            "reservedDate": "2025-09-25T22:39:28.219Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -9611,11 +12392,29 @@
       "X86"
     ],
     "count": 40,
-    "availableCount": 40,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 40,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 20,
+        "reservations": [
+          {
+            "id": "auto-1758839968220-0",
+            "reservedDate": "2025-09-25T22:39:28.220Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 20,
+        "reservations": [
+          {
+            "id": "auto-1758839968220-1",
+            "reservedDate": "2025-09-25T22:39:28.220Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -9634,11 +12433,29 @@
       "X86"
     ],
     "count": 101,
-    "availableCount": 101,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 101,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 51,
+        "reservations": [
+          {
+            "id": "auto-1758839968220-0",
+            "reservedDate": "2025-09-25T22:39:28.220Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 50,
+        "reservations": [
+          {
+            "id": "auto-1758839968221-1",
+            "reservedDate": "2025-09-25T22:39:28.221Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "ROCKWELL",
     "thickness": "6mm"
@@ -9657,11 +12474,29 @@
       "X86"
     ],
     "count": 101,
-    "availableCount": 101,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 101,
     "reservedProjects": [
-      "QUEEN",
-      "ROCKWELL"
+      {
+        "projectName": "QUEEN",
+        "quantity": 51,
+        "reservations": [
+          {
+            "id": "auto-1758839968221-0",
+            "reservedDate": "2025-09-25T22:39:28.221Z"
+          }
+        ]
+      },
+      {
+        "projectName": "ROCKWELL",
+        "quantity": 50,
+        "reservations": [
+          {
+            "id": "auto-1758839968221-1",
+            "reservedDate": "2025-09-25T22:39:28.221Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "ROCKWELL",
     "thickness": "6mm"
@@ -9766,10 +12601,19 @@
       "X76"
     ],
     "count": 8,
-    "availableCount": 8,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 8,
     "reservedProjects": [
-      "WESTMOUNT"
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 8,
+        "reservations": [
+          {
+            "id": "auto-1758839968221-0",
+            "reservedDate": "2025-09-25T22:39:28.221Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "WESTMOUNT",
     "thickness": "6mm"
@@ -9814,10 +12658,19 @@
       "X67"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968222-0",
+            "reservedDate": "2025-09-25T22:39:28.222Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -9909,10 +12762,19 @@
       "X67"
     ],
     "count": 6,
-    "availableCount": 6,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 6,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 6,
+        "reservations": [
+          {
+            "id": "auto-1758839968223-0",
+            "reservedDate": "2025-09-25T22:39:28.223Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -9928,10 +12790,19 @@
       "X67"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968223-0",
+            "reservedDate": "2025-09-25T22:39:28.223Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -9949,10 +12820,19 @@
       "X097"
     ],
     "count": 53,
-    "availableCount": 53,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 53,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 53,
+        "reservations": [
+          {
+            "id": "auto-1758839968224-0",
+            "reservedDate": "2025-09-25T22:39:28.224Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "STOCK",
     "thickness": "6mm"
@@ -9970,10 +12850,19 @@
       "X097"
     ],
     "count": 130,
-    "availableCount": 130,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 130,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 130,
+        "reservations": [
+          {
+            "id": "auto-1758839968225-0",
+            "reservedDate": "2025-09-25T22:39:28.225Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -10012,10 +12901,19 @@
       "X097"
     ],
     "count": 30,
-    "availableCount": 30,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 30,
     "reservedProjects": [
-      "STOCK"
+      {
+        "projectName": "STOCK",
+        "quantity": 30,
+        "reservations": [
+          {
+            "id": "auto-1758839968225-0",
+            "reservedDate": "2025-09-25T22:39:28.225Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "STOCK",
     "thickness": "6mm"
@@ -10030,10 +12928,19 @@
       "X112"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968226-0",
+            "reservedDate": "2025-09-25T22:39:28.226Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -10081,11 +12988,29 @@
       "X76"
     ],
     "count": 3,
-    "availableCount": 3,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 3,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968226-0",
+            "reservedDate": "2025-09-25T22:39:28.226Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968227-1",
+            "reservedDate": "2025-09-25T22:39:28.227Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -10103,11 +13028,29 @@
       "X76"
     ],
     "count": 9,
-    "availableCount": 9,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 9,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 5,
+        "reservations": [
+          {
+            "id": "auto-1758839968227-0",
+            "reservedDate": "2025-09-25T22:39:28.227Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968227-1",
+            "reservedDate": "2025-09-25T22:39:28.227Z"
+          }
+        ]
+      }
     ],
     "reservedProject": null,
     "thickness": "6mm"
@@ -10125,11 +13068,29 @@
       "X76"
     ],
     "count": 32,
-    "availableCount": 32,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 32,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 16,
+        "reservations": [
+          {
+            "id": "auto-1758839968228-0",
+            "reservedDate": "2025-09-25T22:39:28.228Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 16,
+        "reservations": [
+          {
+            "id": "auto-1758839968228-1",
+            "reservedDate": "2025-09-25T22:39:28.228Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -10147,11 +13108,29 @@
       "X76"
     ],
     "count": 14,
-    "availableCount": 14,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 14,
     "reservedProjects": [
-      "QUEEN",
-      "WESTMOUNT"
+      {
+        "projectName": "QUEEN",
+        "quantity": 7,
+        "reservations": [
+          {
+            "id": "auto-1758839968229-0",
+            "reservedDate": "2025-09-25T22:39:28.229Z"
+          }
+        ]
+      },
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 7,
+        "reservations": [
+          {
+            "id": "auto-1758839968229-1",
+            "reservedDate": "2025-09-25T22:39:28.229Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "WESTMOUNT",
     "thickness": "6mm"
@@ -10196,10 +13175,19 @@
       "X112"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968229-0",
+            "reservedDate": "2025-09-25T22:39:28.229Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -10214,10 +13202,19 @@
       "X66"
     ],
     "count": 1,
-    "availableCount": 1,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 1,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 1,
+        "reservations": [
+          {
+            "id": "auto-1758839968230-0",
+            "reservedDate": "2025-09-25T22:39:28.230Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -10232,10 +13229,19 @@
       "X67"
     ],
     "count": 2,
-    "availableCount": 2,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 2,
     "reservedProjects": [
-      "QUEEN"
+      {
+        "projectName": "QUEEN",
+        "quantity": 2,
+        "reservations": [
+          {
+            "id": "auto-1758839968230-0",
+            "reservedDate": "2025-09-25T22:39:28.230Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "QUEEN",
     "thickness": "6mm"
@@ -10250,10 +13256,19 @@
       "X76"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "WESTMOUNT"
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968231-0",
+            "reservedDate": "2025-09-25T22:39:28.231Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "WESTMOUNT",
     "thickness": "6mm"
@@ -10268,10 +13283,19 @@
       "X76"
     ],
     "count": 4,
-    "availableCount": 4,
-    "reservedCount": 0,
+    "availableCount": 0,
+    "reservedCount": 4,
     "reservedProjects": [
-      "WESTMOUNT"
+      {
+        "projectName": "WESTMOUNT",
+        "quantity": 4,
+        "reservations": [
+          {
+            "id": "auto-1758839968231-0",
+            "reservedDate": "2025-09-25T22:39:28.231Z"
+          }
+        ]
+      }
     ],
     "reservedProject": "WESTMOUNT",
     "thickness": "6mm"

@@ -20,12 +20,14 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
   const [heightSearchValue, setHeightSearchValue] = useState('')
   const [colorSearchValue, setColorSearchValue] = useState('')
   const [thicknessSearchValue, setThicknessSearchValue] = useState('')
+  const [projectSearchValue, setProjectSearchValue] = useState('')
   
   // Debounced search values for actual filtering
   const [debouncedWidthSearch, setDebouncedWidthSearch] = useState('')
   const [debouncedHeightSearch, setDebouncedHeightSearch] = useState('')
   const [debouncedColorSearch, setDebouncedColorSearch] = useState('')
   const [debouncedThicknessSearch, setDebouncedThicknessSearch] = useState('')
+  const [debouncedProjectSearch, setDebouncedProjectSearch] = useState('')
   
   // Loading state for search operations
   const [isFiltering, setIsFiltering] = useState(false)
@@ -35,6 +37,7 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
   const heightTimeoutRef = useRef(null)
   const colorTimeoutRef = useRef(null)
   const thicknessTimeoutRef = useRef(null)
+  const projectTimeoutRef = useRef(null)
 
   // Debounced search handlers
   const handleWidthSearch = useCallback((value) => {
@@ -77,6 +80,16 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
     }, 300)
   }, [])
 
+  const handleProjectSearch = useCallback((value) => {
+    setProjectSearchValue(value)
+    setIsFiltering(!!value)
+    if (projectTimeoutRef.current) clearTimeout(projectTimeoutRef.current)
+    projectTimeoutRef.current = setTimeout(() => {
+      setDebouncedProjectSearch(value)
+      setIsFiltering(false)
+    }, 300)
+  }, [])
+
   // Apply search filtering and sorting
   const filteredGlasses = useMemo(() => {
     let filtered = glasses
@@ -108,6 +121,27 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
         String(glass.thickness || '6mm').toLowerCase().includes(debouncedThicknessSearch.toLowerCase())
       )
     }
+
+    // Apply project search
+    if (debouncedProjectSearch.trim()) {
+      filtered = filtered.filter(glass => {
+        if (!glass.reservedProjects || glass.reservedProjects.length === 0) {
+          // If searching and glass has no projects, check if searching for "none" or similar
+          return 'none'.includes(debouncedProjectSearch.toLowerCase())
+        }
+        
+        // Search in project names
+        return glass.reservedProjects.some(project => {
+          if (!project) return false
+          
+          const projectName = typeof project === 'string' 
+            ? project 
+            : project.projectName || ''
+          
+          return projectName.toLowerCase().includes(debouncedProjectSearch.toLowerCase())
+        })
+      })
+    }
     
     // Apply sorting if sortConfig is provided
     if (sortConfig && sortConfig.key) {
@@ -115,8 +149,8 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
         const aValue = a[sortConfig.key]
         const bValue = b[sortConfig.key]
         
-        // Handle numeric sorting for width and height
-        if (sortConfig.key === 'width' || sortConfig.key === 'height') {
+        // Handle numeric sorting for numeric fields
+        if (['width', 'height', 'count', 'availableCount', 'reservedCount'].includes(sortConfig.key)) {
           const aNum = parseFloat(aValue) || 0
           const bNum = parseFloat(bValue) || 0
           if (sortConfig.direction === 'asc') {
@@ -126,7 +160,18 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
           }
         }
         
-        // Handle string sorting for other fields
+        // Handle boolean sorting for heatSoaked
+        if (sortConfig.key === 'heatSoaked') {
+          const aBool = Boolean(aValue)
+          const bBool = Boolean(bValue)
+          if (sortConfig.direction === 'asc') {
+            return aBool === bBool ? 0 : (aBool ? 1 : -1)
+          } else {
+            return aBool === bBool ? 0 : (aBool ? -1 : 1)
+          }
+        }
+        
+        // Handle string sorting for other fields (color, thickness, etc.)
         const aStr = String(aValue || '').toLowerCase()
         const bStr = String(bValue || '').toLowerCase()
         if (sortConfig.direction === 'asc') {
@@ -138,7 +183,7 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
     }
     
     return filtered
-  }, [glasses, debouncedWidthSearch, debouncedHeightSearch, debouncedColorSearch, debouncedThicknessSearch, sortConfig])
+  }, [glasses, debouncedWidthSearch, debouncedHeightSearch, debouncedColorSearch, debouncedThicknessSearch, debouncedProjectSearch, sortConfig])
 
   // Helper function to format reserved projects display
   const formatReservedProjects = (reservedProjects) => {
@@ -375,6 +420,58 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
     }
   }
 
+  const allocateAvailableGlass = (glassId) => {
+    const glass = glasses.find(g => g.id === glassId)
+    if (!glass || !glass.reservedProjects || glass.reservedProjects.length === 0 || glass.availableCount <= 0) {
+      return
+    }
+
+    const updatedGlass = { ...glass }
+    const projects = [...(updatedGlass.reservedProjects || [])]
+    const availableToAllocate = updatedGlass.availableCount
+    const projectCount = projects.filter(p => p != null).length
+
+    if (projectCount === 0) return
+
+    // Calculate equal allocation per project
+    const baseAllocation = Math.floor(availableToAllocate / projectCount)
+    const remainder = availableToAllocate % projectCount
+
+    // Convert string projects to objects with quantities and allocate glass
+    const updatedProjects = projects.map((project, index) => {
+      if (project == null) return project
+
+      // Calculate allocation for this project (give remainder to first projects)
+      const allocation = baseAllocation + (index < remainder ? 1 : 0)
+
+      if (typeof project === 'string') {
+        // Convert string to object with allocated quantity
+        return {
+          projectName: project,
+          quantity: allocation,
+          reservations: [{
+            id: `auto-${Date.now()}-${index}`,
+            reservedDate: new Date().toISOString()
+          }]
+        }
+      } else {
+        // Update existing project object
+        return {
+          ...project,
+          quantity: (project.quantity || 0) + allocation
+        }
+      }
+    })
+
+    // Update glass counts
+    updatedGlass.reservedProjects = updatedProjects
+    updatedGlass.reservedCount = availableToAllocate
+    updatedGlass.availableCount = 0
+
+    // Call the update function
+    onUpdateGlass(glassId, updatedGlass)
+  }
+
   const moveProjectToBacklog = (glassId, projectIndex, project) => {
     if (!confirm('Are you sure you want to move this project reservation to backlog?')) return
 
@@ -477,7 +574,15 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
               />
             </td>
             <td className="search-input-cell"></td>
-            <td className="search-input-cell"></td>
+            <td className="search-input-cell">
+              <input
+                type="text"
+                value={projectSearchValue}
+                onChange={(e) => handleProjectSearch(e.target.value)}
+                placeholder="Search projects..."
+                className="column-search-input"
+              />
+            </td>
             <td className="search-input-cell"></td>
           </tr>
         </tbody>
@@ -486,25 +591,17 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
       <table className="glass-table">
         <thead>
           <tr>
-            <th>
-              <span onClick={() => onSort('width')} className="sortable">
-                Width
-              </span>
+            <th onClick={() => onSort('width')} className="sortable">
+              Width {getSortIcon('width')}
             </th>
-            <th>
-              <span onClick={() => onSort('height')} className="sortable">
-                Height
-              </span>
+            <th onClick={() => onSort('height')} className="sortable">
+              Height {getSortIcon('height')}
             </th>
-            <th>
-              <span onClick={() => onSort('color')} className="sortable">
-                Color
-              </span>
+            <th onClick={() => onSort('color')} className="sortable">
+              Color {getSortIcon('color')}
             </th>
-            <th>
-              <span onClick={() => onSort('thickness')} className="sortable">
-                Thickness
-              </span>
+            <th onClick={() => onSort('thickness')} className="sortable">
+              Thickness {getSortIcon('thickness')}
             </th>
             <th onClick={() => onSort('heatSoaked')} className="sortable">
               Heat Soaked {getSortIcon('heatSoaked')}
@@ -545,7 +642,7 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
             filteredGlasses.filter(glass => glass).map((glass, glassIndex) => (
             <React.Fragment key={`${glass.id}-${glassIndex}`}>
               <tr 
-                className={`${editingId === glass.id ? 'editing' : ''} ${exitingEdit && editingId === glass.id ? 'exiting' : ''} ${getReservationStatusClass(glass)} ${glass.reservedCount > 0 ? 'clickable-row' : ''} ${isRowExpanded(glass.id) ? 'expanded' : ''}`}
+                className={`${editingId === glass.id ? 'editing' : ''} ${exitingEdit && editingId === glass.id ? 'exiting' : ''} ${getReservationStatusClass(glass)} ${glass.reservedCount > 0 ? 'clickable-row' : ''} ${isRowExpanded(glass.id) ? 'expanded' : ''} ${glass.reservedProjects && glass.reservedProjects.length > 0 ? 'has-projects' : 'no-projects'}`}
                 onClick={(e) => handleRowClick(glass, e)}
                 style={{ cursor: glass.reservedCount > 0 ? 'pointer' : 'default' }}
               >
@@ -658,7 +755,7 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
                   </td>
                   <td className="projects-cell">
                     {glass.reservedProjects && glass.reservedProjects.filter(p => p != null).length > 0 ? (
-                      <span title={getProjectTooltip(glass.reservedProjects)}>
+                      <span className="has-projects-badge" title={getProjectTooltip(glass.reservedProjects)}>
                         {glass.reservedProjects.filter(p => p != null).length === 1 
                           ? (typeof glass.reservedProjects.find(p => p != null) === 'string' 
                               ? glass.reservedProjects.find(p => p != null) 
@@ -667,7 +764,7 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
                         }
                       </span>
                     ) : (
-                      <span className="no-projects">None</span>
+                      <span className="no-projects-badge">None</span>
                     )}
                   </td>
                   <td>
