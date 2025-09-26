@@ -1,15 +1,46 @@
 // Katena 3 Changelog and Version Information
-export const CURRENT_VERSION = "1.0.4";
+export const CURRENT_VERSION = "1.1.0";
 
 export const CHANGELOG = [
+  {
+    version: "1.1.0",
+    date: "2025-09-25",
+    title: "Mobile Navigation, Image Upload & Responsive Design",
+    changes: [
+      "🎯 Key Features Added:",
+      "📱 Mobile dropdown navigation for tablets/phones (≤1024px)",
+      "📸 Image upload system for deficiencies (drag & drop, multiple files)",
+      "🖼️ Image gallery with view/download capabilities", 
+      "📱 Comprehensive responsive design (4 breakpoints)",
+      "🗑️ File cleanup (removed unused AdvancedFilters & SearchBar)",
+      "",
+      "🔧 Technical Improvements:",
+      "Enhanced API endpoints with image support (50MB limit)",
+      "Base64 image storage in JSON database",
+      "Touch-friendly mobile interactions",
+      "Smooth animations and transitions",
+      "Auto-close mobile menu functionality",
+      "",
+      "🎨 UI/UX Enhancements:",
+      "Updates button hidden on small devices for cleaner mobile UI",
+      "Responsive image grids adapting to screen size",
+      "Full-screen image viewer with download options",
+      "Visual feedback for all user interactions",
+      "Optimized layouts for all device sizes",
+      "",
+      "📊 Backend Updates:",
+      "Deficiency management system with CRUD operations",
+      "Image handling with validation and compression",
+      "Enhanced data structure for multimedia support"
+    ],
+    type: "major"
+  },
   {
     version: "1.0.4",
     date: "2025-09-26",
     title: "small tweaks",
     changes: [
-      "projects allocated to recent update",
-      " color for project changed from yellow to blue (personal preference)",
-      "added search bar for reserved projects",    
+      " "    
     ],
     type: "minor"
   },
