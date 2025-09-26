@@ -1,5 +1,18 @@
 // API service for communicating with the backend
-const API_BASE_URL = 'http://localhost:3001/api'; // Local development API URL
+// Auto-detect if we're on localhost or network, use appropriate API URL
+const getApiBaseUrl = () => {
+  const hostname = window.location.hostname;
+  
+  // If accessing via network IP (like 192.168.x.x), use that IP for backend
+  if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
+    return `http://${hostname}:3001/api`;
+  }
+  
+  // Default to localhost for local development
+  return 'http://localhost:3001/api';
+};
+
+const API_BASE_URL = getApiBaseUrl();
 
 class ApiService {
   // Generic fetch wrapper with error handling

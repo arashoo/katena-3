@@ -9,6 +9,7 @@ import PendingOrders from './components/PendingOrders'
 import Projects from './components/Projects'
 import ConfirmationModal from './components/ConfirmationModal'
 import ChangelogButton from './components/ChangelogButton'
+import ChangelogModal from './components/ChangelogModal'
 import Login from './components/Login'
 import apiService from './services/apiService'
 import './App.css'
@@ -319,6 +320,7 @@ function App() {
   const [deficiencyToComplete, setDeficiencyToComplete] = useState(null)
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false)
   const [deficiencyToDelete, setDeficiencyToDelete] = useState(null)
+  const [showChangelogModal, setShowChangelogModal] = useState(false)
 
   // Close mobile menu when clicking outside
   useEffect(() => {
@@ -1425,9 +1427,16 @@ function App() {
 
   return (
     <div className="app">
-      {/* Updates button - hidden on mobile/tablet */}
-      <div className="updates-button-container">
-        <ChangelogButton />
+      {/* Updates Slide Bar - Top Left (1200px+) */}
+      <div className="updates-slide desktop-updates">
+        <div className="updates-slide-content">
+          <div className="updates-slide-item" title="Updates">
+            <span className="updates-emoji">⚡</span>
+            <span className="updates-text">
+              <ChangelogButton onOpenModal={() => setShowChangelogModal(true)} />
+            </span>
+          </div>
+        </div>
       </div>
       
       {/* Desktop Tab Navigation */}
@@ -1439,14 +1448,15 @@ function App() {
               className={`tab-btn-vertical ${activeTab === tab.key ? 'active' : ''}`}
               onClick={() => handleTabChange(tab.key)}
             >
-              {tab.icon} {tab.label}
+              <span className="tab-emoji">{tab.icon}</span>
+              <span className="tab-text">{tab.label}</span>
             </button>
           ))}
         </div>
       </nav>
 
       {/* Mobile/Tablet Dropdown Navigation */}
-      <nav className="app-tabs mobile-nav">
+      <nav className="mobile-nav">
         <div className="mobile-dropdown-container">
           <button 
             className="mobile-dropdown-trigger"
@@ -1471,37 +1481,24 @@ function App() {
           )}
         </div>
       </nav>
-      
-      <header className="app-header">
-        <h1>Glass Inventory Management System</h1>
-        <div className="stats">
-          <span>Total: {totalCount}</span>
-          <span>Available: {availableCount}</span>
-          <span>Reserved: {reservedCount}</span>
-        </div>
-        <div className="header-controls">
-          <button 
-            className="add-glass-btn"
-            onClick={() => setShowAddForm(!showAddForm)}
-          >
-            {showAddForm ? 'Cancel' : 'Add New Glass'}
+
+      {/* Header Bar Slide - Bottom Left (1200px+) */}
+      <div className="header-bar desktop-header">
+        <div className="header-bar-content">
+          <button className="header-bar-btn" title="Add Glass" onClick={() => setShowAddForm(!showAddForm)}>
+            <span className="header-emoji">➕</span>
+            <span className="header-text">{showAddForm ? 'Cancel' : 'Add Glass'}</span>
           </button>
-          <button 
-            className="order-glass-btn"
-            onClick={() => setShowEmailOrder(!showEmailOrder)}
-          >
-            📧 Order Glass
+          <button className="header-bar-btn" title="Order Glass" onClick={() => setShowEmailOrder(!showEmailOrder)}>
+            <span className="header-emoji">📧</span>
+            <span className="header-text">Order Glass</span>
           </button>
-          <ExportControls glasses={glasses} />
-          <button 
-            className="logout-btn"
-            onClick={handleLogout}
-            title="Logout"
-          >
-            🚪 Logout
+          <button className="header-bar-btn" title="Logout" onClick={handleLogout}>
+            <span className="header-emoji">🚪</span>
+            <span className="header-text">Logout</span>
           </button>
         </div>
-      </header>
+      </div>
 
       {showAddForm && (
         <div style={{
@@ -1949,6 +1946,11 @@ function App() {
           confirmText="Delete"
           type="danger"
         />
+      )}
+
+      {/* Changelog Modal */}
+      {showChangelogModal && (
+        <ChangelogModal onClose={() => setShowChangelogModal(false)} />
       )}
     </div>
   )

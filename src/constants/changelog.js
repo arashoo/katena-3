@@ -1,28 +1,50 @@
 // Katena 3 Changelog and Version Information
-export const CURRENT_VERSION = "1.1.0";
+export const CURRENT_VERSION = "1.2.0";
 
 export const CHANGELOG = [
+  {
+    version: "1.2.0",
+    date: "2025-09-26",
+    title: "Three-Slide Navigation & Mobile Table Enhancement",
+    changes: [
+      "🚀 Three-slide navigation system with dark theme design",
+      "📱 Horizontal table slider for mobile devices (≤1200px)",
+      "🎨 Custom gradient scrollbars with smooth touch scrolling",
+      "📊 Enhanced table accessibility across all screen sizes",
+      "🔧 Mobile-optimized table layouts for all data tables",
+      "⚡ Removed emoji from Updates button for cleaner design",
+      "🖱️ Hover expansion effects for slide navigation bars",
+      "📱 Centered mobile dropdown navigation functionality",
+      "🎯 Fixed modal display architecture for proper full-screen viewing",
+      "✨ Visual scroll indicators for better user experience",
+      "🔄 Responsive breakpoints: 1200px, 768px, 480px",
+      "🎪 Edge-to-edge mobile table layouts for maximum viewing space",
+      "🎨 Consistent design language across all table components",
+      "⭐ Touch-friendly scrolling optimized for iOS devices",
+      "🎭 Z-index hierarchy management for proper modal layering"
+    ],
+    type: "major"
+  },
   {
     version: "1.1.0",
     date: "2025-09-25",
     title: "Mobile Navigation, Image Upload & Responsive Design",
     changes: [
-      
-      " Mobile dropdown navigation for tablets/phones (≤1024px)",
-      " Image upload system for deficiencies (drag & drop, multiple files)",
-      " Image gallery with view/download capabilities",
-      " Comprehensive responsive design (4 breakpoints)",
-      "Enhanced API endpoints with image support (50MB limit)",
-      "Base64 image storage in JSON database",
-      "Auto-close mobile menu functionality",
-      "Updates button hidden on small devices for cleaner mobile UI",
-      "Responsive image grids adapting to screen size",
-      "Full-screen image viewer with download options",
-      "Visual feedback for all user interactions",
-      "Optimized layouts for all device sizes",
-      "Deficiency management system with CRUD operations",
-      "Image handling with validation and compression",
-      "Enhanced data structure for multimedia support"
+      "📱 Mobile dropdown navigation for tablets/phones (≤1024px)",
+      "📸 Image upload system for deficiencies (drag & drop, multiple files)",
+      "🖼️ Image gallery with view/download capabilities",
+      "📐 Comprehensive responsive design (4 breakpoints)",
+      "🔌 Enhanced API endpoints with image support (50MB limit)",
+      "💾 Base64 image storage in JSON database",
+      "🔄 Auto-close mobile menu functionality",
+      "👁️ Updates button hidden on small devices for cleaner mobile UI",
+      "🎨 Responsive image grids adapting to screen size",
+      "🔍 Full-screen image viewer with download options",
+      "⚡ Visual feedback for all user interactions",
+      "📱 Optimized layouts for all device sizes",
+      "📋 Deficiency management system with CRUD operations",
+      "🖼️ Image handling with validation and compression",
+      "🗂️ Enhanced data structure for multimedia support"
     ],
     type: "major"
   },

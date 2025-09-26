@@ -733,9 +733,10 @@ app.get('*', (req, res) => {
 async function startServer() {
   await initializeData();
   
-  app.listen(PORT, () => {
+  app.listen(PORT, '0.0.0.0', () => {
     console.log(`Katena Backend API server running on port ${PORT}`);
-    console.log(`Health check: http://localhost:${PORT}/api/health`);
+    console.log(`Local access: http://localhost:${PORT}/api/health`);
+    console.log(`Network access: http://192.168.0.39:${PORT}/api/health`);
     console.log(`Data directory: ${DATA_DIR}`);
   });
 }

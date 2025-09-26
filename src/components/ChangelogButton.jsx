@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CURRENT_VERSION } from '../constants/changelog';
-import ChangelogModal from './ChangelogModal';
 import './ChangelogButton.css';
 
-const ChangelogButton = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleButtonClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+const ChangelogButton = ({ onOpenModal }) => {
+  const handleButtonClick = (e) => {
+    console.log('ChangelogButton clicked!');
+    e.preventDefault();
+    e.stopPropagation();
+    if (onOpenModal) {
+      onOpenModal();
+    }
   };
 
   return (
@@ -22,7 +20,6 @@ const ChangelogButton = () => {
         title="View Updates & Changelog"
       >
         <div className="changelog-button-content">
-          <span className="changelog-icon">📋</span>
           <div className="changelog-text">
             <span className="changelog-label">Updates</span>
             <span className="changelog-version">v{CURRENT_VERSION}</span>
@@ -30,9 +27,6 @@ const ChangelogButton = () => {
         </div>
       </button>
 
-      {isModalOpen && (
-        <ChangelogModal onClose={handleCloseModal} />
-      )}
     </>
   );
 };
