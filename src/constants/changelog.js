@@ -4,7 +4,7 @@ export const CURRENT_VERSION = "1.0.4";
 export const CHANGELOG = [
   {
     version: "1.0.4",
-    date: "2025-09-25",
+    date: "2025-09-26",
     title: "small tweaks",
     changes: [
       "projects allocated to recent update",

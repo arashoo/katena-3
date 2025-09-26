@@ -95,6 +95,10 @@
   color: #38a169;
 }
 
+.available-cell.partial {
+  color: #f59e0b;
+}
+
 .available-cell.insufficient {
   color: #e53e3e;
 }
@@ -152,6 +156,45 @@
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
 }
 
+/* Green button - exact amount available */
+.allocate-btn.exact-amount {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.allocate-btn.exact-amount:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+/* Yellow button - partial amount available */
+.allocate-btn.partial-amount {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.allocate-btn.partial-amount:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+/* Gray button - no amount available (disabled) */
+.allocate-btn.no-amount {
+  background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(113, 128, 150, 0.3);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.allocate-btn.no-amount:hover {
+  transform: none;
+  box-shadow: 0 2px 8px rgba(113, 128, 150, 0.3);
+}
+
+/* Legacy classes for backward compatibility */
 .allocate-btn.available {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;

@@ -121,6 +121,31 @@ class ApiService {
     });
   }
 
+  // Deficiencies API methods
+  async getDeficiencies() {
+    return await this.fetch('/deficiencies');
+  }
+
+  async saveDeficiency(deficiencyData) {
+    return await this.fetch('/deficiencies', {
+      method: 'POST',
+      body: JSON.stringify(deficiencyData),
+    });
+  }
+
+  async updateDeficiency(deficiencyData) {
+    return await this.fetch(`/deficiencies/${deficiencyData.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(deficiencyData),
+    });
+  }
+
+  async deleteDeficiency(id) {
+    return await this.fetch(`/deficiencies/${id}`, {
+      method: 'DELETE',
+    });
+  }
+
   // Health check
   async healthCheck() {
     return await this.fetch('/health');

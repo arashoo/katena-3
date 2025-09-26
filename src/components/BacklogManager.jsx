@@ -13,11 +13,17 @@ function BacklogManager({ backlogReservations, onSmartReallocate, onAllocate, on
   const handleDirectAllocate = (item) => {
     const availableCount = getAvailableCount(item)
     
+    if (availableCount === 0) {
+      // No inventory - should not reach here due to disabled button
+      alert('No inventory available. Please use the Order button instead.')
+      return
+    }
+    
     if (availableCount >= item.count) {
       // Sufficient inventory - allocate directly
       onAllocate(item.id)
     } else {
-      // Insufficient inventory - show confirmation
+      // Partial inventory - show confirmation
       setSelectedItem(item)
       setShowAllocateConfirm(true)
     }
@@ -37,15 +43,27 @@ function BacklogManager({ backlogReservations, onSmartReallocate, onAllocate, on
     setSelectedItem(null)
   }
 
+  const handleDelete = (item) => {
+    const itemCount = Math.max(1, Math.floor(item.count || 1))
+    if (window.confirm(`Are you sure you want to permanently delete this backlog item?\n\nGlass: ${item.width}" × ${item.height}" ${item.color}\nOriginal Project: ${item.originalProject}\nCount: ${itemCount} pieces`)) {
+      onDelete(item.id)
+    }
+  }
+
   const getAvailableCount = (item) => {
-    const availableGlass = availableGlasses?.find(glass => 
-      !glass.reservedProject &&
+    // Find matching glass in inventory by specifications
+    const matchingGlass = availableGlasses?.find(glass => 
       glass.width === item.width &&
       glass.height === item.height &&
       glass.color === item.color &&
       glass.heatSoaked === item.heatSoaked
     )
-    return availableGlass ? availableGlass.count : 0
+    
+    // Return available count (ensure non-negative whole number)
+    if (matchingGlass) {
+      return Math.max(0, Math.floor(matchingGlass.availableCount || 0))
+    }
+    return 0
   }
 
   return (
@@ -75,7 +93,31 @@ function BacklogManager({ backlogReservations, onSmartReallocate, onAllocate, on
             <tbody>
               {backlogReservations.map((item) => {
                 const availableCount = getAvailableCount(item)
-                const canReallocate = availableCount >= item.count
+                const itemCount = Math.max(1, Math.floor(item.count || 1)) // Ensure positive whole number, minimum 1
+                const hasExactAmount = availableCount >= itemCount
+                const hasPartialAmount = availableCount > 0 && availableCount < itemCount
+                const hasNoAmount = availableCount === 0
+                
+                // Button state logic
+                let buttonClass = 'allocate-btn'
+                let buttonText = '✅ Allocate'
+                let buttonTitle = 'Allocate from available inventory'
+                let canAllocate = true
+                
+                if (hasExactAmount) {
+                  buttonClass += ' exact-amount' // Green
+                  buttonText = '✅ Allocate'
+                  buttonTitle = `Allocate ${itemCount} pieces from inventory`
+                } else if (hasPartialAmount) {
+                  buttonClass += ' partial-amount' // Yellow
+                  buttonText = '⚠️ Allocate'
+                  buttonTitle = `Allocate ${itemCount} pieces (${availableCount} available, ${itemCount - availableCount} short)`
+                } else if (hasNoAmount) {
+                  buttonClass += ' no-amount' // Gray
+                  buttonText = '❌ No Stock'
+                  buttonTitle = 'No inventory available - use Order button instead'
+                  canAllocate = false
+                }
                 
                 return (
                   <tr key={item.id} className="backlog-row">
@@ -86,10 +128,11 @@ function BacklogManager({ backlogReservations, onSmartReallocate, onAllocate, on
                         <span className="color-heat">{item.color} • {item.heatSoaked ? 'Heat Soaked' : 'Not Heat Soaked'}</span>
                       </div>
                     </td>
-                    <td className="count-cell">{item.count}</td>
-                    <td className={`available-cell ${canReallocate ? 'sufficient' : 'insufficient'}`}>
+                    <td className="count-cell">{itemCount}</td>
+                    <td className={`available-cell ${hasExactAmount ? 'sufficient' : hasPartialAmount ? 'partial' : 'insufficient'}`}>
                       {availableCount}
-                      {!canReallocate && <span className="shortage"> (need {item.count - availableCount} more)</span>}
+                      {hasPartialAmount && <span className="shortage"> (need {itemCount - availableCount} more)</span>}
+                      {hasNoAmount && <span className="shortage"> (no stock available)</span>}
                     </td>
                     <td className="project-cell">{item.originalProject}</td>
                     <td className="date-cell">{item.backlogDate}</td>
@@ -103,14 +146,15 @@ function BacklogManager({ backlogReservations, onSmartReallocate, onAllocate, on
                           📦 Order
                         </button>
                         <button 
-                          onClick={() => handleDirectAllocate(item)} 
-                          className={`allocate-btn ${canReallocate ? 'available' : 'insufficient'}`}
-                          title={canReallocate ? "Allocate from available inventory" : "Allocate anyway (may need more glass)"}
+                          onClick={() => canAllocate ? handleDirectAllocate(item) : null} 
+                          className={buttonClass}
+                          title={buttonTitle}
+                          disabled={!canAllocate}
                         >
-                          {canReallocate ? '✅ Allocate' : '⚠️ Allocate'}
+                          {buttonText}
                         </button>
                         <button 
-                          onClick={() => onDelete(item.id)} 
+                          onClick={() => handleDelete(item)} 
                           className="delete-backlog-btn"
                           title="Permanently delete"
                         >
@@ -134,14 +178,14 @@ function BacklogManager({ backlogReservations, onSmartReallocate, onAllocate, on
             <div className="modal-content">
               <div className="glass-info">
                 <p><strong>Glass Needed:</strong> {selectedItem.width}" × {selectedItem.height}" {selectedItem.color}</p>
-                <p><strong>Required:</strong> {selectedItem.count} pieces</p>
+                <p><strong>Required:</strong> {Math.max(1, Math.floor(selectedItem.count || 1))} pieces</p>
                 <p><strong>Available:</strong> {getAvailableCount(selectedItem)} pieces</p>
-                <p><strong>Shortage:</strong> {selectedItem.count - getAvailableCount(selectedItem)} pieces</p>
+                <p><strong>Shortage:</strong> {Math.max(1, Math.floor(selectedItem.count || 1)) - getAvailableCount(selectedItem)} pieces</p>
                 <p><strong>For Project:</strong> {selectedItem.originalProject}</p>
               </div>
               
               <div className="confirmation-message">
-                <p>There is insufficient glass in inventory. Allocating anyway will create a negative balance. Would you like to proceed?</p>
+                <p>There is insufficient glass in inventory. You have {getAvailableCount(selectedItem)} pieces available but need {Math.max(1, Math.floor(selectedItem.count || 1))} pieces. Allocating anyway will result in a shortage of {Math.max(1, Math.floor(selectedItem.count || 1)) - getAvailableCount(selectedItem)} pieces. Would you like to proceed?</p>
               </div>
               
               <div className="modal-actions">

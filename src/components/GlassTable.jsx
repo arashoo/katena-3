@@ -354,27 +354,107 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
     const glass = glasses.find(g => g.id === glassId)
     if (!glass) return
 
+    // Validate input data
+    const newQuantity = Math.max(0, Math.floor(editingProjectData.quantity || 0))
+    const projectName = (editingProjectData.projectName || '').trim()
+
+    if (newQuantity <= 0) {
+      alert('Project quantity must be a positive whole number.')
+      return
+    }
+
+    if (!projectName) {
+      alert('Project name cannot be empty.')
+      return
+    }
+
+    // Calculate quantity difference
+    const oldProject = (glass.reservedProjects || [])[projectIndex]
+    const oldQuantity = typeof oldProject === 'string' ? 0 : (oldProject?.quantity || 0)
+    const quantityDiff = newQuantity - oldQuantity
+
+    // Calculate what the new total reserved count would be
+    const currentReservedCount = Math.max(0, Math.floor(glass.reservedCount || 0))
+    const newTotalReservedCount = currentReservedCount + quantityDiff
+    const totalGlassCount = Math.max(0, Math.floor(glass.count || 0))
+
+    // Validation Rule 1: Reserved count cannot exceed total count
+    if (newTotalReservedCount > totalGlassCount) {
+      const availableCount = totalGlassCount - currentReservedCount + oldQuantity
+      alert(
+        `❌ Insufficient inventory!\n\n` +
+        `RULE VIOLATION: Reserved count cannot exceed total inventory.\n\n` +
+        `You're trying to reserve ${newQuantity} pieces, but only ${availableCount} pieces are available.\n\n` +
+        `Current inventory breakdown:\n` +
+        `• Total glass: ${totalGlassCount} pieces\n` +
+        `• Currently reserved: ${currentReservedCount} pieces\n` +
+        `• Available for this edit: ${availableCount} pieces\n\n` +
+        `Please reduce the quantity to ${availableCount} or less.`
+      )
+      return
+    }
+    
+    // Validation Rule 2: Available count cannot exceed total count
+    const newAvailableCount = totalGlassCount - newTotalReservedCount
+    if (newAvailableCount > totalGlassCount) {
+      alert(
+        `❌ Data integrity error!\n\n` +
+        `RULE VIOLATION: Available count cannot exceed total inventory.\n\n` +
+        `This should not happen. Please refresh the page and try again.`
+      )
+      return
+    }
+    
+    // Validation Rule 3: Available count cannot be negative
+    if (newAvailableCount < 0) {
+      alert(
+        `❌ Invalid allocation!\n\n` +
+        `RULE VIOLATION: Available count cannot be negative.\n\n` +
+        `This allocation would result in ${Math.abs(newAvailableCount)} pieces in deficit.`
+      )
+      return
+    }
+
     // Create updated glass object
     const updatedGlass = { ...glass }
     const updatedProjects = [...(updatedGlass.reservedProjects || [])]
-    
-    // Calculate quantity difference
-    const oldProject = updatedProjects[projectIndex]
-    const oldQuantity = typeof oldProject === 'string' ? 0 : oldProject.quantity
-    const newQuantity = editingProjectData.quantity
-    const quantityDiff = newQuantity - oldQuantity
 
     // Update the project
     updatedProjects[projectIndex] = {
-      projectName: editingProjectData.projectName,
+      projectName: projectName,
       quantity: newQuantity,
-      reservations: typeof oldProject === 'string' ? [] : oldProject.reservations || []
+      reservations: typeof oldProject === 'string' ? [] : oldProject.reservations || [],
+      dateAdded: oldProject.dateAdded || new Date().toISOString(),
+      notes: oldProject.notes || ''
     }
 
-    // Update glass counts
+    // Update glass counts with validated numbers
     updatedGlass.reservedProjects = updatedProjects
-    updatedGlass.reservedCount = (updatedGlass.reservedCount || 0) + quantityDiff
-    updatedGlass.availableCount = updatedGlass.count - updatedGlass.reservedCount
+    updatedGlass.reservedCount = Math.max(0, currentReservedCount + quantityDiff)
+    updatedGlass.availableCount = totalGlassCount - updatedGlass.reservedCount
+    
+    // Final validation: Ensure all rules are satisfied
+    if (updatedGlass.availableCount < 0) {
+      alert('❌ Critical Error: Available count became negative. Operation cancelled.')
+      return
+    }
+    
+    if (updatedGlass.reservedCount > totalGlassCount) {
+      alert('❌ Critical Error: Reserved count exceeds total. Operation cancelled.')
+      return
+    }
+    
+    if (updatedGlass.availableCount > totalGlassCount) {
+      alert('❌ Critical Error: Available count exceeds total. Operation cancelled.')
+      return
+    }
+    
+    // Ensure total consistency: available + reserved should equal total
+    const calculatedTotal = updatedGlass.availableCount + updatedGlass.reservedCount
+    if (calculatedTotal !== totalGlassCount) {
+      console.warn(`Glass ${glassId}: Adjusting total count from ${totalGlassCount} to ${calculatedTotal} to maintain consistency`)
+      updatedGlass.count = calculatedTotal
+    }
 
     // Call the update function
     onUpdateGlass(glassId, updatedGlass)
@@ -386,6 +466,48 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
 
   const handleProjectInputChange = (field, value) => {
     setEditingProjectData({ ...editingProjectData, [field]: value })
+  }
+
+  // Function to get the maximum quantity that can be reserved for the current project edit
+  const getMaxEditableQuantity = (glassId, projectIndex) => {
+    const glass = glasses.find(g => g.id === glassId)
+    if (!glass) return 0
+
+    const totalGlassCount = Math.max(0, Math.floor(glass.count || 0))
+    const currentReservedCount = Math.max(0, Math.floor(glass.reservedCount || 0))
+    const currentProject = (glass.reservedProjects || [])[projectIndex]
+    const currentProjectQuantity = typeof currentProject === 'string' ? 0 : (currentProject?.quantity || 0)
+
+    // Available = total - (current reserved - current project quantity)
+    return totalGlassCount - currentReservedCount + currentProjectQuantity
+  }
+
+  // Function to validate quantity input in real-time
+  const validateQuantityInput = (glassId, projectIndex, quantity) => {
+    const maxQuantity = getMaxEditableQuantity(glassId, projectIndex)
+    const numQuantity = Math.max(0, Math.floor(quantity || 0))
+    
+    if (numQuantity > maxQuantity) {
+      return {
+        isValid: false,
+        message: `Maximum available: ${maxQuantity} pieces`,
+        maxQuantity: maxQuantity
+      }
+    }
+    
+    if (numQuantity <= 0) {
+      return {
+        isValid: false,
+        message: 'Must be at least 1 piece',
+        maxQuantity: maxQuantity
+      }
+    }
+    
+    return {
+      isValid: true,
+      message: `${maxQuantity} pieces available`,
+      maxQuantity: maxQuantity
+    }
   }
 
   const deleteProject = (glassId, projectIndex) => {
@@ -808,16 +930,39 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
                               </div>
                               <div className="project-edit-row">
                                 <label>Quantity:</label>
-                                <input
-                                  type="number"
-                                  min="1"
-                                  value={editingProjectData.quantity}
-                                  onChange={(e) => handleProjectInputChange('quantity', parseInt(e.target.value) || 0)}
-                                  className="project-edit-input"
-                                />
+                                {(() => {
+                                  const validation = validateQuantityInput(glass.id, index, editingProjectData.quantity)
+                                  return (
+                                    <div className="quantity-input-container">
+                                      <input
+                                        type="number"
+                                        min="1"
+                                        max={validation.maxQuantity}
+                                        value={editingProjectData.quantity}
+                                        onChange={(e) => handleProjectInputChange('quantity', parseInt(e.target.value) || 0)}
+                                        className={`project-edit-input ${!validation.isValid ? 'invalid' : 'valid'}`}
+                                      />
+                                      <div className={`quantity-feedback ${!validation.isValid ? 'error' : 'info'}`}>
+                                        {validation.message}
+                                      </div>
+                                    </div>
+                                  )
+                                })()}
                               </div>
                               <div className="project-edit-actions">
-                                <button onClick={saveProjectEdit} className="project-save-btn" title="Save changes">✅</button>
+                                {(() => {
+                                  const validation = validateQuantityInput(glass.id, index, editingProjectData.quantity)
+                                  return (
+                                    <button 
+                                      onClick={saveProjectEdit} 
+                                      className={`project-save-btn ${!validation.isValid ? 'disabled' : ''}`}
+                                      disabled={!validation.isValid}
+                                      title={validation.isValid ? "Save changes" : "Please fix quantity before saving"}
+                                    >
+                                      ✅
+                                    </button>
+                                  )
+                                })()}
                                 <button onClick={cancelProjectEdit} className="project-cancel-btn" title="Cancel editing">❌</button>
                               </div>
                             </div>

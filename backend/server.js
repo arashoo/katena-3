@@ -9,7 +9,8 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '50mb' })); // Increase limit for image uploads
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // Serve static files from the frontend build directory
 app.use(express.static(path.join(__dirname, '../dist')));
@@ -19,6 +20,7 @@ const DATA_DIR = path.join(__dirname, 'data');
 const GLASSES_FILE = path.join(DATA_DIR, 'glasses.json');
 const BACKLOG_FILE = path.join(DATA_DIR, 'backlog.json');
 const PENDING_ORDERS_FILE = path.join(DATA_DIR, 'pendingOrders.json');
+const DEFICIENCIES_FILE = path.join(DATA_DIR, 'deficiencies.json');
 
 // Ensure data directory and files exist
 async function initializeData() {
@@ -38,6 +40,11 @@ async function initializeData() {
     // Initialize pendingOrders.json if it doesn't exist
     if (!(await fs.pathExists(PENDING_ORDERS_FILE))) {
       await fs.writeJson(PENDING_ORDERS_FILE, [], { spaces: 2 });
+    }
+    
+    // Initialize deficiencies.json if it doesn't exist
+    if (!(await fs.pathExists(DEFICIENCIES_FILE))) {
+      await fs.writeJson(DEFICIENCIES_FILE, [], { spaces: 2 });
     }
     
     console.log('Data files initialized successfully');
@@ -100,6 +107,25 @@ async function writePendingOrders(pendingOrders) {
     return true;
   } catch (error) {
     console.error('Error writing pending orders data:', error);
+    return false;
+  }
+}
+
+async function readDeficiencies() {
+  try {
+    return await fs.readJson(DEFICIENCIES_FILE);
+  } catch (error) {
+    console.error('Error reading deficiencies data:', error);
+    return [];
+  }
+}
+
+async function writeDeficiencies(deficiencies) {
+  try {
+    await fs.writeJson(DEFICIENCIES_FILE, deficiencies, { spaces: 2 });
+    return true;
+  } catch (error) {
+    console.error('Error writing deficiencies data:', error);
     return false;
   }
 }
@@ -589,6 +615,101 @@ app.post('/api/pending-orders/:id/receive', async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ error: 'Failed to receive order' });
+  }
+});
+
+// ===============================
+// DEFICIENCIES ROUTES
+// ===============================
+
+// GET /api/deficiencies - Get all deficiencies
+app.get('/api/deficiencies', async (req, res) => {
+  try {
+    const deficiencies = await readDeficiencies();
+    res.json(deficiencies);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to retrieve deficiencies' });
+  }
+});
+
+// POST /api/deficiencies - Add new deficiency
+app.post('/api/deficiencies', async (req, res) => {
+  try {
+    const deficiencies = await readDeficiencies();
+    const newDeficiency = {
+      id: req.body.id,
+      projectName: req.body.projectName,
+      description: req.body.description,
+      status: req.body.status,
+      priority: req.body.priority,
+      dateOpened: req.body.dateOpened,
+      dateClosed: req.body.dateClosed || null,
+      images: req.body.images || [], // Add images support
+      createdAt: new Date().toISOString()
+    };
+    
+    deficiencies.push(newDeficiency);
+    const success = await writeDeficiencies(deficiencies);
+    
+    if (success) {
+      res.status(201).json(newDeficiency);
+    } else {
+      res.status(500).json({ error: 'Failed to save deficiency' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to add deficiency' });
+  }
+});
+
+// PUT /api/deficiencies/:id - Update deficiency
+app.put('/api/deficiencies/:id', async (req, res) => {
+  try {
+    const deficiencies = await readDeficiencies();
+    const deficiencyIndex = deficiencies.findIndex(d => d.id === req.params.id);
+    
+    if (deficiencyIndex === -1) {
+      return res.status(404).json({ error: 'Deficiency not found' });
+    }
+    
+    // Update the deficiency
+    deficiencies[deficiencyIndex] = {
+      ...deficiencies[deficiencyIndex],
+      ...req.body,
+      updatedAt: new Date().toISOString()
+    };
+    
+    const success = await writeDeficiencies(deficiencies);
+    
+    if (success) {
+      res.json(deficiencies[deficiencyIndex]);
+    } else {
+      res.status(500).json({ error: 'Failed to update deficiency' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update deficiency' });
+  }
+});
+
+// DELETE /api/deficiencies/:id - Delete deficiency
+app.delete('/api/deficiencies/:id', async (req, res) => {
+  try {
+    const deficiencies = await readDeficiencies();
+    const deficiencyIndex = deficiencies.findIndex(d => d.id === req.params.id);
+    
+    if (deficiencyIndex === -1) {
+      return res.status(404).json({ error: 'Deficiency not found' });
+    }
+    
+    deficiencies.splice(deficiencyIndex, 1);
+    const success = await writeDeficiencies(deficiencies);
+    
+    if (success) {
+      res.json({ message: 'Deficiency deleted successfully' });
+    } else {
+      res.status(500).json({ error: 'Failed to delete deficiency' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to delete deficiency' });
   }
 });
 
