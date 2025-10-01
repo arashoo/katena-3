@@ -323,8 +323,6 @@
     "availableCount": 0,
     "reservedCount": 92,
     "reservedProjects": [
-      "MARLSTONE",
-      "MARLSTONE",
       {
         "projectName": "MARLSTONE",
         "quantity": 92,
@@ -8557,5 +8555,48 @@
     "reservedProject": null,
     "thickness": "6mm",
     "originalIndex": 549
+  },
+  {
+    "id": "361202d9-f45f-49ff-91e6-46b246f5090b",
+    "width": 1,
+    "height": 1,
+    "color": "Clear",
+    "heatSoaked": false,
+    "racks": [
+      "11"
+    ],
+    "count": 11,
+    "availableCount": 1,
+    "reservedCount": 10,
+    "reservedProjects": [
+      {
+        "projectName": "bb",
+        "quantity": 10,
+        "reservations": [
+          {
+            "id": "dc8eca30-0238-4605-9396-fb397c176a94",
+            "projectName": "bb",
+            "quantity": 10,
+            "reservedDate": "2025-09-26T21:27:19.382Z",
+            "glassId": "361202d9-f45f-49ff-91e6-46b246f5090b"
+          }
+        ]
+      }
+    ],
+    "reservedProject": null,
+    "dateAdded": "9/26/2025"
+  },
+  {
+    "id": "910c8637-bdcd-42ea-944f-72556281d36e",
+    "width": 1,
+    "height": 1,
+    "color": "Clear",
+    "count": 1,
+    "heatSoaked": false,
+    "reservedProject": "",
+    "rackNumber": "xxx",
+    "dateAdded": "9/26/2025",
+    "orderReference": "2e758e22-a379-47df-9617-d2f6487d6571",
+    "supplierInfo": "Chronoglass"
   }
 ]

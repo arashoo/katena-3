@@ -1570,7 +1570,18 @@ function App() {
         {/* Tab Content */}
         {activeTab === 'dashboard' && (
           <div className="tab-content">
-            <Dashboard glasses={glasses} />
+            <Dashboard 
+              glasses={glasses}
+              backlogReservations={backlogReservations}
+              deficiencies={deficiencies}
+              onTabChange={handleTabChange}
+              onUpdateGlass={updateGlass}
+              onDeleteGlass={handleDeleteConfirm}
+              onMoveToBacklog={handleMoveToBacklogConfirm}
+              onReserveGlass={reserveGlass}
+              onAllocateFromBacklog={allocateFromBacklog}
+              onDeleteFromBacklog={deleteFromBacklog}
+            />
           </div>
         )}
 
