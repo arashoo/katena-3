@@ -1072,7 +1072,8 @@ function App() {
       status: deficiencyData.status,
       priority: deficiencyData.priority,
       dateOpened: new Date().toLocaleDateString(),
-      dateClosed: null
+      dateClosed: null,
+      images: deficiencyData.images || []
     }
     
     try {
