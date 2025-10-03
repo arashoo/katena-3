@@ -21,6 +21,7 @@ const GLASSES_FILE = path.join(DATA_DIR, 'glasses.json');
 const BACKLOG_FILE = path.join(DATA_DIR, 'backlog.json');
 const PENDING_ORDERS_FILE = path.join(DATA_DIR, 'pendingOrders.json');
 const DEFICIENCIES_FILE = path.join(DATA_DIR, 'deficiencies.json');
+const PROJECTS_FILE = path.join(DATA_DIR, 'projects.json');
 
 // Ensure data directory and files exist
 async function initializeData() {
@@ -45,6 +46,11 @@ async function initializeData() {
     // Initialize deficiencies.json if it doesn't exist
     if (!(await fs.pathExists(DEFICIENCIES_FILE))) {
       await fs.writeJson(DEFICIENCIES_FILE, [], { spaces: 2 });
+    }
+    
+    // Initialize projects.json if it doesn't exist
+    if (!(await fs.pathExists(PROJECTS_FILE))) {
+      await fs.writeJson(PROJECTS_FILE, [], { spaces: 2 });
     }
     
     console.log('Data files initialized successfully');
@@ -710,6 +716,149 @@ app.delete('/api/deficiencies/:id', async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ error: 'Failed to delete deficiency' });
+  }
+});
+
+// PROJECTS ENDPOINTS
+
+// Helper functions for projects
+async function readProjects() {
+  try {
+    const data = await fs.readJson(PROJECTS_FILE);
+    return data;
+  } catch (error) {
+    console.error('Error reading projects:', error);
+    return [];
+  }
+}
+
+async function writeProjects(projects) {
+  try {
+    await fs.writeJson(PROJECTS_FILE, projects, { spaces: 2 });
+    return true;
+  } catch (error) {
+    console.error('Error writing projects:', error);
+    return false;
+  }
+}
+
+// GET /api/projects - Get all projects
+app.get('/api/projects', async (req, res) => {
+  try {
+    const projects = await readProjects();
+    res.json(projects);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch projects' });
+  }
+});
+
+// POST /api/projects - Create new project
+app.post('/api/projects', async (req, res) => {
+  try {
+    const projects = await readProjects();
+    const newProject = {
+      id: `proj-${Date.now()}`,
+      ...req.body,
+      dateCreated: new Date().toISOString(),
+      lastUpdated: new Date().toISOString()
+    };
+    
+    projects.push(newProject);
+    const success = await writeProjects(projects);
+    
+    if (success) {
+      res.status(201).json(newProject);
+    } else {
+      res.status(500).json({ error: 'Failed to create project' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to create project' });
+  }
+});
+
+// PUT /api/projects/:id - Update project
+app.put('/api/projects/:id', async (req, res) => {
+  try {
+    const projects = await readProjects();
+    const projectIndex = projects.findIndex(p => p.id === req.params.id);
+    
+    if (projectIndex === -1) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+    
+    projects[projectIndex] = {
+      ...projects[projectIndex],
+      ...req.body,
+      lastUpdated: new Date().toISOString()
+    };
+    
+    const success = await writeProjects(projects);
+    
+    if (success) {
+      res.json(projects[projectIndex]);
+    } else {
+      res.status(500).json({ error: 'Failed to update project' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update project' });
+  }
+});
+
+// DELETE /api/projects/:id - Delete project
+app.delete('/api/projects/:id', async (req, res) => {
+  try {
+    const projects = await readProjects();
+    const projectIndex = projects.findIndex(p => p.id === req.params.id);
+    
+    if (projectIndex === -1) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+    
+    projects.splice(projectIndex, 1);
+    const success = await writeProjects(projects);
+    
+    if (success) {
+      res.json({ message: 'Project deleted successfully' });
+    } else {
+      res.status(500).json({ error: 'Failed to delete project' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to delete project' });
+  }
+});
+
+// PUT /api/projects/:id/status - Update project status (triggers inventory changes)
+app.put('/api/projects/:id/status', async (req, res) => {
+  try {
+    const { status } = req.body;
+    const projects = await readProjects();
+    const projectIndex = projects.findIndex(p => p.id === req.params.id);
+    
+    if (projectIndex === -1) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+    
+    const project = projects[projectIndex];
+    const oldStatus = project.status;
+    
+    // If moving to production, remove glass from inventory
+    if (status === 'production' && oldStatus !== 'production') {
+      // TODO: Implement glass removal from inventory
+      console.log(`Project ${project.name} moved to production - should remove glass from inventory`);
+    }
+    
+    project.status = status;
+    project.lastUpdated = new Date().toISOString();
+    
+    const success = await writeProjects(projects);
+    
+    if (success) {
+      res.json(project);
+    } else {
+      res.status(500).json({ error: 'Failed to update project status' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update project status' });
   }
 });
 

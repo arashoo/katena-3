@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard'
 import BacklogManager from './components/BacklogManager'
 import PendingOrders from './components/PendingOrders'
 import Projects from './components/Projects'
+import ProjectMonitoring from './components/ProjectMonitoring'
 import ConfirmationModal from './components/ConfirmationModal'
 import ChangelogButton from './components/ChangelogButton'
 import ChangelogModal from './components/ChangelogModal'
@@ -902,6 +903,78 @@ function App() {
     }
   }
 
+  // Handle completing project installation
+  const handleCompleteInstallation = async (project) => {
+    try {
+      // Find all glass items for this project and update them
+      const updatedGlasses = [...glasses]
+      let totalRemovedGlass = 0
+      
+      // Track which glasses to update/remove
+      const glassesToUpdate = []
+      
+      project.glassItems.forEach(projectGlass => {
+        const glassIndex = updatedGlasses.findIndex(g => g.id === projectGlass.glassId)
+        
+        if (glassIndex !== -1) {
+          const glass = updatedGlasses[glassIndex]
+          
+          // Remove this project from the glass's reservedProjects
+          const updatedReservedProjects = glass.reservedProjects.filter(
+            proj => proj.projectName !== project.name
+          )
+          
+          // Calculate new counts
+          const removedQuantity = projectGlass.projectQuantity
+          const newReservedCount = glass.reservedCount - removedQuantity
+          const newTotalCount = glass.count - removedQuantity
+          const newAvailableCount = newTotalCount - newReservedCount
+          
+          totalRemovedGlass += removedQuantity
+          
+          if (newTotalCount <= 0) {
+            // Remove the glass entirely if no pieces left
+            updatedGlasses.splice(glassIndex, 1)
+          } else {
+            // Update the glass with new counts
+            updatedGlasses[glassIndex] = {
+              ...glass,
+              reservedProjects: updatedReservedProjects,
+              reservedCount: Math.max(0, newReservedCount),
+              availableCount: Math.max(0, newAvailableCount),
+              count: Math.max(0, newTotalCount)
+            }
+          }
+          
+          glassesToUpdate.push({
+            glassId: projectGlass.glassId,
+            updatedGlass: updatedGlasses[glassIndex] || null,
+            action: newTotalCount <= 0 ? 'delete' : 'update'
+          })
+        }
+      })
+      
+      // Update backend for each affected glass
+      for (const glassUpdate of glassesToUpdate) {
+        if (glassUpdate.action === 'delete') {
+          await apiService.deleteGlass(glassUpdate.glassId)
+        } else {
+          await apiService.updateGlass(glassUpdate.glassId, glassUpdate.updatedGlass)
+        }
+      }
+      
+      // Update local state
+      setGlasses(updatedGlasses)
+      
+      // Show success message
+      alert(`✅ Installation completed successfully!\n\nProject: ${project.name}\nRemoved ${totalRemovedGlass} pieces of glass from inventory\n\nThe glass has been permanently removed from your inventory.`)
+      
+    } catch (error) {
+      console.error('Failed to complete installation:', error)
+      alert(`❌ Failed to complete installation: ${error.message}\n\nPlease try again or contact support.`)
+    }
+  }
+
   const allocateFromBacklog = async (backlogItemId) => {
     const backlogItem = backlogReservations.find(item => item.id === backlogItemId)
     if (!backlogItem) return
@@ -1048,6 +1121,7 @@ function App() {
     { key: 'backlog', label: `Backlog (${backlogReservations.length})`, icon: '📝' },
     { key: 'pending', label: 'Pending Orders', icon: '🚚' },
     { key: 'projects', label: 'Projects', icon: '🏗️' },
+    { key: 'monitoring', label: 'Project Monitoring', icon: '📈' },
     { key: 'deficiencies', label: 'Deficiencies', icon: '⚠️' }
   ]
 
@@ -1623,7 +1697,16 @@ function App() {
 
         {activeTab === 'projects' && (
           <div className="tab-content">
-            <Projects glasses={glasses} />
+            <Projects 
+              glasses={glasses} 
+              onCompleteInstallation={handleCompleteInstallation}
+            />
+          </div>
+        )}
+
+        {activeTab === 'monitoring' && (
+          <div className="tab-content">
+            <ProjectMonitoring />
           </div>
         )}
 

@@ -1,0 +1,124 @@
+[
+  {
+    "id": "proj-001",
+    "name": "FINICH Building",
+    "balcons": [
+      {
+        "id": "g1",
+        "name": "G1",
+        "totalFeet": 120.5,
+        "assembledFeet": 85.2,
+        "remainingFeet": 35.3
+      },
+      {
+        "id": "g2",
+        "name": "G2",
+        "totalFeet": 95,
+        "assembledFeet": 60,
+        "remainingFeet": 35
+      }
+    ],
+    "type": "top mount",
+    "status": "production",
+    "dateCreated": "2025-09-15",
+    "lastUpdated": "2025-10-01T18:14:54.149Z",
+    "glassRequirements": [
+      {
+        "glassId": "glass-001",
+        "width": 48,
+        "height": 84,
+        "color": "clear",
+        "thickness": 6,
+        "heatSoaked": true,
+        "quantityNeeded": 25,
+        "quantityAvailable": 20,
+        "quantityMissing": 5,
+        "status": "partially_available"
+      },
+      {
+        "glassId": "glass-002",
+        "width": 36,
+        "height": 72,
+        "color": "clear",
+        "thickness": 6,
+        "heatSoaked": false,
+        "quantityNeeded": 15,
+        "quantityAvailable": 15,
+        "quantityMissing": 0,
+        "status": "available"
+      }
+    ],
+    "notes": "Priority project - customer deadline Nov 15"
+  },
+  {
+    "id": "proj-002",
+    "name": "PARKLAND Towers",
+    "balcons": [
+      {
+        "id": "div1",
+        "name": "Diviseur 1",
+        "totalFeet": 200,
+        "assembledFeet": 0,
+        "remainingFeet": 200
+      },
+      {
+        "id": "div2",
+        "name": "Diviseur 2",
+        "totalFeet": 180.5,
+        "assembledFeet": 0,
+        "remainingFeet": 180.5
+      }
+    ],
+    "type": "bypass",
+    "status": "installed",
+    "dateCreated": "2025-09-28",
+    "lastUpdated": "2025-10-01T18:17:09.292Z",
+    "glassRequirements": [
+      {
+        "glassId": "glass-003",
+        "width": 42,
+        "height": 96,
+        "color": "bronze",
+        "thickness": 8,
+        "heatSoaked": true,
+        "quantityNeeded": 30,
+        "quantityAvailable": 0,
+        "quantityMissing": 30,
+        "status": "unavailable"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "id": "proj-1759342526462",
+    "name": "aaa",
+    "balcons": [
+      {
+        "id": "g1",
+        "name": "G1",
+        "totalFeet": 1000,
+        "assembledFeet": 0,
+        "remainingFeet": 1000
+      }
+    ],
+    "type": "top mount",
+    "status": "installed",
+    "glassRequirements": [
+      {
+        "glassId": "",
+        "width": 1,
+        "height": 1,
+        "color": "clear",
+        "thickness": 6,
+        "heatSoaked": false,
+        "quantityNeeded": 2000,
+        "quantityAvailable": 0,
+        "quantityMissing": 2000,
+        "status": "unavailable"
+      }
+    ],
+    "notes": "",
+    "dateCreated": "2025-10-01T18:15:26.462Z",
+    "lastUpdated": "2025-10-01T18:17:12.200Z"
+  }
+]
