@@ -79,6 +79,26 @@ async function writeGlasses(glasses) {
   }
 }
 
+// Helper functions for projects
+async function readProjects() {
+  try {
+    return await fs.readJson(PROJECTS_FILE);
+  } catch (error) {
+    console.error('Error reading projects data:', error);
+    return [];
+  }
+}
+
+async function writeProjects(projects) {
+  try {
+    await fs.writeJson(PROJECTS_FILE, projects, { spaces: 2 });
+    return true;
+  } catch (error) {
+    console.error('Error writing projects data:', error);
+    return false;
+  }
+}
+
 async function readBacklog() {
   try {
     return await fs.readJson(BACKLOG_FILE);
@@ -159,18 +179,18 @@ app.post('/api/glasses', async (req, res) => {
     const glasses = await readGlasses();
     const glassData = req.body;
     
-    // Determine availableCount and reservedCount based on project assignment
-    let availableCount, reservedCount, reservedProjects, reservedProject;
+    // Determine stockCount and reservedCount based on project assignment
+    let stockCount, reservedCount, reservedProjects, reservedProject;
     
     if (glassData.reservedProject && glassData.reservedProject.trim() !== '') {
       // Glass is assigned to a project - all pieces are reserved
-      availableCount = 0;
+      stockCount = 0;
       reservedCount = glassData.count;
       reservedProjects = [glassData.reservedProject.trim()];
       reservedProject = glassData.reservedProject.trim();
     } else {
       // Glass has no project - all pieces are available
-      availableCount = glassData.count;
+      stockCount = glassData.count;
       reservedCount = 0;
       reservedProjects = [];
       reservedProject = null;
@@ -181,10 +201,11 @@ app.post('/api/glasses', async (req, res) => {
       width: glassData.width,
       height: glassData.height,
       color: glassData.color,
+      thickness: glassData.thickness,
       heatSoaked: glassData.heatSoaked || false,
       racks: Array.isArray(glassData.racks) ? glassData.racks : (glassData.rack ? [glassData.rack] : []),
       count: glassData.count,
-      availableCount,
+      stockCount,
       reservedCount,
       reservedProjects,
       reservedProject,
@@ -213,14 +234,41 @@ app.put('/api/glasses/:id', async (req, res) => {
       return res.status(404).json({ error: 'Glass not found' });
     }
     
-    glasses[glassIndex] = { ...glasses[glassIndex], ...req.body };
+    const originalGlass = glasses[glassIndex];
+    const updatedGlass = { ...originalGlass, ...req.body };
+    
+    // Auto-calculate counts based on the new total count
+    const totalCount = Math.max(0, Math.floor(updatedGlass.count || 0));
+    const reservedCount = Math.max(0, Math.floor(updatedGlass.reservedCount || 0));
+    
+    // Validation: Reserved count cannot exceed total count
+    if (reservedCount > totalCount) {
+      return res.status(400).json({ 
+        error: `Reserved count (${reservedCount}) cannot exceed total count (${totalCount}). Please reduce reservations first.` 
+      });
+    }
+    
+    // Auto-calculate available counts
+    const availableCount = Math.max(0, totalCount - reservedCount);
+    const stockCount = availableCount; // stockCount is the same as availableCount
+    
+    // Update the glass with corrected values
+    updatedGlass.count = totalCount;
+    updatedGlass.reservedCount = reservedCount;
+    updatedGlass.availableCount = availableCount;
+    updatedGlass.stockCount = stockCount;
+    
+    console.log(`📊 Glass ${req.params.id} updated: Total=${totalCount}, Reserved=${reservedCount}, Available=${availableCount}`);
+    
+    glasses[glassIndex] = updatedGlass;
     
     if (await writeGlasses(glasses)) {
-      res.json(glasses[glassIndex]);
+      res.json(updatedGlass);
     } else {
       res.status(500).json({ error: 'Failed to update glass data' });
     }
   } catch (error) {
+    console.error('Error updating glass:', error);
     res.status(500).json({ error: 'Failed to update glass' });
   }
 });
@@ -282,10 +330,11 @@ app.post('/api/glasses/:id/reserve', async (req, res) => {
     console.log('Found glass:', JSON.stringify(glass, null, 2));
     
     // Check if enough pieces are available
-    if (quantity > glass.availableCount) {
-      console.log('Insufficient quantity available:', quantity, '>', glass.availableCount);
+    // Check if enough pieces are available (using stockCount)
+    if (quantity > glass.stockCount) {
+      console.log('Insufficient quantity available:', quantity, '>', glass.stockCount);
       return res.status(400).json({ 
-        error: `Cannot reserve ${quantity} pieces. Only ${glass.availableCount} available.` 
+        error: `Cannot reserve ${quantity} pieces. Only ${glass.stockCount} available.` 
       });
     }
     
@@ -336,10 +385,10 @@ app.post('/api/glasses/:id/reserve', async (req, res) => {
       });
     }
     
-    // Update counts
+    // Update counts (using stockCount instead of availableCount)
     console.log('Updating counts...');
     updatedGlass.reservedCount = (updatedGlass.reservedCount || 0) + parseInt(quantity);
-    updatedGlass.availableCount = updatedGlass.count - updatedGlass.reservedCount;
+    updatedGlass.stockCount = updatedGlass.count - updatedGlass.reservedCount;
     
     console.log('Updated glass:', JSON.stringify(updatedGlass, null, 2));
     
@@ -363,6 +412,165 @@ app.post('/api/glasses/:id/reserve', async (req, res) => {
     console.error('Error details:', error);
     console.error('Error stack:', error.stack);
     res.status(500).json({ error: 'Failed to reserve glass' });
+  }
+});
+
+// Reserve glass by glass details (for project management)
+app.post('/api/glasses/reserve', async (req, res) => {
+  try {
+    const { glassId, projectName, quantity } = req.body;
+    
+    if (!glassId || !projectName || !quantity) {
+      return res.status(400).json({ error: 'Glass ID, project name, and quantity are required' });
+    }
+    
+    const glasses = await readGlasses();
+    const glassIndex = glasses.findIndex(g => g.id === glassId);
+    
+    if (glassIndex === -1) {
+      return res.status(404).json({ error: 'Glass not found' });
+    }
+    
+    const glass = glasses[glassIndex];
+    
+    // Check if enough pieces are available (using stockCount instead of availableCount)
+    if (quantity > glass.stockCount) {
+      return res.status(400).json({ 
+        error: `Cannot reserve ${quantity} pieces. Only ${glass.stockCount} available.` 
+      });
+    }
+    
+    // Create reservation object
+    const reservation = {
+      id: uuidv4(),
+      projectName: projectName.trim(),
+      quantity: parseInt(quantity),
+      reservedDate: new Date().toISOString(),
+      glassId: glassId
+    };
+    
+    // Update glass data
+    const updatedGlass = { ...glass };
+    
+    // Initialize reservedProjects array if it doesn't exist
+    if (!updatedGlass.reservedProjects) {
+      updatedGlass.reservedProjects = [];
+    }
+    
+    // Add or update project in reservedProjects
+    const existingProjectIndex = updatedGlass.reservedProjects.findIndex(
+      proj => proj && proj.projectName === projectName.trim()
+    );
+    
+    if (existingProjectIndex >= 0) {
+      // Add to existing project reservation
+      updatedGlass.reservedProjects[existingProjectIndex].quantity += parseInt(quantity);
+      if (!updatedGlass.reservedProjects[existingProjectIndex].reservations) {
+        updatedGlass.reservedProjects[existingProjectIndex].reservations = [];
+      }
+      updatedGlass.reservedProjects[existingProjectIndex].reservations.push(reservation);
+    } else {
+      // Create new project reservation
+      updatedGlass.reservedProjects.push({
+        projectName: projectName.trim(),
+        quantity: parseInt(quantity),
+        reservations: [reservation]
+      });
+    }
+    
+    // Update counts (using stockCount instead of availableCount)
+    updatedGlass.reservedCount = (updatedGlass.reservedCount || 0) + parseInt(quantity);
+    updatedGlass.stockCount = updatedGlass.count - updatedGlass.reservedCount;
+    
+    // Update the glass in the array
+    glasses[glassIndex] = updatedGlass;
+    
+    // Save the updated glasses data
+    const success = await writeGlasses(glasses);
+    if (success) {
+      res.json({ 
+        message: 'Glass reserved successfully', 
+        glass: updatedGlass,
+        reservation: reservation 
+      });
+    } else {
+      res.status(500).json({ error: 'Failed to save reservation' });
+    }
+  } catch (error) {
+    console.error('Error reserving glass:', error);
+    res.status(500).json({ error: 'Failed to reserve glass' });
+  }
+});
+
+// Remove glass from inventory (when shipped)
+app.post('/api/glasses/remove', async (req, res) => {
+  try {
+    const { glassId, projectName, quantity } = req.body;
+    
+    if (!glassId || !projectName || !quantity) {
+      return res.status(400).json({ error: 'Glass ID, project name, and quantity are required' });
+    }
+    
+    const glasses = await readGlasses();
+    const glassIndex = glasses.findIndex(g => g.id === glassId);
+    
+    if (glassIndex === -1) {
+      return res.status(404).json({ error: 'Glass not found' });
+    }
+    
+    const glass = glasses[glassIndex];
+    const updatedGlass = { ...glass };
+    
+    // Find and remove the reservation for this project
+    if (updatedGlass.reservedProjects && updatedGlass.reservedProjects.length > 0) {
+      const projectIndex = updatedGlass.reservedProjects.findIndex(
+        proj => proj && proj.projectName === projectName.trim()
+      );
+      
+      if (projectIndex >= 0) {
+        const project = updatedGlass.reservedProjects[projectIndex];
+        const removeQuantity = Math.min(parseInt(quantity), project.quantity);
+        
+        // Update project quantity
+        project.quantity -= removeQuantity;
+        
+        // Update reserved count
+        updatedGlass.reservedCount = Math.max(0, (updatedGlass.reservedCount || 0) - removeQuantity);
+        
+        // Update total count (remove from inventory)
+        updatedGlass.count = Math.max(0, updatedGlass.count - removeQuantity);
+        
+        // Update stock count
+        updatedGlass.stockCount = updatedGlass.count - updatedGlass.reservedCount;
+        
+        // If project has no more reservations, remove it
+        if (project.quantity <= 0) {
+          updatedGlass.reservedProjects.splice(projectIndex, 1);
+        }
+        
+        // Update the glass in the array
+        glasses[glassIndex] = updatedGlass;
+        
+        // Save the updated glasses data
+        const success = await writeGlasses(glasses);
+        if (success) {
+          res.json({ 
+            message: 'Glass removed from inventory successfully', 
+            glass: updatedGlass,
+            removedQuantity: removeQuantity
+          });
+        } else {
+          res.status(500).json({ error: 'Failed to save changes' });
+        }
+      } else {
+        res.status(404).json({ error: 'No reservation found for this project' });
+      }
+    } else {
+      res.status(404).json({ error: 'No reservations found for this glass' });
+    }
+  } catch (error) {
+    console.error('Error removing glass:', error);
+    res.status(500).json({ error: 'Failed to remove glass' });
   }
 });
 
@@ -451,18 +659,18 @@ app.post('/api/glasses/bulk', async (req, res) => {
     
     const glasses = await readGlasses();
     const processedGlasses = newGlasses.map(glassData => {
-      // Determine availableCount and reservedCount based on project assignment
-      let availableCount, reservedCount, reservedProjects, reservedProject;
+      // Determine stockCount and reservedCount based on project assignment
+      let stockCount, reservedCount, reservedProjects, reservedProject;
       
       if (glassData.reservedProject && glassData.reservedProject.trim() !== '') {
         // Glass is assigned to a project - all pieces are reserved
-        availableCount = 0;
+        stockCount = 0;
         reservedCount = glassData.count;
         reservedProjects = [glassData.reservedProject.trim()];
         reservedProject = glassData.reservedProject.trim();
       } else {
         // Glass has no project - all pieces are available
-        availableCount = glassData.count;
+        stockCount = glassData.count;
         reservedCount = 0;
         reservedProjects = [];
         reservedProject = null;
@@ -473,10 +681,11 @@ app.post('/api/glasses/bulk', async (req, res) => {
         width: glassData.width,
         height: glassData.height,
         color: glassData.color,
+        thickness: glassData.thickness,
         heatSoaked: glassData.heatSoaked || false,
         racks: Array.isArray(glassData.racks) ? glassData.racks : (glassData.rack ? [glassData.rack] : []),
         count: glassData.count,
-        availableCount,
+        stockCount,
         reservedCount,
         reservedProjects,
         reservedProject,
@@ -719,146 +928,170 @@ app.delete('/api/deficiencies/:id', async (req, res) => {
   }
 });
 
-// PROJECTS ENDPOINTS
+// =================================
+// PROJECT ENDPOINTS
+// =================================
 
-// Helper functions for projects
-async function readProjects() {
-  try {
-    const data = await fs.readJson(PROJECTS_FILE);
-    return data;
-  } catch (error) {
-    console.error('Error reading projects:', error);
-    return [];
-  }
-}
-
-async function writeProjects(projects) {
-  try {
-    await fs.writeJson(PROJECTS_FILE, projects, { spaces: 2 });
-    return true;
-  } catch (error) {
-    console.error('Error writing projects:', error);
-    return false;
-  }
-}
-
-// GET /api/projects - Get all projects
+// Get all projects
 app.get('/api/projects', async (req, res) => {
   try {
     const projects = await readProjects();
     res.json(projects);
   } catch (error) {
+    console.error('Error fetching projects:', error);
     res.status(500).json({ error: 'Failed to fetch projects' });
   }
 });
 
-// POST /api/projects - Create new project
+// Create a new project
 app.post('/api/projects', async (req, res) => {
   try {
+    const projectData = req.body;
+    
+    if (!projectData.name || !projectData.name.trim()) {
+      return res.status(400).json({ error: 'Project name is required' });
+    }
+    
     const projects = await readProjects();
+    
+    // Calculate summary fields for frontend compatibility
+    const sections = projectData.sections || [];
+    const totalGSections = sections.filter(s => s.type === 'G').length;
+    const totalDivSections = sections.filter(s => s.type === 'Div').length;
+    const totalGlasses = sections.reduce((total, section) => {
+      const glasses = section.glasses || [];
+      return total + glasses.length;
+    }, 0);
+    
     const newProject = {
-      id: `proj-${Date.now()}`,
-      ...req.body,
-      dateCreated: new Date().toISOString(),
-      lastUpdated: new Date().toISOString()
+      id: uuidv4(),
+      name: projectData.name.trim(),
+      client: projectData.client || '',
+      address: projectData.address || '',
+      status: projectData.status || 'In Progress',
+      dateCreated: new Date().toLocaleDateString(),
+      lastModified: new Date().toLocaleDateString(),
+      createdAt: new Date().toLocaleDateString(), // For frontend compatibility
+      totalInches: projectData.totalInches || '0',
+      preliminaryDrawing: projectData.preliminaryDrawing || null,
+      glassColor: projectData.glassColor || '',
+      glassThickness: projectData.glassThickness || '',
+      fabricationDrawings: projectData.fabricationDrawings || [],
+      sections: projectData.sections || [],
+      gSections: projectData.gSections || [],
+      // Add calculated fields for frontend compatibility
+      totalGSections,
+      totalDivSections,
+      totalGlasses,
+      fullData: projectData.fullData || {
+        preliminaryDrawing: projectData.preliminaryDrawing,
+        fabricationDrawings: projectData.fabricationDrawings || [],
+        sections: projectData.sections || []
+      }
     };
     
     projects.push(newProject);
-    const success = await writeProjects(projects);
     
-    if (success) {
+    if (await writeProjects(projects)) {
       res.status(201).json(newProject);
     } else {
-      res.status(500).json({ error: 'Failed to create project' });
+      res.status(500).json({ error: 'Failed to save project' });
     }
   } catch (error) {
+    console.error('Error creating project:', error);
     res.status(500).json({ error: 'Failed to create project' });
   }
 });
 
-// PUT /api/projects/:id - Update project
+// Update an existing project
 app.put('/api/projects/:id', async (req, res) => {
   try {
+    const projectId = req.params.id;
+    const updateData = req.body;
+    
     const projects = await readProjects();
-    const projectIndex = projects.findIndex(p => p.id === req.params.id);
+    const projectIndex = projects.findIndex(p => p.id === projectId);
     
     if (projectIndex === -1) {
       return res.status(404).json({ error: 'Project not found' });
     }
     
-    projects[projectIndex] = {
+    // Calculate summary fields for frontend compatibility
+    const sections = updateData.sections || projects[projectIndex].sections || [];
+    const totalGSections = sections.filter(s => s.type === 'G').length;
+    const totalDivSections = sections.filter(s => s.type === 'Div').length;
+    const totalGlasses = sections.reduce((total, section) => {
+      const glasses = section.glasses || [];
+      return total + glasses.length;
+    }, 0);
+    
+    // Update the project while preserving important fields
+    const updatedProject = {
       ...projects[projectIndex],
-      ...req.body,
-      lastUpdated: new Date().toISOString()
+      ...updateData,
+      id: projectId, // Preserve original ID
+      dateCreated: projects[projectIndex].dateCreated, // Preserve creation date
+      createdAt: projects[projectIndex].createdAt || projects[projectIndex].dateCreated, // For frontend compatibility
+      lastModified: new Date().toLocaleDateString(), // Update modification date
+      // Add calculated fields for frontend compatibility
+      totalGSections,
+      totalDivSections,
+      totalGlasses
     };
     
-    const success = await writeProjects(projects);
+    projects[projectIndex] = updatedProject;
     
-    if (success) {
-      res.json(projects[projectIndex]);
+    if (await writeProjects(projects)) {
+      res.json(updatedProject);
     } else {
       res.status(500).json({ error: 'Failed to update project' });
     }
   } catch (error) {
+    console.error('Error updating project:', error);
     res.status(500).json({ error: 'Failed to update project' });
   }
 });
 
-// DELETE /api/projects/:id - Delete project
+// Delete a project
 app.delete('/api/projects/:id', async (req, res) => {
   try {
+    const projectId = req.params.id;
+    
     const projects = await readProjects();
-    const projectIndex = projects.findIndex(p => p.id === req.params.id);
+    const projectIndex = projects.findIndex(p => p.id === projectId);
     
     if (projectIndex === -1) {
       return res.status(404).json({ error: 'Project not found' });
     }
     
-    projects.splice(projectIndex, 1);
-    const success = await writeProjects(projects);
+    const deletedProject = projects.splice(projectIndex, 1)[0];
     
-    if (success) {
-      res.json({ message: 'Project deleted successfully' });
+    if (await writeProjects(projects)) {
+      res.json({ message: 'Project deleted successfully', project: deletedProject });
     } else {
       res.status(500).json({ error: 'Failed to delete project' });
     }
   } catch (error) {
+    console.error('Error deleting project:', error);
     res.status(500).json({ error: 'Failed to delete project' });
   }
 });
 
-// PUT /api/projects/:id/status - Update project status (triggers inventory changes)
-app.put('/api/projects/:id/status', async (req, res) => {
+// Get a specific project by ID
+app.get('/api/projects/:id', async (req, res) => {
   try {
-    const { status } = req.body;
+    const projectId = req.params.id;
     const projects = await readProjects();
-    const projectIndex = projects.findIndex(p => p.id === req.params.id);
+    const project = projects.find(p => p.id === projectId);
     
-    if (projectIndex === -1) {
+    if (!project) {
       return res.status(404).json({ error: 'Project not found' });
     }
     
-    const project = projects[projectIndex];
-    const oldStatus = project.status;
-    
-    // If moving to production, remove glass from inventory
-    if (status === 'production' && oldStatus !== 'production') {
-      // TODO: Implement glass removal from inventory
-      console.log(`Project ${project.name} moved to production - should remove glass from inventory`);
-    }
-    
-    project.status = status;
-    project.lastUpdated = new Date().toISOString();
-    
-    const success = await writeProjects(projects);
-    
-    if (success) {
-      res.json(project);
-    } else {
-      res.status(500).json({ error: 'Failed to update project status' });
-    }
+    res.json(project);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to update project status' });
+    console.error('Error fetching project:', error);
+    res.status(500).json({ error: 'Failed to fetch project' });
   }
 });
 
@@ -868,13 +1101,12 @@ app.use((error, req, res, next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({ error: 'Route not found' });
-});
-
 // Catch-all handler: send back React's index.html file for client-side routing
+// Only for GET requests that don't start with /api
 app.get('*', (req, res) => {
+  if (req.path.startsWith('/api')) {
+    return res.status(404).json({ error: 'API route not found' });
+  }
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 

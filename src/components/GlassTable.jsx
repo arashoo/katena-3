@@ -280,7 +280,21 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
   }
 
   const handleInputChange = (field, value) => {
-    setEditData({ ...editData, [field]: value })
+    const newEditData = { ...editData, [field]: value }
+    
+    // Auto-calculate available count when total count changes
+    if (field === 'count') {
+      const totalCount = Math.max(0, Math.floor(value || 0))
+      const reservedCount = Math.max(0, Math.floor(newEditData.reservedCount || 0))
+      const availableCount = Math.max(0, totalCount - reservedCount)
+      
+      newEditData.count = totalCount
+      newEditData.availableCount = availableCount
+      
+      console.log(`📊 Total count changed to ${totalCount}, auto-calculated available: ${availableCount} (Reserved: ${reservedCount})`)
+    }
+    
+    setEditData(newEditData)
   }
 
   const formatRacks = (racks) => {
@@ -826,9 +840,14 @@ function GlassTable({ glasses, onUpdateGlass, onDeleteGlass, onMoveToBacklog, on
                       min="0"
                       value={editData.count}
                       onChange={(e) => handleInputChange('count', parseInt(e.target.value) || 0)}
+                      title="Total count - Available will be auto-calculated as Total - Reserved"
                     />
                   </td>
-                  <td>{editData.availableCount}</td>
+                  <td className="calculated-available">
+                    <span title="Auto-calculated: Total - Reserved">
+                      {Math.max(0, (editData.count || 0) - (editData.reservedCount || 0))}
+                    </span>
+                  </td>
                   <td>{editData.reservedCount}</td>
                   <td>
                     <input

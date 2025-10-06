@@ -6,6 +6,7 @@ function AddGlassForm({ onAddGlass, onCancel }) {
     width: '',
     height: '',
     color: 'Clear',
+    thickness: '6mm',
     count: '',
     heatSoaked: false,
     rack: '',
@@ -24,6 +25,7 @@ function AddGlassForm({ onAddGlass, onCancel }) {
       width: parseFloat(formData.width),
       height: parseFloat(formData.height),
       color: formData.color,
+      thickness: formData.thickness,
       count: parseInt(formData.count),
       heatSoaked: formData.heatSoaked,
       reservedProject: formData.reservedProject.trim(),
@@ -35,6 +37,7 @@ function AddGlassForm({ onAddGlass, onCancel }) {
       width: '',
       height: '',
       color: 'Clear',
+      thickness: '6mm',
       count: '',
       heatSoaked: false,
       rack: '',
@@ -94,6 +97,21 @@ function AddGlassForm({ onAddGlass, onCancel }) {
               <option value="Brown">Brown</option>
             </select>
           </div>
+          <div className="form-group">
+            <label htmlFor="thickness">Thickness *</label>
+            <select
+              id="thickness"
+              value={formData.thickness}
+              onChange={(e) => handleInputChange('thickness', e.target.value)}
+            >
+              <option value="6mm">6mm</option>
+              <option value="10mm">10mm</option>
+              <option value="12mm">12mm</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="form-row">
           <div className="form-group">
             <label htmlFor="count">Count *</label>
             <input

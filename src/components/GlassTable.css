@@ -355,6 +355,20 @@
   font-size: 14px;
 }
 
+.calculated-available {
+  background-color: #f0f9ff;
+  border: 1px dashed #0ea5e9;
+  border-radius: 4px;
+  padding: 8px;
+  text-align: center;
+}
+
+.calculated-available span {
+  font-weight: 600;
+  color: #0369a1;
+  font-style: italic;
+}
+
 .total-count-info {
   font-size: 11px;
   color: #6b7280;

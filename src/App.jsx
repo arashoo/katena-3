@@ -7,7 +7,6 @@ import Dashboard from './components/Dashboard'
 import BacklogManager from './components/BacklogManager'
 import PendingOrders from './components/PendingOrders'
 import Projects from './components/Projects'
-import ProjectMonitoring from './components/ProjectMonitoring'
 import ConfirmationModal from './components/ConfirmationModal'
 import ChangelogButton from './components/ChangelogButton'
 import ChangelogModal from './components/ChangelogModal'
@@ -458,36 +457,40 @@ function App() {
   const validateGlassIntegrity = (glass) => {
     const errors = []
     const totalCount = Math.floor(glass.count || 0)
-    const availableCount = Math.floor(glass.availableCount || 0)
     const reservedCount = Math.floor(glass.reservedCount || 0)
+    let availableCount = Math.floor(glass.availableCount || 0)
     
-    // Rule 1: Available count cannot exceed total count
-    if (availableCount > totalCount) {
-      errors.push(`Available count (${availableCount}) exceeds total count (${totalCount})`)
+    // Auto-calculate available count if total count changed
+    // Available = Total - Reserved (cannot be less than 0)
+    const calculatedAvailable = Math.max(0, totalCount - reservedCount)
+    
+    // If available count doesn't match calculated value, auto-correct it
+    if (availableCount !== calculatedAvailable) {
+      console.log(`🔧 Auto-correcting available count: ${availableCount} → ${calculatedAvailable} (Total: ${totalCount}, Reserved: ${reservedCount})`)
+      availableCount = calculatedAvailable
+      // Update the glass object with corrected available count
+      glass.availableCount = availableCount
+    }
+    
+    // Rule 1: Total count cannot be negative
+    if (totalCount < 0) {
+      errors.push(`Total count cannot be negative (${totalCount})`)
     }
     
     // Rule 2: Reserved count cannot exceed total count
     if (reservedCount > totalCount) {
-      errors.push(`Reserved count (${reservedCount}) exceeds total count (${totalCount})`)
+      errors.push(`Reserved count (${reservedCount}) exceeds total count (${totalCount}). Reduce reservations first.`)
     }
     
-    // Rule 3: Available count cannot be negative
-    if (availableCount < 0) {
-      errors.push(`Available count is negative (${availableCount})`)
-    }
-    
-    // Rule 4: Reserved count cannot be negative
+    // Rule 3: Reserved count cannot be negative
     if (reservedCount < 0) {
-      errors.push(`Reserved count is negative (${reservedCount})`)
+      errors.push(`Reserved count cannot be negative (${reservedCount})`)
     }
     
-    // Rule 5: Available + Reserved should equal Total
-    const sum = availableCount + reservedCount
-    if (sum !== totalCount) {
-      errors.push(`Available (${availableCount}) + Reserved (${reservedCount}) = ${sum}, but Total is ${totalCount}`)
-    }
+    // Rule 4: Available count should equal Total - Reserved (auto-calculated above)
+    // This rule is now enforced by auto-calculation rather than validation
     
-    // Rule 6: Reserved projects total should match reserved count
+    // Rule 5: Reserved projects total should match reserved count
     const projectsTotal = (glass.reservedProjects || []).reduce((sum, project) => 
       sum + Math.floor(project.quantity || 0), 0)
     if (projectsTotal !== reservedCount) {
@@ -903,78 +906,6 @@ function App() {
     }
   }
 
-  // Handle completing project installation
-  const handleCompleteInstallation = async (project) => {
-    try {
-      // Find all glass items for this project and update them
-      const updatedGlasses = [...glasses]
-      let totalRemovedGlass = 0
-      
-      // Track which glasses to update/remove
-      const glassesToUpdate = []
-      
-      project.glassItems.forEach(projectGlass => {
-        const glassIndex = updatedGlasses.findIndex(g => g.id === projectGlass.glassId)
-        
-        if (glassIndex !== -1) {
-          const glass = updatedGlasses[glassIndex]
-          
-          // Remove this project from the glass's reservedProjects
-          const updatedReservedProjects = glass.reservedProjects.filter(
-            proj => proj.projectName !== project.name
-          )
-          
-          // Calculate new counts
-          const removedQuantity = projectGlass.projectQuantity
-          const newReservedCount = glass.reservedCount - removedQuantity
-          const newTotalCount = glass.count - removedQuantity
-          const newAvailableCount = newTotalCount - newReservedCount
-          
-          totalRemovedGlass += removedQuantity
-          
-          if (newTotalCount <= 0) {
-            // Remove the glass entirely if no pieces left
-            updatedGlasses.splice(glassIndex, 1)
-          } else {
-            // Update the glass with new counts
-            updatedGlasses[glassIndex] = {
-              ...glass,
-              reservedProjects: updatedReservedProjects,
-              reservedCount: Math.max(0, newReservedCount),
-              availableCount: Math.max(0, newAvailableCount),
-              count: Math.max(0, newTotalCount)
-            }
-          }
-          
-          glassesToUpdate.push({
-            glassId: projectGlass.glassId,
-            updatedGlass: updatedGlasses[glassIndex] || null,
-            action: newTotalCount <= 0 ? 'delete' : 'update'
-          })
-        }
-      })
-      
-      // Update backend for each affected glass
-      for (const glassUpdate of glassesToUpdate) {
-        if (glassUpdate.action === 'delete') {
-          await apiService.deleteGlass(glassUpdate.glassId)
-        } else {
-          await apiService.updateGlass(glassUpdate.glassId, glassUpdate.updatedGlass)
-        }
-      }
-      
-      // Update local state
-      setGlasses(updatedGlasses)
-      
-      // Show success message
-      alert(`✅ Installation completed successfully!\n\nProject: ${project.name}\nRemoved ${totalRemovedGlass} pieces of glass from inventory\n\nThe glass has been permanently removed from your inventory.`)
-      
-    } catch (error) {
-      console.error('Failed to complete installation:', error)
-      alert(`❌ Failed to complete installation: ${error.message}\n\nPlease try again or contact support.`)
-    }
-  }
-
   const allocateFromBacklog = async (backlogItemId) => {
     const backlogItem = backlogReservations.find(item => item.id === backlogItemId)
     if (!backlogItem) return
@@ -1121,7 +1052,6 @@ function App() {
     { key: 'backlog', label: `Backlog (${backlogReservations.length})`, icon: '📝' },
     { key: 'pending', label: 'Pending Orders', icon: '🚚' },
     { key: 'projects', label: 'Projects', icon: '🏗️' },
-    { key: 'monitoring', label: 'Project Monitoring', icon: '📈' },
     { key: 'deficiencies', label: 'Deficiencies', icon: '⚠️' }
   ]
 
@@ -1697,16 +1627,7 @@ function App() {
 
         {activeTab === 'projects' && (
           <div className="tab-content">
-            <Projects 
-              glasses={glasses} 
-              onCompleteInstallation={handleCompleteInstallation}
-            />
-          </div>
-        )}
-
-        {activeTab === 'monitoring' && (
-          <div className="tab-content">
-            <ProjectMonitoring />
+            <Projects />
           </div>
         )}
 
