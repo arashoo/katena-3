@@ -1,121 +1,16 @@
 [
   {
-    "id": "d5c4ef0f-fe3d-4b1e-b4cf-ee5d01bba8fe",
-    "name": "aa",
-    "client": "",
-    "address": "",
-    "status": "In Progress",
-    "dateCreated": "10/6/2025",
-    "lastModified": "10/6/2025",
-    "createdAt": "10/6/2025",
-    "totalInches": "2.00",
-    "preliminaryDrawing": null,
-    "glassColor": "clear",
-    "glassThickness": "6mm",
-    "fabricationDrawings": [
-      {
-        "id": 1,
-        "name": "Fab1",
-        "file": null,
-        "status": "Production",
-        "deliveryAddress": "2483 rue coursol",
-        "shippingDate": "",
-        "arrivalDate": "",
-        "gSections": []
-      }
-    ],
-    "sections": [
-      {
-        "id": 1,
-        "type": "G",
-        "name": "G1",
-        "totalInches": "",
-        "numberOfGlasses": "2",
-        "glasses": [
-          {
-            "id": 1,
-            "identifier": "A",
-            "width": "1",
-            "height": "1"
-          },
-          {
-            "id": 2,
-            "identifier": "B",
-            "width": "1",
-            "height": "1"
-          }
-        ],
-        "expanded": true,
-        "fabricationId": "1"
-      }
-    ],
-    "gSections": [
-      {
-        "id": 1,
-        "type": "G",
-        "name": "G1",
-        "totalInches": "",
-        "numberOfGlasses": "2",
-        "glasses": [
-          {
-            "id": 1,
-            "identifier": "A",
-            "width": "1",
-            "height": "1"
-          },
-          {
-            "id": 2,
-            "identifier": "B",
-            "width": "1",
-            "height": "1"
-          }
-        ],
-        "expanded": true,
-        "fabricationId": "1"
-      }
-    ],
-    "totalGSections": 1,
-    "totalDivSections": 0,
-    "totalGlasses": 2,
-    "fullData": {
-      "preliminaryDrawing": null,
-      "fabricationDrawings": [
-        {
-          "id": 1,
-          "name": "Fab1",
-          "file": null,
-          "status": "Production",
-          "deliveryAddress": "2483 rue coursol",
-          "shippingDate": "",
-          "arrivalDate": "",
-          "gSections": []
-        }
-      ],
-      "sections": [
-        {
-          "id": 1,
-          "type": "G",
-          "name": "G1",
-          "totalInches": "",
-          "numberOfGlasses": "2",
-          "glasses": [
-            {
-              "id": 1,
-              "identifier": "A",
-              "width": "1",
-              "height": "1"
-            },
-            {
-              "id": 2,
-              "identifier": "B",
-              "width": "1",
-              "height": "1"
-            }
-          ],
-          "expanded": true,
-          "fabricationId": "1"
-        }
-      ]
-    }
+    "id": "b4625ab4-22d9-4aa3-84d8-ec6bd464e34d",
+    "name": "Finch",
+    "client": "Mohammad Ahmad Abdul",
+    "address": "2483 rue de la centre le ville",
+    "status": "planning"
+  },
+  {
+    "id": "1760627259013h47dbifi6",
+    "name": "1",
+    "client": "2",
+    "address": "3",
+    "status": "planning"
   }
 ]

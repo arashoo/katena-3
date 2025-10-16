@@ -22,6 +22,7 @@ const BACKLOG_FILE = path.join(DATA_DIR, 'backlog.json');
 const PENDING_ORDERS_FILE = path.join(DATA_DIR, 'pendingOrders.json');
 const DEFICIENCIES_FILE = path.join(DATA_DIR, 'deficiencies.json');
 const PROJECTS_FILE = path.join(DATA_DIR, 'projects.json');
+const PRELIMINARY_FILE = path.join(DATA_DIR, 'Preliminary.json');
 
 // Ensure data directory and files exist
 async function initializeData() {
@@ -51,6 +52,11 @@ async function initializeData() {
     // Initialize projects.json if it doesn't exist
     if (!(await fs.pathExists(PROJECTS_FILE))) {
       await fs.writeJson(PROJECTS_FILE, [], { spaces: 2 });
+    }
+    
+    // Initialize Preliminary.json if it doesn't exist
+    if (!(await fs.pathExists(PRELIMINARY_FILE))) {
+      await fs.writeJson(PRELIMINARY_FILE, [], { spaces: 2 });
     }
     
     console.log('Data files initialized successfully');
@@ -152,6 +158,26 @@ async function writeDeficiencies(deficiencies) {
     return true;
   } catch (error) {
     console.error('Error writing deficiencies data:', error);
+    return false;
+  }
+}
+
+// Helper functions for preliminary data
+async function readPreliminary() {
+  try {
+    return await fs.readJson(PRELIMINARY_FILE);
+  } catch (error) {
+    console.error('Error reading preliminary data:', error);
+    return [];
+  }
+}
+
+async function writePreliminary(preliminary) {
+  try {
+    await fs.writeJson(PRELIMINARY_FILE, preliminary, { spaces: 2 });
+    return true;
+  } catch (error) {
+    console.error('Error writing preliminary data:', error);
     return false;
   }
 }
@@ -954,40 +980,13 @@ app.post('/api/projects', async (req, res) => {
     
     const projects = await readProjects();
     
-    // Calculate summary fields for frontend compatibility
-    const sections = projectData.sections || [];
-    const totalGSections = sections.filter(s => s.type === 'G').length;
-    const totalDivSections = sections.filter(s => s.type === 'Div').length;
-    const totalGlasses = sections.reduce((total, section) => {
-      const glasses = section.glasses || [];
-      return total + glasses.length;
-    }, 0);
-    
+    // Only save the fields we decided on: id, name, client, address, status
     const newProject = {
-      id: uuidv4(),
+      id: projectData.id || uuidv4(),
       name: projectData.name.trim(),
       client: projectData.client || '',
       address: projectData.address || '',
-      status: projectData.status || 'In Progress',
-      dateCreated: new Date().toLocaleDateString(),
-      lastModified: new Date().toLocaleDateString(),
-      createdAt: new Date().toLocaleDateString(), // For frontend compatibility
-      totalInches: projectData.totalInches || '0',
-      preliminaryDrawing: projectData.preliminaryDrawing || null,
-      glassColor: projectData.glassColor || '',
-      glassThickness: projectData.glassThickness || '',
-      fabricationDrawings: projectData.fabricationDrawings || [],
-      sections: projectData.sections || [],
-      gSections: projectData.gSections || [],
-      // Add calculated fields for frontend compatibility
-      totalGSections,
-      totalDivSections,
-      totalGlasses,
-      fullData: projectData.fullData || {
-        preliminaryDrawing: projectData.preliminaryDrawing,
-        fabricationDrawings: projectData.fabricationDrawings || [],
-        sections: projectData.sections || []
-      }
+      status: projectData.status || 'planning'
     };
     
     projects.push(newProject);
@@ -1092,6 +1091,78 @@ app.get('/api/projects/:id', async (req, res) => {
   } catch (error) {
     console.error('Error fetching project:', error);
     res.status(500).json({ error: 'Failed to fetch project' });
+  }
+});
+
+// =================================
+// PRELIMINARY ENDPOINTS
+// =================================
+
+// Get preliminary data for a specific project
+app.get('/api/preliminary/:projectId', async (req, res) => {
+  try {
+    const projectId = req.params.projectId;
+    const preliminaryData = await readPreliminary();
+    const projectPreliminary = preliminaryData.find(p => p.projectId === projectId);
+    
+    if (!projectPreliminary) {
+      return res.json({ projectId, Gs: [], Divs: [] });
+    }
+    
+    res.json(projectPreliminary);
+  } catch (error) {
+    console.error('Error fetching preliminary data:', error);
+    res.status(500).json({ error: 'Failed to fetch preliminary data' });
+  }
+});
+
+// Save preliminary data
+app.post('/api/preliminary', async (req, res) => {
+  try {
+    const { projectId, projectName, Gs, Divs } = req.body;
+    
+    if (!projectId) {
+      return res.status(400).json({ error: 'Project ID is required' });
+    }
+    
+    const preliminaryData = await readPreliminary();
+    const existingIndex = preliminaryData.findIndex(p => p.projectId === projectId);
+    
+    const newPreliminaryData = {
+      projectId,
+      projectName,
+      Gs: Gs || [],
+      Divs: Divs || [],
+      lastUpdated: new Date().toISOString()
+    };
+    
+    if (existingIndex >= 0) {
+      // Update existing data
+      preliminaryData[existingIndex] = newPreliminaryData;
+    } else {
+      // Add new data
+      preliminaryData.push(newPreliminaryData);
+    }
+    
+    if (await writePreliminary(preliminaryData)) {
+      res.status(201).json(newPreliminaryData);
+    } else {
+      res.status(500).json({ error: 'Failed to save preliminary data' });
+    }
+  } catch (error) {
+    console.error('Error saving preliminary data:', error);
+    res.status(500).json({ error: 'Failed to save preliminary data' });
+  }
+});
+
+// Get all preliminary data
+app.get('/api/preliminary', async (req, res) => {
+  try {
+    const preliminaryData = await readPreliminary();
+    res.json(preliminaryData);
+  } catch (error) {
+    console.error('Error fetching all preliminary data:', error);
+    res.status(500).json({ error: 'Failed to fetch preliminary data' });
   }
 });
 
