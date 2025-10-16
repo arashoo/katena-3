@@ -1,7 +1,30 @@
 // Katena 3 Changelog and Version Information
-export const CURRENT_VERSION = "1.2.0";
+export const CURRENT_VERSION = "1.3.0";
 
 export const CHANGELOG = [
+  {
+    version: "1.3.0",
+    date: "2025-10-16",
+    title: "Complete Project Management System with Preliminary Data",
+    changes: [
+      "🏗️ Complete project management system with independent modal components",
+      "📝 AddProjectModal component for creating projects (name, client, address, status)",
+      "📊 PreliminaryModal component for managing Gs and Divs data",
+      "🎯 Space-separated input parsing for Gs/Divs (e.g., 'G1 G2 G3 G11 G23')",
+      "📋 Project cards display with real-time preliminary counts",
+      "🔄 Auto-refresh preliminary data when modals close",
+      "💾 Preliminary.json file for dedicated Gs and Divs storage",
+      "🌐 Backend API endpoints for full CRUD operations on preliminary data",
+      "🔧 Fixed React hooks violations in modal components",
+      "🧹 Cleaned up and removed old project-related components",
+      "📱 Responsive project cards with status badges and count displays",
+      "⚡ Parallel API calls for efficient preliminary data loading",
+      "🛡️ Comprehensive error handling and data validation",
+      "🏛️ Modular component architecture with separate CSS files",
+      "🔄 Real-time synchronization between project and preliminary data"
+    ],
+    type: "major"
+  },
   {
     version: "1.2.0",
     date: "2025-09-26",
